@@ -876,6 +876,9 @@ html, body, #root {
 
 .pulse-trend-icon {
   flex-shrink: 0;
+  width: 15px;
+  height: 9px;
+  display: block;
 }
 
 .pulse-status-text {

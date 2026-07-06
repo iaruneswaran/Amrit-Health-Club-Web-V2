@@ -1,3 +1,5 @@
+import trendIcon from '../assets/Trend.svg';
+
 export default function PulseScore() {
   return (
     <div className="pulse-card" id="pulse-card">
@@ -55,10 +57,7 @@ export default function PulseScore() {
             <span className="pulse-score-value">82</span>
             <span className="pulse-score-total">/100</span>
             <span className="pulse-trend" aria-label="Trend: Up by 6 points vs last week">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="pulse-trend-icon">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
+              <img src={trendIcon} className="pulse-trend-icon" alt="" />
               +6 vs last week
             </span>
           </div>
