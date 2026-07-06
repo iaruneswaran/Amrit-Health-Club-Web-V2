@@ -1432,6 +1432,138 @@ html, body, #root {
   display: block;
 }
 
+/* =========================================
+   MEDICATION CARD
+   ========================================= */
+.medication-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.medication-card-header {
+  background: #D2F19E;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.medication-header-icon {
+  color: #1A2E35;
+  flex-shrink: 0;
+  display: block;
+}
+
+.medication-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A2E35;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.medication-card-body {
+  padding: 22px 22px;
+}
+
+.medication-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.medication-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+
+.medication-item:first-child {
+  padding-top: 0;
+}
+
+.medication-item:last-child {
+  padding-bottom: 0;
+}
+
+.medication-item-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.medication-check-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #72D355;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.medication-check-circle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.medication-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.medication-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1A2E35;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.medication-details {
+  font-size: 14px;
+  font-weight: 500;
+  color: #778D96;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.medication-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.medication-time {
+  font-size: 14px;
+  font-weight: 500;
+  color: #778D96;
+  line-height: 1.2;
+}
+
+.medication-next-dose {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1A2E35;
+  line-height: 1.2;
+}
+
+.medication-divider {
+  border: none;
+  border-bottom: 1px solid #EEF1F4;
+  margin: 0;
+}
+
+
 
 
 

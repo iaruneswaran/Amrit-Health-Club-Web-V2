@@ -6,6 +6,7 @@ import QuickNav from './components/QuickNav'
 import ClinicCard from './components/ClinicCard'
 import AppointmentCard from './components/AppointmentCard'
 import PulseScore from './components/PulseScore'
+import MedicationCard from './components/MedicationCard'
 import SplashScreen from './components/SplashScreen'
 import Onboarding from './components/Onboarding'
 import LoginFlow from './components/LoginFlow'
@@ -83,6 +84,10 @@ export default function App() {
           <div className="section-group">
             <p className="section-title">Your Pulse Score</p>
             <PulseScore />
+          </div>
+          <div className="section-group">
+            <p className="section-title">Medication</p>
+            <MedicationCard />
           </div>
         </main>
       </>

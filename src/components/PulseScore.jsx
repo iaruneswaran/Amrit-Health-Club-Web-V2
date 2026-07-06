@@ -7,7 +7,16 @@ const START_ANGLE = 90;                                     // right end = 0
 const END_ANGLE   = 90 - (SCORE / 100) * 180;              // −57.6° → score position (0=right, 100=left)
 const DURATION    = 1600;                         // ms
 
+function getPulseGradeInfo(score) {
+  if (score >= 80) return { grade: 'A', status: 'Excellent' };
+  if (score >= 70) return { grade: 'B', status: 'Great' };
+  if (score >= 60) return { grade: 'C', status: 'Good' };
+  if (score >= 40) return { grade: 'D', status: 'Fair' };
+  return { grade: 'E', status: 'Low' };
+}
+
 export default function PulseScore() {
+  const gradeInfo = getPulseGradeInfo(SCORE);
   const cardRef      = useRef(null);
   const groupRef     = useRef(null);
   const rafRef       = useRef(null);
@@ -104,7 +113,7 @@ export default function PulseScore() {
               />
               {/* Grade Letter */}
               <text x="195" y="196" fill="#FFFFFF" fontSize="120" fontWeight="800" textAnchor="middle">
-                A
+                {gradeInfo.grade}
               </text>
 
               {/* ── Animated Arc Pointer Arrow ──
@@ -139,7 +148,7 @@ export default function PulseScore() {
               +6 vs last week
             </span>
           </div>
-          <p className="pulse-status-text">Grade A · Excellent Health</p>
+          <p className="pulse-status-text">Grade {gradeInfo.grade} · {gradeInfo.status}</p>
         </div>
       </div>
 
