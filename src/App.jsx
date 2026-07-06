@@ -4,6 +4,7 @@ import AIBanner from './components/AIBanner'
 import QuickNav from './components/QuickNav'
 import ClinicCard from './components/ClinicCard'
 import AppointmentCard from './components/AppointmentCard'
+import PulseScore from './components/PulseScore'
 
 export default function App() {
   return (
@@ -17,6 +18,10 @@ export default function App() {
           <div className="section-group">
             <p className="section-title">Booked Appointments</p>
             <AppointmentCard />
+          </div>
+          <div className="section-group">
+            <p className="section-title">Your Pulse Score</p>
+            <PulseScore />
           </div>
         </main>
       </div>

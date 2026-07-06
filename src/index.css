@@ -753,6 +753,172 @@ html, body, #root {
 }
 
 /* =========================================
+   PULSE SCORE CARD
+   ========================================= */
+.pulse-card {
+  background: #02352c;
+  border-radius: var(--radius-md);
+  padding: 20px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pulse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pulse-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #98EC6D;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pulse-premium-badge {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: #98EC6D;
+  color: #02352F;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 50px 0 0 50px;
+  white-space: nowrap;
+}
+
+.pulse-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pulse-gauge-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.pulse-gauge-container {
+  width: 100%;
+}
+
+.pulse-gauge-svg {
+  width: 100%;
+  display: block;
+}
+
+.pulse-grade-capsule {
+  background: #EAF9E2;
+  color: #02352F;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 50px;
+  text-align: center;
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+.pulse-stats-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.pulse-stats-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.pulse-score-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pulse-score-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.pulse-score-total {
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.pulse-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #98EC6D;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 6px;
+}
+
+.pulse-trend-icon {
+  flex-shrink: 0;
+}
+
+.pulse-status-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pulse-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 18px 0 14px;
+}
+
+.pulse-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pulse-updated-text {
+  font-size: 13px;
+  font-weight: 400;
+  color: #DBDBDB;
+}
+
+.pulse-view-plans-btn {
+  background: transparent;
+  border: none;
+  color: #98EC6D;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font);
+  transition: opacity 0.2s ease;
+}
+
+.pulse-view-plans-btn:hover {
+  opacity: 0.85;
+}
+
+/* =========================================
    ANIMATIONS
    ========================================= */
 @keyframes fadeInUp {
