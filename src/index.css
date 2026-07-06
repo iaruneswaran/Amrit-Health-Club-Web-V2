@@ -797,14 +797,14 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 }
 
 .pulse-gauge-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 160px;
+  width: 150px;
   flex-shrink: 0;
 }
 

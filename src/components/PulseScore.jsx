@@ -38,7 +38,7 @@ export default function PulseScore() {
                 strokeLinejoin="round" 
               />
               {/* Grade Letter */}
-              <text x="200" y="196" fill="#FFFFFF" fontSize="120" fontWeight="800" textAnchor="middle">
+              <text x="195" y="196" fill="#FFFFFF" fontSize="120" fontWeight="800" textAnchor="middle">
                 A
               </text>
             </svg>
