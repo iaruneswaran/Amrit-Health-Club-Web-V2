@@ -112,8 +112,7 @@ html, body, #root {
 .hero-header {
   position: relative;
   width: 100%;
-  height: calc(180px + env(safe-area-inset-top, 0px));
-  padding-top: env(safe-area-inset-top, 0px);
+  height: 180px;
   background: #c8e6c9;
   overflow: visible;
 }
@@ -133,7 +132,7 @@ html, body, #root {
 
 .hero-content {
   position: absolute;
-  top: env(safe-area-inset-top, 0px); left: 0; right: 0; bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -547,7 +546,7 @@ html, body, #root {
    ========================================= */
 .section-title {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 2px;
 }
