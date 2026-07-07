@@ -1,3 +1,6 @@
+import doctorImage from '../assets/Doctor Image.svg';
+import appointmentBg from '../assets/booked Image.jpg';
+
 function PersonIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -19,13 +22,13 @@ function CalendarSmIcon() {
 function LocationSmIcon() {
   return (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 2C8.69 2 6 4.69 6 8c0 4.5 6 12 6 12s6-7.5 6-12c0-3.31-2.69-6-6-6z" stroke="currentColor" strokeWidth="2"/>
-      <circle cx="12" cy="8" r="2" stroke="currentColor" strokeWidth="1.8"/>
+      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
     </svg>
   )
 }
 
-function PulseIcon() {
+function ReasonSmIcon() {
   return (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <polyline points="3,12 7,12 9,5 11,19 13,9 15,15 17,12 21,12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -36,13 +39,18 @@ function PulseIcon() {
 export default function AppointmentCard() {
   return (
     <div className="appointment-card" id="appointment-card">
-      {/* Doctor row */}
-      <div className="appt-header">
-        <div className="appt-doctor-info">
-          <div className="doctor-avatar" aria-hidden="true" />
-          <div>
-            <p className="doctor-name">Dr. Amelia Carter</p>
-            <p className="doctor-specialty">Cardiology Specialist</p>
+      {/* Doctor row with background image */}
+      <div 
+        className="appt-header-bg" 
+        style={{ backgroundImage: `url(${appointmentBg})` }}
+      >
+        <div className="appt-header-overlay">
+          <div className="appt-profile-row">
+            <div className="appt-avatar-placeholder"></div>
+            <div className="appt-header-doctor-info">
+              <h4 className="appt-header-doctor-name">Dr. Amelia Carter</h4>
+              <p className="appt-header-doctor-specialty">Cardiology Specialist</p>
+            </div>
           </div>
         </div>
         <span className="status-confirmed" aria-label="Appointment status: Confirmed">Confirmed</span>

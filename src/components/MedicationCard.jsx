@@ -126,8 +126,9 @@ export default function MedicationCard() {
                     toggleMarked(selectedMed.id);
                     setSelectedMed(null);
                   }}
+                  disabled={markedMeds[selectedMed.id]}
                 >
-                  Mark as taken
+                  {markedMeds[selectedMed.id] ? "Taken" : "Mark as taken"}
                 </button>
               </div>
             </div>
