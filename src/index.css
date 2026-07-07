@@ -1469,7 +1469,7 @@ html, body, #root {
 }
 
 .medication-card-body {
-  padding: 22px 22px;
+  padding: 20px 20px;
 }
 
 .medication-list {
@@ -1494,24 +1494,34 @@ html, body, #root {
 
 .medication-item-left {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  align-items: flex-start;
+  gap: 8px;
 }
 
-.medication-check-circle {
+.medication-check-btn {
   width: 26px;
   height: 26px;
-  border-radius: 50%;
-  background: #72D355;
+  background: transparent;
+  border: none;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.1s ease;
+  margin-top: -2px;
 }
 
-.medication-check-circle svg {
-  width: 14px;
-  height: 14px;
+.medication-check-btn:active {
+  transform: scale(0.92);
+}
+
+.medication-check-btn img {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .medication-info {
@@ -1521,7 +1531,7 @@ html, body, #root {
 }
 
 .medication-name {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   color: #1A2E35;
   margin: 0;
@@ -1529,9 +1539,9 @@ html, body, #root {
 }
 
 .medication-details {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: #778D96;
+  color: #404040;
   margin: 0;
   line-height: 1.2;
 }
@@ -1544,15 +1554,15 @@ html, body, #root {
 }
 
 .medication-time {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: #778D96;
+  color: #404040;
   line-height: 1.2;
 }
 
 .medication-next-dose {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   color: #1A2E35;
   line-height: 1.2;
 }
@@ -1562,6 +1572,150 @@ html, body, #root {
   border-bottom: 1px solid #EEF1F4;
   margin: 0;
 }
+
+/* =========================================
+   MEDICATION POPUP MODAL
+   ========================================= */
+.medication-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 46, 53, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 20px;
+}
+
+.medication-modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.medication-modal-header {
+  background: #D2F19E;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+}
+
+.medication-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.medication-modal-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.medication-modal-notes {
+  background-color: #EEF1F4;
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.medication-modal-notes-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #404040;
+}
+
+.medication-modal-notes-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1A2E35;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.medication-modal-actions {
+  display: flex;
+  padding: 0;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.medication-modal-btn {
+  flex: 1;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medication-modal-btn.btn-close {
+  background-color: #EEF1F4;
+  color: #1A2E35;
+}
+
+.medication-modal-btn.btn-close:hover {
+  background-color: #E2E6EB;
+}
+
+.medication-modal-btn.btn-close:active {
+  transform: scale(0.97);
+}
+
+.medication-modal-btn.btn-take {
+  background-color: #D2F19E;
+  color: #1A2E35;
+}
+
+.medication-modal-btn.btn-take:hover {
+  background-color: #C1E386;
+  box-shadow: 0 4px 12px rgba(210, 241, 158, 0.25);
+}
+
+.medication-modal-btn.btn-take:active {
+  transform: scale(0.97);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
 
 
 

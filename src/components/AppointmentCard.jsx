@@ -80,10 +80,9 @@ export default function AppointmentCard() {
         </div>
       </div>
 
-      {/* Action buttons */}
       <div className="appt-actions">
-        <button id="complete-preop-btn" className="btn-primary" type="button">
-          Complete Pre-OP
+        <button id="reschedule-btn" className="btn-primary" type="button">
+          Reschedule
         </button>
         <button id="cancel-appt-btn" className="btn-secondary" type="button">
           Cancel
