@@ -14,6 +14,20 @@ const preferredDoctors = [
     specialty: 'Cardiology',
     fee: '₹500',
     initials: 'AC'
+  },
+  {
+    id: 3,
+    name: 'Dr. Amelia Carter',
+    specialty: 'Cardiology',
+    fee: '₹500',
+    initials: 'AC'
+  },
+  {
+    id: 4,
+    name: 'Dr. Amelia Carter',
+    specialty: 'Cardiology',
+    fee: '₹500',
+    initials: 'AC'
   }
 ];
 
@@ -36,7 +50,7 @@ export default function PreferredDoctors() {
               <span className="pref-doctor-fee-value">{doc.fee}</span>
             </div>
             <button className="pref-doctor-book-btn" type="button">
-              Book Now
+              Book
             </button>
           </div>
         </div>
