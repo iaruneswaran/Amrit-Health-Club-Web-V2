@@ -395,8 +395,8 @@ html, body, #root {
 }
 
 .nav-icon-wrap {
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   background: #D2F19E;
   border-radius: 14px;
   display: flex;
@@ -585,7 +585,7 @@ html, body, #root {
 }
 
 .appt-header-bg {
-  height: 140px;
+  height: 120px;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -1489,16 +1489,34 @@ html, body, #root {
   overflow: hidden;
 }
 
-.medication-card-header {
-  background: #D2F19E;
-  padding: 16px 22px;
+.medication-header-bg {
+  height: 100px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+.medication-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.45) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 20px;
+}
+
+.medication-header-title-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .medication-header-icon {
-  color: #1A2E35;
+  color: #FFFFFF;
   flex-shrink: 0;
   display: block;
 }
@@ -1506,7 +1524,7 @@ html, body, #root {
 .medication-card-title {
   font-size: 18px;
   font-weight: 600;
-  color: #1A2E35;
+  color: #FFFFFF;
   margin: 0;
   line-height: 1.2;
 }
@@ -1658,6 +1676,14 @@ html, body, #root {
   flex-direction: row;
 }
 
+.medication-modal-header .medication-header-icon {
+  color: #02352c;
+}
+
+.medication-modal-header .medication-card-title {
+  color: #02352c;
+}
+
 .medication-modal-body {
   padding: 20px;
   display: flex;
@@ -1781,7 +1807,7 @@ html, body, #root {
 }
 
 .admission-header {
-  height: 140px;
+  height: 120px;
   background-size: cover;
   background-position: center;
   position: relative;
