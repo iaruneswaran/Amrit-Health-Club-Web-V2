@@ -46,7 +46,7 @@ export default function AppointmentCard() {
       >
         <div className="appt-header-overlay">
           <div className="appt-profile-row">
-            <div className="appt-avatar-placeholder"></div>
+            <div className="appt-avatar-placeholder">AC</div>
             <div className="appt-header-doctor-info">
               <h4 className="appt-header-doctor-name">Dr. Amelia Carter</h4>
               <p className="appt-header-doctor-specialty">Cardiology Specialist</p>

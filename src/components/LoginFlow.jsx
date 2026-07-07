@@ -21,7 +21,12 @@ export default function LoginFlow({ onLoginComplete }) {
   const handlePhoneChange = (e) => {
     // Only allow numbers and limit to 10 digits
     const val = e.target.value.replace(/[^0-9]/g, '')
-    setPhoneNumber(val.slice(0, 10))
+    const sliced = val.slice(0, 10)
+    setPhoneNumber(sliced)
+    if (sliced.length === 10) {
+      setTimerSeconds(30)
+      setStep(2)
+    }
   }
 
   const handleSendCode = (e) => {
@@ -42,6 +47,12 @@ export default function LoginFlow({ onLoginComplete }) {
     if (val && index < 3) {
       otpInputsRef.current[index + 1]?.focus()
     }
+
+    // Auto-verify when 4 digits are completed
+    const otpString = newOtp.join('')
+    if (otpString.length === 4) {
+      onLoginComplete()
+    }
   }
 
   const handleOtpKeyDown = (e, index) => {
@@ -60,9 +71,15 @@ export default function LoginFlow({ onLoginComplete }) {
         newOtp[i] = pastedData[i]
       }
       setOtp(newOtp)
-      // Focus the last filled box or verify
-      const targetIndex = Math.min(pastedData.length, 3)
-      otpInputsRef.current[targetIndex]?.focus()
+      
+      const otpString = newOtp.join('')
+      if (otpString.length === 4) {
+        onLoginComplete()
+      } else {
+        // Focus the last filled box or verify
+        const targetIndex = Math.min(pastedData.length, 3)
+        otpInputsRef.current[targetIndex]?.focus()
+      }
     }
   }
 
@@ -129,14 +146,7 @@ export default function LoginFlow({ onLoginComplete }) {
             By continuing, you agree to our Terms and acknowledge the Privacy Policy.
           </p>
 
-          <button
-            type="submit"
-            className="login-btn"
-            disabled={!isPhoneValid}
-            style={{ marginTop: 'auto' }}
-          >
-            Send code
-          </button>
+          {/* Automatically sent on 10 digits */}
         </form>
       </div>
     )
@@ -195,14 +205,7 @@ export default function LoginFlow({ onLoginComplete }) {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="login-btn"
-          disabled={!isOtpValid}
-          style={{ marginTop: 'auto' }}
-        >
-          Verify
-        </button>
+        {/* Automatically verified on 4 digits */}
 
         <span className="otp-help">Need help?</span>
       </form>

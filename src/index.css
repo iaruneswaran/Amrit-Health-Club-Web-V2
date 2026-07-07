@@ -196,7 +196,7 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dark-navy);
 }
 
@@ -267,7 +267,7 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dark-navy);
   flex-shrink: 0;
 }
@@ -426,7 +426,7 @@ html, body, #root {
   padding: 20px;
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
 }
 
 .clinic-logo {
@@ -439,6 +439,11 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark-navy);
+  text-align: center;
+  line-height: 1;
 }
 
 .clinic-logo img {
@@ -605,11 +610,19 @@ html, body, #root {
 }
 
 .appt-avatar-placeholder {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 14px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark-navy);
+  text-align: center;
+  line-height: 1;
 }
 
 .appt-header-doctor-info {
@@ -644,8 +657,7 @@ html, body, #root {
   font-size: 14px;
   font-weight: 600;
   padding: 7px 12px;
-  border: 1px solid #E5E7EB;
-  border-right: none;
+  border: none;
   border-radius: 50px 0 0 50px;
   white-space: nowrap;
 }
@@ -1573,7 +1585,7 @@ html, body, #root {
 .medication-details {
   font-size: 13px;
   font-weight: 500;
-  color: #404040;
+  color: #777777;
   margin: 0;
   line-height: 1.2;
 }
@@ -1588,7 +1600,7 @@ html, body, #root {
 .medication-time {
   font-size: 13px;
   font-weight: 500;
-  color: #404040;
+  color: #777777;
   line-height: 1.2;
 }
 
@@ -1765,7 +1777,7 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   position: relative;
-  border: 1px solid var(--border-light);
+  border: none;
 }
 
 .admission-header {
@@ -1794,11 +1806,19 @@ html, body, #root {
 }
 
 .admission-avatar-placeholder {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 14px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark-navy);
+  text-align: center;
+  line-height: 1;
 }
 
 .admission-header-doctor-info {
@@ -1965,12 +1985,139 @@ html, body, #root {
 
 .assigned-doctor-badge {
   border: 1px solid #92E066;
-  background: rgba(146, 224, 102, 0.1);
+  background: transparent;
   color: #92E066;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
+}
+
+/* =========================================
+   PREFERRED DOCTORS CARD
+   ========================================= */
+.preferred-doctors-container {
+  display: flex;
+  gap: 14px;
+  padding: 4px 0 16px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pref-doctor-card {
+  flex: 1;
+  min-width: 0;
+  background: var(--card-bg);
+  border-radius: 22px;
+  padding: 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  box-shadow: none;
+}
+
+.pref-doctor-avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  background: #f2f2f2;
+  border-radius: 14px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  color: var(--dark-navy);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1;
+}
+
+.pref-doctor-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.pref-doctor-specialty {
+  font-size: 13px;
+  font-weight: 400;
+  color: #777777;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.pref-doctor-divider {
+  border: none;
+  border-bottom: 1px solid #EEF1F4;
+  width: 100%;
+  margin: 0 0 16px 0;
+}
+
+.pref-doctor-footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pref-doctor-fee-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pref-doctor-fee-label {
+  font-size: 14px;
+  color: #777777;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.pref-doctor-fee-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.2;
+}
+
+.pref-doctor-book-btn {
+  background: #D2F19E;
+  color: #02352F;
+  border: none;
+  height: 36px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s;
+}
+
+.pref-doctor-book-btn:active {
+  transform: scale(0.96);
+}
+
+.homepage-end-image-container {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.homepage-end-image {
+  height: 100px;
+  width: auto;
+  max-width: 100%;
+  display: block;
 }
 
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import hospitalImage from '../assets/Hospital Image.svg';
 
 const actions = [
   { id: 'booking-btn',  icon: '/booking.svg',  label: 'Booking'  },
@@ -13,9 +12,7 @@ export default function ClinicCard() {
       {/* Top info row */}
       <div className="clinic-info">
         {/* Logo profile image */}
-        <div className="clinic-logo">
-          <img src={hospitalImage} alt="St. Mary's Medical Profile" />
-        </div>
+        <div className="clinic-logo">SM</div>
 
         <div className="clinic-details">
           <div className="clinic-name-row">

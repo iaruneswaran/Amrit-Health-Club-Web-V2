@@ -8,6 +8,8 @@ import AppointmentCard from './components/AppointmentCard'
 import PulseScore from './components/PulseScore'
 import MedicationCard from './components/MedicationCard'
 import AdmissionCard from './components/AdmissionCard'
+import PreferredDoctors from './components/PreferredDoctors'
+import homePageEndImage from './assets/Home Page End Image.svg'
 import SplashScreen from './components/SplashScreen'
 import Onboarding from './components/Onboarding'
 import LoginFlow from './components/LoginFlow'
@@ -93,6 +95,13 @@ export default function App() {
           <div className="section-group">
             <p className="section-title">Admission Overview</p>
             <AdmissionCard />
+          </div>
+          <div className="section-group">
+            <p className="section-title">Preferred Doctors</p>
+            <PreferredDoctors />
+          </div>
+          <div className="homepage-end-image-container">
+            <img src={homePageEndImage} alt="Amrit Health Club Home End" className="homepage-end-image" />
           </div>
         </main>
       </>

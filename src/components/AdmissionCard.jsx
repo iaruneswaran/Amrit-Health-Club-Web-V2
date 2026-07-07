@@ -13,7 +13,7 @@ export default function AdmissionCard() {
       >
         <div className="admission-header-overlay">
           <div className="admission-profile-row">
-            <div className="admission-avatar-placeholder"></div>
+            <div className="admission-avatar-placeholder">RG</div>
             <div className="admission-header-doctor-info">
               <h4 className="admission-header-doctor-name">Ryan Gosling</h4>
               <p className="admission-header-doctor-specialty">Male, 36 • ID: AHC-9824</p>
