@@ -8,9 +8,9 @@ function SparkleIcon() {
   )
 }
 
-export default function AIBanner() {
+export default function AIBanner({ onClick }) {
   return (
-    <div className="ai-banner" role="button" id="ai-health-assistant" aria-label="Open AI Health Assistant">
+    <div className="ai-banner" onClick={onClick} role="button" id="ai-health-assistant" aria-label="Open AI Health Assistant">
       <div className="ai-banner-left">
         <span className="ai-icon">
           <img src="/ai-icon.svg" alt="AI" style={{ height: '30px', width: 'auto', display: 'block' }} />

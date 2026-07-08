@@ -13,6 +13,8 @@ import homePageEndImage from './assets/Home Page End Image.png'
 import SplashScreen from './components/SplashScreen'
 import Onboarding from './components/Onboarding'
 import LoginFlow from './components/LoginFlow'
+import NavBar from './components/NavBar'
+import AIPage from './components/AIPage'
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -23,6 +25,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem('user_logged_in') === 'true'
   })
+  const [showAIPage, setShowAIPage] = useState(false)
 
   console.log("App state - showSplash:", showSplash, "fadeOut:", fadeOut, "showOnboarding:", showOnboarding, "isLoggedIn:", isLoggedIn)
 
@@ -72,12 +75,21 @@ export default function App() {
       )
     }
 
+    if (showAIPage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <AIPage onBack={() => setShowAIPage(false)} />
+        </>
+      )
+    }
+
     return (
       <>
         {showSplash && <SplashScreen fadeOut={fadeOut} />}
         <HeroHeader />
         <main className="main-content">
-          <AIBanner />
+          <AIBanner onClick={() => setShowAIPage(true)} />
           <QuickNav />
           <ClinicCard />
           <div className="section-group">
@@ -104,6 +116,7 @@ export default function App() {
             <img src={homePageEndImage} alt="Amrit Health Club Home End" className="homepage-end-image" />
           </div>
         </main>
+        <NavBar />
       </>
     )
   }
