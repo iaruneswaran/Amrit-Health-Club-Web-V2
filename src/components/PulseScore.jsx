@@ -15,7 +15,7 @@ function getPulseGradeInfo(score) {
   return { grade: 'E', status: 'Low' };
 }
 
-export default function PulseScore({ showFooter = true }) {
+export default function PulseScore({ showFooter = true, onImprovementPlansClick = () => {} }) {
   const gradeInfo = getPulseGradeInfo(SCORE);
   const cardRef      = useRef(null);
   const groupRef     = useRef(null);
@@ -159,7 +159,12 @@ export default function PulseScore({ showFooter = true }) {
           {/* Footer */}
           <div className="pulse-footer">
             <span className="pulse-updated-text">Updated 12 mins ago</span>
-            <button className="pulse-view-plans-btn" type="button" id="view-plans-btn">
+            <button 
+              className="pulse-view-plans-btn" 
+              type="button" 
+              id="view-plans-btn"
+              onClick={onImprovementPlansClick}
+            >
               Improvement Plans
             </button>
           </div>

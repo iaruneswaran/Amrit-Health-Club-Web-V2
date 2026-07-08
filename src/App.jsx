@@ -33,8 +33,24 @@ export default function App() {
   })
   const [showAIPage, setShowAIPage] = useState(false)
   const [activeTab, setActiveTab] = useState(0)
+  const [pulsePageHasBack, setPulsePageHasBack] = useState(false)
 
-  console.log("App state - showSplash:", showSplash, "fadeOut:", fadeOut, "showOnboarding:", showOnboarding, "isLoggedIn:", isLoggedIn, "activeTab:", activeTab)
+  const handleImprovementPlansClick = () => {
+    setPulsePageHasBack(true)
+    setActiveTab(1)
+  }
+
+  const handleTabChange = (index) => {
+    setPulsePageHasBack(false)
+    setActiveTab(index)
+  }
+
+  const handleBackToHome = () => {
+    setPulsePageHasBack(false)
+    setActiveTab(0)
+  }
+
+  console.log("App state - showSplash:", showSplash, "fadeOut:", fadeOut, "showOnboarding:", showOnboarding, "isLoggedIn:", isLoggedIn, "activeTab:", activeTab, "pulsePageHasBack:", pulsePageHasBack)
 
   useEffect(() => {
     // Start fading out after 2 seconds
@@ -52,6 +68,18 @@ export default function App() {
       clearTimeout(removeTimer)
     }
   }, [])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    const appFrame = document.querySelector('.app-frame')
+    if (appFrame) {
+      appFrame.scrollTop = 0
+    }
+    const pageShell = document.querySelector('.page-shell')
+    if (pageShell) {
+      pageShell.scrollTop = 0
+    }
+  }, [activeTab])
 
   const handleOnboardingComplete = () => {
     setShowOnboarding(false)
@@ -107,7 +135,7 @@ export default function App() {
             </div>
             <div className="section-group">
               <p className="section-title">Your Pulse Score</p>
-              <PulseScore />
+              <PulseScore onImprovementPlansClick={handleImprovementPlansClick} />
             </div>
             <div className="section-group">
               <p className="section-title">Medication</p>
@@ -125,7 +153,7 @@ export default function App() {
               <img src={homePageEndImage} alt="Amrit Health Club Home End" className="homepage-end-image" />
             </div>
           </main>
-          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>
       )
     }
@@ -137,6 +165,14 @@ export default function App() {
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
           <header className="pulse-page-header">
             <img src={pulseImage} alt="" className="pulse-page-header-bg" />
+            {pulsePageHasBack && (
+              <button className="pulse-back-btn" onClick={handleBackToHome} aria-label="Go back">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+              </button>
+            )}
             <div className="pulse-page-header-overlay">
               <img src={pulsePageLogo} alt="Your Pulse Score Logo" className="pulse-page-header-logo" />
             </div>
@@ -246,8 +282,30 @@ export default function App() {
                 </svg>
               </div>
             </div>
+
+            <div className="section-group plans-section">
+              <p className="section-title">Improvement Plan</p>
+              <div className="plans-card">
+                <div className="plan-item">
+                  <h4 className="plan-item-title">Morning Walk - 10 day's</h4>
+                  <p className="plan-item-subtitle">Helps to improve BP</p>
+                </div>
+                <hr className="plan-item-divider" />
+                <div className="plan-item">
+                  <h4 className="plan-item-title">Complete blood work</h4>
+                  <p className="plan-item-subtitle">This week</p>
+                </div>
+                <hr className="plan-item-divider" />
+                <div className="plan-item">
+                  <h4 className="plan-item-title">Follow-up checkup</h4>
+                  <p className="plan-item-subtitle">Tomorrow</p>
+                </div>
+              </div>
+            </div>
+
+            <AIBanner onClick={() => setShowAIPage(true)} />
           </main>
-          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+          {!pulsePageHasBack && <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />}
         </>
       )
     }
@@ -263,7 +321,7 @@ export default function App() {
               No reports available.
             </div>
           </main>
-          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>
       )
     }
@@ -279,7 +337,7 @@ export default function App() {
               Profile settings coming soon.
             </div>
           </main>
-          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>
       )
     }
