@@ -8,14 +8,14 @@ const END_ANGLE   = 90 - (SCORE / 100) * 180;              // −57.6° → scor
 const DURATION    = 1600;                         // ms
 
 function getPulseGradeInfo(score) {
-  if (score >= 80) return { grade: 'A', status: 'Excellent' };
+  if (score >= 80) return { grade: 'A', status: 'Excellent Health' };
   if (score >= 70) return { grade: 'B', status: 'Great' };
   if (score >= 60) return { grade: 'C', status: 'Good' };
   if (score >= 40) return { grade: 'D', status: 'Fair' };
   return { grade: 'E', status: 'Low' };
 }
 
-export default function PulseScore() {
+export default function PulseScore({ showFooter = true }) {
   const gradeInfo = getPulseGradeInfo(SCORE);
   const cardRef      = useRef(null);
   const groupRef     = useRef(null);
@@ -134,7 +134,7 @@ export default function PulseScore() {
           </div>
           {/* Grade Capsule */}
           <div className="pulse-grade-capsule">
-            Grade 20 - 100
+            Grade 80 - 100
           </div>
         </div>
 
@@ -151,17 +151,20 @@ export default function PulseScore() {
           <p className="pulse-status-text">Grade {gradeInfo.grade} · {gradeInfo.status}</p>
         </div>
       </div>
+      {showFooter && (
+        <>
+          {/* Divider */}
+          <hr className="pulse-divider" />
 
-      {/* Divider */}
-      <hr className="pulse-divider" />
-
-      {/* Footer */}
-      <div className="pulse-footer">
-        <span className="pulse-updated-text">Updated 12 mins ago</span>
-        <button className="pulse-view-plans-btn" type="button" id="view-plans-btn">
-          View Plans
-        </button>
-      </div>
+          {/* Footer */}
+          <div className="pulse-footer">
+            <span className="pulse-updated-text">Updated 12 mins ago</span>
+            <button className="pulse-view-plans-btn" type="button" id="view-plans-btn">
+              Improvement Plans
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

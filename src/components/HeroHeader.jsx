@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import logoutIcon from '../assets/Logout icon.svg'
+import homePageHeaderImage from '../assets/Home Page Header Image.jpg'
 
 
 export default function HeroHeader() {
@@ -15,7 +16,7 @@ export default function HeroHeader() {
     <header className="hero-header">
       <img
         className="hero-bg-img"
-        src="/header.jpg"
+        src={homePageHeaderImage}
         alt="Amrit Health Club header background"
         aria-hidden="true"
       />

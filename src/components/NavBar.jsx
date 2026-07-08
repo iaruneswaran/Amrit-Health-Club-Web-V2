@@ -1,12 +1,9 @@
-import { useState } from 'react'
 import homeIcon from '../assets/Home.svg'
 import pulseIcon from '../assets/Pulse.svg'
 import reportsIcon from '../assets/Reports.svg'
 import userIcon from '../assets/User.svg'
 
-export default function NavBar() {
-  const [activeTab, setActiveTab] = useState(0)
-
+export default function NavBar({ activeTab, setActiveTab }) {
   const tabs = [
     { label: 'Home', icon: homeIcon },
     { label: 'Pulse', icon: pulseIcon },

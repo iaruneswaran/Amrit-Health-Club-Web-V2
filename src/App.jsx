@@ -15,6 +15,12 @@ import Onboarding from './components/Onboarding'
 import LoginFlow from './components/LoginFlow'
 import NavBar from './components/NavBar'
 import AIPage from './components/AIPage'
+import labIcon from './assets/Lab.svg'
+import consultationIcon from './assets/Consultation.svg'
+import vitalsIcon from './assets/Vitals.svg'
+import statusArrow from './assets/Status Arrow.svg'
+import pulseImage from './assets/Pulse Image.jpg'
+import pulsePageLogo from './assets/Pulse Page Logo.png'
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -26,8 +32,9 @@ export default function App() {
     return localStorage.getItem('user_logged_in') === 'true'
   })
   const [showAIPage, setShowAIPage] = useState(false)
+  const [activeTab, setActiveTab] = useState(0)
 
-  console.log("App state - showSplash:", showSplash, "fadeOut:", fadeOut, "showOnboarding:", showOnboarding, "isLoggedIn:", isLoggedIn)
+  console.log("App state - showSplash:", showSplash, "fadeOut:", fadeOut, "showOnboarding:", showOnboarding, "isLoggedIn:", isLoggedIn, "activeTab:", activeTab)
 
   useEffect(() => {
     // Start fading out after 2 seconds
@@ -84,41 +91,198 @@ export default function App() {
       )
     }
 
-    return (
-      <>
-        {showSplash && <SplashScreen fadeOut={fadeOut} />}
-        <HeroHeader />
-        <main className="main-content">
-          <AIBanner onClick={() => setShowAIPage(true)} />
-          <QuickNav />
-          <ClinicCard />
-          <div className="section-group">
-            <p className="section-title">Booked Appointments</p>
-            <AppointmentCard />
-          </div>
-          <div className="section-group">
-            <p className="section-title">Your Pulse Score</p>
-            <PulseScore />
-          </div>
-          <div className="section-group">
-            <p className="section-title">Medication</p>
-            <MedicationCard />
-          </div>
-          <div className="section-group">
-            <p className="section-title">Admission Overview</p>
-            <AdmissionCard />
-          </div>
-          <div className="section-group">
-            <p className="section-title">Preferred Doctors</p>
-            <PreferredDoctors />
-          </div>
-          <div className="homepage-end-image-container">
-            <img src={homePageEndImage} alt="Amrit Health Club Home End" className="homepage-end-image" />
-          </div>
-        </main>
-        <NavBar />
-      </>
-    )
+    if (activeTab === 0) {
+      // Home/Dashboard tab
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <HeroHeader />
+          <main className="main-content">
+            <AIBanner onClick={() => setShowAIPage(true)} />
+            <QuickNav />
+            <ClinicCard />
+            <div className="section-group">
+              <p className="section-title">Booked Appointments</p>
+              <AppointmentCard />
+            </div>
+            <div className="section-group">
+              <p className="section-title">Your Pulse Score</p>
+              <PulseScore />
+            </div>
+            <div className="section-group">
+              <p className="section-title">Medication</p>
+              <MedicationCard />
+            </div>
+            <div className="section-group">
+              <p className="section-title">Admission Overview</p>
+              <AdmissionCard />
+            </div>
+            <div className="section-group">
+              <p className="section-title">Preferred Doctors</p>
+              <PreferredDoctors />
+            </div>
+            <div className="homepage-end-image-container">
+              <img src={homePageEndImage} alt="Amrit Health Club Home End" className="homepage-end-image" />
+            </div>
+          </main>
+          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+        </>
+      )
+    }
+
+    if (activeTab === 1) {
+      // Pulse tab
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <header className="pulse-page-header">
+            <img src={pulseImage} alt="" className="pulse-page-header-bg" />
+            <div className="pulse-page-header-overlay">
+              <img src={pulsePageLogo} alt="Your Pulse Score Logo" className="pulse-page-header-logo" />
+            </div>
+          </header>
+          <main className="main-content" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <PulseScore showFooter={false} />
+
+            <div className="section-group drives-section">
+              <p className="section-title">Health Drives</p>
+              <div className="drives-scroll-container">
+                <div className="drive-card">
+                  <div className="drive-card-header">
+                    <div className="drive-icon-wrap lab-icon-wrap">
+                      <img src={labIcon} alt="" className="drive-icon" />
+                    </div>
+                    <span className="drive-percentage">+8%</span>
+                  </div>
+                  <h3 className="drive-card-title">Lab Report</h3>
+                  <div className="drive-status-pill no-issues">
+                    <img src={statusArrow} alt="" className="status-arrow-icon" />
+                    <span>No Issues</span>
+                  </div>
+                  <p className="drive-card-footer">Updated 2d ago</p>
+                </div>
+
+                <div className="drive-card">
+                  <div className="drive-card-header">
+                    <div className="drive-icon-wrap consultation-icon-wrap">
+                      <img src={consultationIcon} alt="" className="drive-icon" />
+                    </div>
+                    <span className="drive-percentage">+8%</span>
+                  </div>
+                  <h3 className="drive-card-title">Consultation</h3>
+                  <div className="drive-status-pill pending">
+                    <img src={statusArrow} alt="" className="status-arrow-icon" />
+                    <span>Pending</span>
+                  </div>
+                  <p className="drive-card-footer">Last visit 5d ago</p>
+                </div>
+
+                <div className="drive-card">
+                  <div className="drive-card-header">
+                    <div className="drive-icon-wrap vitals-icon-wrap">
+                      <img src={vitalsIcon} alt="" className="drive-icon" />
+                    </div>
+                    <span className="drive-percentage">+8%</span>
+                  </div>
+                  <h3 className="drive-card-title">Vitals Stability</h3>
+                  <div className="drive-status-pill stable">
+                    <img src={statusArrow} alt="" className="status-arrow-icon" />
+                    <span>Stable</span>
+                  </div>
+                  <p className="drive-card-footer">Updated 5m ago</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="section-group history-section">
+              <div className="history-header-row">
+                <p className="section-title">Score History</p>
+                <div className="timeframe-selector">
+                  <button className="timeframe-btn active">7d</button>
+                  <button className="timeframe-btn">30d</button>
+                  <button className="timeframe-btn">90d</button>
+                </div>
+              </div>
+
+              <div className="history-chart-card">
+                <svg viewBox="0 0 340 180" width="100%" height="auto" className="history-chart-svg">
+                  {/* Grid Lines */}
+                  <line x1="36" y1="20" x2="320" y2="20" stroke="#F2F4F7" strokeWidth="1" />
+                  <line x1="36" y1="55" x2="320" y2="55" stroke="#F2F4F7" strokeWidth="1" />
+                  <line x1="36" y1="90" x2="320" y2="90" stroke="#F2F4F7" strokeWidth="1" />
+                  <line x1="36" y1="125" x2="320" y2="125" stroke="#F2F4F7" strokeWidth="1" />
+
+                  {/* Y-Axis Labels */}
+                  <text x="12" y="24" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">100</text>
+                  <text x="12" y="59" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">75</text>
+                  <text x="12" y="94" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">50</text>
+                  <text x="12" y="129" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">25</text>
+
+                  {/* Area Under Curve Fill */}
+                  <path
+                    d="M 36 97 L 83.3 71.8 L 130.6 83.0 L 177.9 62.0 L 225.2 67.6 L 272.5 43.8 L 320 34.0 L 320 145 L 36 145 Z"
+                    fill="#D2F19E"
+                    opacity="0.8"
+                  />
+
+                  {/* Curve Stroke */}
+                  <path
+                    d="M 36 97 L 83.3 71.8 L 130.6 83.0 L 177.9 62.0 L 225.2 67.6 L 272.5 43.8 L 320 34.0"
+                    stroke="#02352F"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                  />
+
+                  {/* X-Axis Labels */}
+                  <text x="36" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Mon</text>
+                  <text x="83.3" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Tue</text>
+                  <text x="130.6" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Wed</text>
+                  <text x="177.9" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Thu</text>
+                  <text x="225.2" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Fri</text>
+                  <text x="272.5" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Sat</text>
+                  <text x="320" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Sun</text>
+                </svg>
+              </div>
+            </div>
+          </main>
+          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+        </>
+      )
+    }
+
+    if (activeTab === 2) {
+      // Reports tab
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <main className="main-content">
+            <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#02352F', marginTop: '10px' }}>Reports</h2>
+            <div style={{ background: '#FFFFFF', padding: '24px', borderRadius: '16px', marginTop: '16px', color: '#777777', textAlign: 'center' }}>
+              No reports available.
+            </div>
+          </main>
+          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+        </>
+      )
+    }
+
+    if (activeTab === 3) {
+      // User/Profile tab
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <main className="main-content">
+            <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#02352F', marginTop: '10px' }}>Profile</h2>
+            <div style={{ background: '#FFFFFF', padding: '24px', borderRadius: '16px', marginTop: '16px', color: '#777777', textAlign: 'center' }}>
+              Profile settings coming soon.
+            </div>
+          </main>
+          <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
+        </>
+      )
+    }
   }
 
   return (
