@@ -335,6 +335,19 @@ html, body, #root {
   font-size: 22px;
   display: flex;
   align-items: center;
+  animation: minimalZoom 2.5s ease-in-out infinite;
+}
+
+@keyframes minimalZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .ai-text-title {
