@@ -73,6 +73,7 @@ export default function AppointmentCard() {
               <img src="/location-green.svg" alt="" aria-hidden="true" style={{ height: '16px', width: 'auto' }} />
               Location
             </div>
+            <p className="detail-value">1.5 Km</p>
           </div>
         </div>
 

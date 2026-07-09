@@ -8,23 +8,17 @@ const medications = [
   {
     id: 1,
     name: 'Amoxicillin 250mg',
-    details: '1 Cap • BID • BFM • 5D',
-    time: '10:30 AM, Jun 10',
-    nextDose: 'Next 08:30 PM'
+    details: '1 Capsule • Twice a day • Before Meals • 5 Days'
   },
   {
     id: 2,
     name: 'Amoxicillin 250mg',
-    details: '1 Cap • BID • BFM • 5D',
-    time: '10:30 AM, Jun 10',
-    nextDose: 'Next 08:30 PM'
+    details: '1 Capsule • Twice a day • Before Meals • 5 Days'
   },
   {
     id: 3,
     name: 'Amoxicillin 250mg',
-    details: '1 Cap • BID • BFM • 5D',
-    time: '10:30 AM, Jun 10',
-    nextDose: 'Next 08:30 PM'
+    details: '1 Capsule • Twice a day • Before Meals • 5 Days'
   }
 ];
 
@@ -89,10 +83,6 @@ export default function MedicationCard() {
                       <p className="medication-details">{med.details}</p>
                     </div>
                   </div>
-                  <div className="medication-item-right">
-                    <span className="medication-time">{med.time}</span>
-                    <span className="medication-next-dose">{med.nextDose}</span>
-                  </div>
                 </div>
                 {index < medications.length - 1 && <hr className="medication-divider" />}
               </React.Fragment>
@@ -115,7 +105,7 @@ export default function MedicationCard() {
               <div className="medication-modal-info-row">
                 <div className="medication-info">
                   <p className="medication-name">{selectedMed.name}</p>
-                  <p className="medication-details">Infusion | 50ml | Jun 10, 2026 · 11:00 AM</p>
+                  <p className="medication-details">{selectedMed.details}</p>
                 </div>
               </div>
               
