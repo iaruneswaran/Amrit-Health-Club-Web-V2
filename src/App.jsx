@@ -19,8 +19,74 @@ import labIcon from './assets/Lab.svg'
 import consultationIcon from './assets/Consultation.svg'
 import vitalsIcon from './assets/Vitals.svg'
 import statusArrow from './assets/Status Arrow.svg'
-import pulseImage from './assets/Pulse Image.jpg'
+import pulseImage from './assets/Pulse Page Header Image.jpg'
 import pulsePageLogo from './assets/Pulse Page Logo.png'
+
+const timeframeData = {
+  D: {
+    average: 78,
+    dateRange: "Today, 9 Jul 2026",
+    points: [
+      { label: "12 AM", score: 70 },
+      { label: "4 AM", score: 72 },
+      { label: "8 AM", score: 80 },
+      { label: "12 PM", score: 85 },
+      { label: "4 PM", score: 82 },
+      { label: "8 PM", score: 78 },
+      { label: "11 PM", score: 75 }
+    ]
+  },
+  W: {
+    average: 65,
+    dateRange: "1 – 7 Jul 2026",
+    points: [
+      { label: "Fri", score: 56 },
+      { label: "Sat", score: 26 },
+      { label: "Sun", score: 90 },
+      { label: "Mon", score: 90 },
+      { label: "Tue", score: 64 },
+      { label: "Wed", score: 95 },
+      { label: "Thu", score: 35 }
+    ]
+  },
+  M: {
+    average: 75,
+    dateRange: "10 Jun – 9 Jul 2026",
+    points: [
+      { label: "1 - 5", score: 70 },
+      { label: "6 - 10", score: 76 },
+      { label: "11 - 15", score: 82 },
+      { label: "16 - 20", score: 68 },
+      { label: "21 - 25", score: 74 },
+      { label: "26 - 30", score: 80 }
+    ]
+  },
+  '6M': {
+    average: 77,
+    dateRange: "Feb – Jul 2026",
+    points: [
+      { label: "Feb", score: 78 },
+      { label: "Mar", score: 80 },
+      { label: "Apr", score: 75 },
+      { label: "May", score: 82 },
+      { label: "Jun", score: 70 },
+      { label: "Jul", score: 76 }
+    ]
+  },
+  Y: {
+    average: 72,
+    dateRange: "2025 – 2026",
+    points: [
+      { label: "Q3 '25", score: 68 },
+      { label: "Q4 '25", score: 70 },
+      { label: "Q1 '26", score: 75 },
+      { label: "Q2 '26", score: 72 },
+      { label: "Jul '26", score: 76 },
+      { label: "Aug '26", score: 74 },
+      { label: "Sep '26", score: 72 }
+    ]
+  }
+}
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -34,6 +100,7 @@ export default function App() {
   const [showAIPage, setShowAIPage] = useState(false)
   const [activeTab, setActiveTab] = useState(0)
   const [pulsePageHasBack, setPulsePageHasBack] = useState(false)
+  const [selectedTimeframe, setSelectedTimeframe] = useState('W')
 
   const handleImprovementPlansClick = () => {
     setPulsePageHasBack(true)
@@ -191,10 +258,7 @@ export default function App() {
                     <span className="drive-percentage">+8%</span>
                   </div>
                   <h3 className="drive-card-title">Lab Report</h3>
-                  <div className="drive-status-pill no-issues">
-                    <img src={statusArrow} alt="" className="status-arrow-icon" />
-                    <span>No Issues</span>
-                  </div>
+                  <span className="drive-status-text no-issues">No Issues</span>
                   <p className="drive-card-footer">Updated 2d ago</p>
                 </div>
 
@@ -206,10 +270,7 @@ export default function App() {
                     <span className="drive-percentage">+8%</span>
                   </div>
                   <h3 className="drive-card-title">Consultation</h3>
-                  <div className="drive-status-pill pending">
-                    <img src={statusArrow} alt="" className="status-arrow-icon" />
-                    <span>Pending</span>
-                  </div>
+                  <span className="drive-status-text pending">Pending</span>
                   <p className="drive-card-footer">Last visit 5d ago</p>
                 </div>
 
@@ -221,65 +282,101 @@ export default function App() {
                     <span className="drive-percentage">+8%</span>
                   </div>
                   <h3 className="drive-card-title">Vitals Stability</h3>
-                  <div className="drive-status-pill stable">
-                    <img src={statusArrow} alt="" className="status-arrow-icon" />
-                    <span>Stable</span>
-                  </div>
+                  <span className="drive-status-text stable">Stable</span>
                   <p className="drive-card-footer">Updated 5m ago</p>
                 </div>
               </div>
             </div>
 
             <div className="section-group history-section">
-              <div className="history-header-row">
-                <p className="section-title">Score History</p>
-                <div className="timeframe-selector">
-                  <button className="timeframe-btn active">7d</button>
-                  <button className="timeframe-btn">30d</button>
-                  <button className="timeframe-btn">90d</button>
-                </div>
-              </div>
+              <p className="section-title">Score History</p>
 
               <div className="history-chart-card">
-                <svg viewBox="0 0 340 180" width="100%" height="auto" className="history-chart-svg">
-                  {/* Grid Lines */}
-                  <line x1="36" y1="20" x2="320" y2="20" stroke="#F2F4F7" strokeWidth="1" />
-                  <line x1="36" y1="55" x2="320" y2="55" stroke="#F2F4F7" strokeWidth="1" />
-                  <line x1="36" y1="90" x2="320" y2="90" stroke="#F2F4F7" strokeWidth="1" />
-                  <line x1="36" y1="125" x2="320" y2="125" stroke="#F2F4F7" strokeWidth="1" />
+                <div className="new-timeframe-selector">
+                  {['W', 'M', '6M'].map((tf) => (
+                    <button
+                      key={tf}
+                      className={`new-timeframe-btn ${selectedTimeframe === tf ? 'active' : ''}`}
+                      onClick={() => setSelectedTimeframe(tf)}
+                    >
+                      {tf}
+                    </button>
+                  ))}
+                </div>
 
-                  {/* Y-Axis Labels */}
-                  <text x="12" y="24" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">100</text>
-                  <text x="12" y="59" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">75</text>
-                  <text x="12" y="94" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">50</text>
-                  <text x="12" y="129" fill="#02352F" fontSize="13" fontWeight="500" textAnchor="start">25</text>
+                <div className="chart-stats-header">
+                  <span className="chart-stats-label">Average</span>
+                  <div className="chart-stats-value-row">
+                    <span className="chart-stats-value">{timeframeData[selectedTimeframe].average}</span>
+                    <span className="chart-stats-unit">Score</span>
+                  </div>
+                  <span className="chart-stats-date">{timeframeData[selectedTimeframe].dateRange}</span>
+                </div>
 
-                  {/* Area Under Curve Fill */}
-                  <path
-                    d="M 36 97 L 83.3 71.8 L 130.6 83.0 L 177.9 62.0 L 225.2 67.6 L 272.5 43.8 L 320 34.0 L 320 145 L 36 145 Z"
-                    fill="#D2F19E"
-                    opacity="0.8"
-                  />
+                <div className="chart-container">
+                  <svg viewBox="0 0 340 230" width="100%" height="auto" className="history-chart-svg">
+                    {/* Horizontal Grid Lines */}
+                    <line x1="8" y1="20" x2="305" y2="20" stroke="#F2F4F7" strokeWidth="1" />
+                    <line x1="8" y1="65" x2="305" y2="65" stroke="#F2F4F7" strokeWidth="1" />
+                    <line x1="8" y1="110" x2="305" y2="110" stroke="#F2F4F7" strokeWidth="1" />
+                    <line x1="8" y1="155" x2="305" y2="155" stroke="#F2F4F7" strokeWidth="1" />
+                    <line x1="8" y1="200" x2="305" y2="200" stroke="#F2F4F7" strokeWidth="1" />
 
-                  {/* Curve Stroke */}
-                  <path
-                    d="M 36 97 L 83.3 71.8 L 130.6 83.0 L 177.9 62.0 L 225.2 67.6 L 272.5 43.8 L 320 34.0"
-                    stroke="#02352F"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                  />
+                    {/* Y-Axis Labels on the Right */}
+                    <text x="312" y="24" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">100</text>
+                    <text x="312" y="69" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">80</text>
+                    <text x="312" y="114" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">60</text>
+                    <text x="312" y="159" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">40</text>
+                    <text x="312" y="204" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">20</text>
 
-                  {/* X-Axis Labels */}
-                  <text x="36" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Mon</text>
-                  <text x="83.3" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Tue</text>
-                  <text x="130.6" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Wed</text>
-                  <text x="177.9" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Thu</text>
-                  <text x="225.2" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Fri</text>
-                  <text x="272.5" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Sat</text>
-                  <text x="320" y="165" fill="#000000" fontSize="12" fontWeight="500" textAnchor="middle">Sun</text>
-                </svg>
+                    {/* Vertical Dashed Grid Lines and Bars */}
+                    {timeframeData[selectedTimeframe].points.map((pt, index) => {
+                      const numPoints = timeframeData[selectedTimeframe].points.length;
+                      const spacing = 270 / (numPoints - 1);
+                      const xCenter = 20 + index * spacing;
+                      const xStart = xCenter - 12;
+                      const score = pt.score;
+                      const clampedScore = Math.max(20, score);
+                      const height = Math.max(4, ((clampedScore - 20) / 80) * 180);
+                      const yTop = 200 - height;
+                      const r = 4; // rounded corner radius
+
+                      // SVG path for bar with rounded top corners
+                      const barPath = `M ${xStart} 200 L ${xStart} ${yTop + r} Q ${xStart} ${yTop} ${xStart + r} ${yTop} L ${xStart + 24 - r} ${yTop} Q ${xStart + 24} ${yTop} ${xStart + 24} ${yTop + r} L ${xStart + 24} 200 Z`;
+
+                      return (
+                        <g key={index}>
+                          {/* Vertical dashed line */}
+                          <line
+                            x1={xCenter}
+                            y1="20"
+                            x2={xCenter}
+                            y2="200"
+                            stroke="#F2F4F7"
+                            strokeWidth="1"
+                            strokeDasharray="3,3"
+                          />
+                          {/* Score bar */}
+                          <path
+                            d={barPath}
+                            fill="#D2F19E"
+                          />
+                          {/* X-Axis Label */}
+                          <text
+                            x={xCenter}
+                            y="222"
+                            fill="#98A2B3"
+                            fontSize="12"
+                            fontWeight="500"
+                            textAnchor="middle"
+                          >
+                            {pt.label}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </svg>
+                </div>
               </div>
             </div>
 

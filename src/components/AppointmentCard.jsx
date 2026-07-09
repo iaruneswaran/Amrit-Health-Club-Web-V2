@@ -1,5 +1,5 @@
 import doctorImage from '../assets/Doctor Image.svg';
-import appointmentBg from '../assets/booked Image.jpg';
+import appointmentBg from '../assets/Consultation.jpg';
 
 function PersonIcon() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import admissionBg from '../assets/Admission Image.jpg';
+import admissionBg from '../assets/Admitted.jpg';
 import assignedDoctorIcon from '../assets/Assigned doctor.svg';
 import reasonIcon from '../assets/Reason Icon.svg';
 
