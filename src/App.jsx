@@ -15,6 +15,11 @@ import Onboarding from './components/Onboarding'
 import LoginFlow from './components/LoginFlow'
 import NavBar from './components/NavBar'
 import AIPage from './components/AIPage'
+import HospitalsPage from './components/HospitalsPage'
+import DoctorsPage from './components/DoctorsPage'
+import HistoryPage from './components/HistoryPage'
+import ReportsPage from './components/ReportsPage'
+import continueArrow from './assets/Continue Arrow.svg'
 import labIcon from './assets/Lab.svg'
 import consultationIcon from './assets/Consultation.svg'
 import vitalsIcon from './assets/Vitals.svg'
@@ -98,6 +103,9 @@ export default function App() {
     return localStorage.getItem('user_logged_in') === 'true'
   })
   const [showAIPage, setShowAIPage] = useState(false)
+  const [showHospitalsPage, setShowHospitalsPage] = useState(false)
+  const [showDoctorsPage, setShowDoctorsPage] = useState(false)
+  const [showHistoryPage, setShowHistoryPage] = useState(false)
   const [activeTab, setActiveTab] = useState(0)
   const [pulsePageHasBack, setPulsePageHasBack] = useState(false)
   const [selectedTimeframe, setSelectedTimeframe] = useState('W')
@@ -186,6 +194,33 @@ export default function App() {
       )
     }
 
+    if (showHospitalsPage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <HospitalsPage onBack={() => setShowHospitalsPage(false)} />
+        </>
+      )
+    }
+
+    if (showDoctorsPage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <DoctorsPage onBack={() => setShowDoctorsPage(false)} />
+        </>
+      )
+    }
+
+    if (showHistoryPage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <HistoryPage onBack={() => setShowHistoryPage(false)} />
+        </>
+      )
+    }
+
     if (activeTab === 0) {
       // Home/Dashboard tab
       return (
@@ -194,7 +229,11 @@ export default function App() {
           <HeroHeader />
           <main className="main-content">
             <AIBanner onClick={() => setShowAIPage(true)} />
-            <QuickNav />
+            <QuickNav 
+              onHospitalsClick={() => setShowHospitalsPage(true)} 
+              onDoctorsClick={() => setShowDoctorsPage(true)} 
+              onHistoryClick={() => setShowHistoryPage(true)}
+            />
             <ClinicCard />
             <div className="section-group">
               <p className="section-title">Booked Appointments</p>
@@ -234,17 +273,14 @@ export default function App() {
             <img src={pulseImage} alt="" className="pulse-page-header-bg" />
             {pulsePageHasBack && (
               <button className="pulse-back-btn" onClick={handleBackToHome} aria-label="Go back">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="19" y1="12" x2="5" y2="12"></line>
-                  <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
+                <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', filter: 'brightness(0) invert(1)', width: '16px', height: '14px' }} />
               </button>
             )}
             <div className="pulse-page-header-overlay">
               <img src={pulsePageLogo} alt="Your Pulse Score Logo" className="pulse-page-header-logo" />
             </div>
           </header>
-          <main className="main-content" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <main className={`main-content ${pulsePageHasBack ? 'no-navbar' : ''}`} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <PulseScore showFooter={false} />
 
             <div className="section-group drives-section">
@@ -413,10 +449,7 @@ export default function App() {
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
           <main className="main-content">
-            <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#02352F', marginTop: '10px' }}>Reports</h2>
-            <div style={{ background: '#FFFFFF', padding: '24px', borderRadius: '16px', marginTop: '16px', color: '#777777', textAlign: 'center' }}>
-              No reports available.
-            </div>
+            <ReportsPage />
           </main>
           <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>

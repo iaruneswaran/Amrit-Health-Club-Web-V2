@@ -36,24 +36,26 @@ function ReasonSmIcon() {
   )
 }
 
-export default function AppointmentCard() {
+export default function AppointmentCard({ showImage = true, isPast = false }) {
   return (
     <div className="appointment-card" id="appointment-card">
       {/* Doctor row with background image */}
       <div 
-        className="appt-header-bg" 
-        style={{ backgroundImage: `url(${appointmentBg})` }}
+        className={`appt-header-bg ${showImage ? '' : 'no-image'}`}
+        style={showImage ? { backgroundImage: `url(${appointmentBg})` } : {}}
       >
-        <div className="appt-header-overlay">
+        <div className={`appt-header-overlay ${showImage ? '' : 'no-image'}`}>
           <div className="appt-profile-row">
-            <div className="appt-avatar-placeholder">AC</div>
+            <div className={`appt-avatar-placeholder ${showImage ? '' : 'no-image'}`}>AC</div>
             <div className="appt-header-doctor-info">
-              <h4 className="appt-header-doctor-name">Dr. Amelia Carter</h4>
-              <p className="appt-header-doctor-specialty">Cardiology Specialist</p>
+              <h4 className={`appt-header-doctor-name ${showImage ? '' : 'no-image'}`}>Dr. Amelia Carter</h4>
+              <p className={`appt-header-doctor-specialty ${showImage ? '' : 'no-image'}`}>Cardiology Specialist</p>
             </div>
           </div>
         </div>
-        <span className="status-confirmed" aria-label="Appointment status: Confirmed">Confirmed</span>
+        <span className={`${isPast ? "status-completed" : "status-confirmed"} ${showImage ? '' : 'no-image'}`} aria-label={isPast ? "Appointment status: Completed" : "Appointment status: Confirmed"}>
+          {isPast ? "Completed" : "Confirmed"}
+        </span>
       </div>
 
       {/* Details */}
@@ -90,11 +92,11 @@ export default function AppointmentCard() {
       </div>
 
       <div className="appt-actions">
-        <button id="reschedule-btn" className="btn-primary" type="button">
-          Reschedule
+        <button id={isPast ? "followup-btn" : "reschedule-btn"} className="btn-primary" type="button">
+          {isPast ? "Follow up" : "Reschedule"}
         </button>
-        <button id="cancel-appt-btn" className="btn-secondary" type="button">
-          Cancel
+        <button id={isPast ? "prescription-btn" : "cancel-appt-btn"} className="btn-secondary" type="button">
+          {isPast ? "Prescription" : "Cancel"}
         </button>
       </div>
     </div>

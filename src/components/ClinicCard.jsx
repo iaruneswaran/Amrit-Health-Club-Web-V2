@@ -1,49 +1,46 @@
 import React from 'react';
-
-const actions = [
-  { id: 'booking-btn',  icon: '/booking.svg',  label: 'Booking'  },
-  { id: 'enquiry-btn',  icon: '/enquiry.svg',  label: 'Enquiry'  },
-  { id: 'location-btn', icon: '/location.svg', label: 'Location' },
-]
+import hospitalImage from '../assets/Hospital Image.jpg';
 
 export default function ClinicCard() {
   return (
     <div className="clinic-card">
-      {/* Top info row */}
-      <div className="clinic-info">
-        {/* Logo profile image */}
-        <div className="clinic-logo">SM</div>
+      <div className="clinic-image-container">
+        <img src={hospitalImage} alt="St. Mary's Medical Building" className="clinic-image" />
+        <span className="badge-preferred">Prefered</span>
+      </div>
 
-        <div className="clinic-details">
-          <div className="clinic-name-row">
-            <h2 className="clinic-name">St. Mary's Medical</h2>
-          </div>
-          <span className="badge-preferred">Prefered</span>
+      <div className="clinic-body">
+        <div className="clinic-title-row">
+          <h2 className="clinic-name">St. Mary's Medical</h2>
+        </div>
 
-          {/* Open 24/7 row with clock icon */}
-          <div className="clinic-open-row">
+        <div className="clinic-status-row">
+          <div className="clinic-open-info">
             <img src="/clock-icon.svg" alt="" aria-hidden="true" className="clinic-clock-icon" />
             <span className="clinic-open-text">Open 24/7</span>
           </div>
+          <span className="clinic-doctors-text">5 Doctors Available</span>
+        </div>
 
-          <p className="clinic-doctors"><span>48</span> Doctors Available</p>
+        <hr className="clinic-divider" />
+
+        <div className="clinic-actions-row" role="toolbar" aria-label="Clinic actions">
+          <button id="booking-btn" className="clinic-action-item" type="button">
+            <img src="/booking.svg" alt="" aria-hidden="true" className="clinic-action-icon" />
+            <span className="clinic-action-label">Booking</span>
+          </button>
+
+          <button id="enquiry-btn" className="clinic-action-item" type="button">
+            <img src="/enquiry.svg" alt="" aria-hidden="true" className="clinic-action-icon" />
+            <span className="clinic-action-label">Enquiry</span>
+          </button>
+
+          <button id="location-btn" className="clinic-action-item" type="button">
+            <img src="/location.svg" alt="" aria-hidden="true" className="clinic-action-icon" />
+            <span className="clinic-action-label">Location</span>
+          </button>
         </div>
       </div>
-
-      {/* Action bar */}
-      <div className="clinic-actions" role="toolbar" aria-label="Clinic actions">
-        {actions.map((action, idx) => (
-          <>
-            <button key={action.id} id={action.id} className="clinic-action-btn" type="button">
-              <img src={action.icon} alt="" aria-hidden="true" className="clinic-action-icon" />
-              {action.label}
-            </button>
-            {idx < actions.length - 1 && (
-              <div key={`adiv-${idx}`} className="action-divider" aria-hidden="true" />
-            )}
-          </>
-        ))}
-      </div>
     </div>
-  )
+  );
 }

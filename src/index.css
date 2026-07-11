@@ -299,10 +299,14 @@ html, body, #root {
    MAIN CONTENT AREA
    ========================================= */
 .main-content {
-  padding: 16px 16px 112px; /* Extra bottom padding for floating navbar */
+  padding: 16px 16px 108px; /* Extra bottom padding for floating navbar */
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.main-content.no-navbar {
+  padding-bottom: 24px;
 }
 
 /* =========================================
@@ -433,139 +437,130 @@ html, body, #root {
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.clinic-info {
-  padding: 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+.clinic-image-container {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
 }
 
-.clinic-logo {
-  width: 50px;
-  height: 50px;
-  background: #f2f2f2;
-  border-radius: 14px;
-  flex-shrink: 0;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--dark-navy);
-  text-align: center;
-  line-height: 1;
-}
-
-.clinic-logo img {
-  width: 24px;
-  height: 24px;
+.clinic-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-}
-
-.clinic-details {
-  flex: 1;
-}
-
-.clinic-name-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.clinic-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-dark);
 }
 
 .badge-preferred {
   position: absolute;
-  top: 18px;
+  top: 20px;
   right: 0;
   background: #92E066;
   color: #02352F;
   font-size: 14px;
   font-weight: 600;
-  padding: 7px 12px;
+  padding: 6px 16px;
   border-radius: 50px 0 0 50px;
   white-space: nowrap;
   letter-spacing: 0.1px;
 }
 
-.clinic-specialty {
-  font-size: 13px;
-  color: var(--text-light);
-  margin-top: 3px;
+.clinic-body {
+  padding: 20px 20px;
 }
 
-/* Open 24/7 row */
-.clinic-open-row {
+.clinic-title-row {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-top: 4px;
+  gap: 12px;
+}
+
+.clinic-title-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.clinic-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #02352F;
+  margin: 0;
+}
+
+.clinic-status-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.clinic-open-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .clinic-clock-icon {
-  height: 16px;
-  width: auto;
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .clinic-open-text {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
-  color: var(--green-primary);
+  color: #00A63E;
 }
 
-.clinic-doctors {
-  font-size: 14px;
+.clinic-doctors-text {
+  font-size: 15px;
+  font-weight: 500;
   color: #02352F;
-  margin-top: 5px;
-  font-weight: 500;
 }
 
-.clinic-doctors span {
-  color: #02352F;
-  font-weight: 500;
+.clinic-divider {
+  border: none;
+  border-top: 1.5px dashed rgba(2, 53, 47, 0.2);
+  margin: 18px 0;
 }
 
-/* Clinic Action Bar */
-.clinic-actions {
-  background: #D2F19E;
+.clinic-actions-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-around;
 }
 
-.clinic-action-btn {
-  flex: 1;
+.clinic-action-item {
+  background: transparent;
+  border: none;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 14px 8px;
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  color: #02352F;
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 500;
+  gap: 8px;
+  padding: 6px 12px;
+  transition: transform 0.2s ease;
+}
+
+.clinic-action-item:active {
+  transform: scale(0.95);
 }
 
 .clinic-action-icon {
-  height: 22px;
-  width: auto;
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
-.action-divider {
-  width: 1px;
-  height: 40px;
-  background: rgba(2, 53, 47, 0.15);
+.clinic-action-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
 }
 
 /* =========================================
@@ -661,7 +656,8 @@ html, body, #root {
 }
 
 .status-confirmed,
-.status-admitted {
+.status-admitted,
+.status-completed {
   position: absolute;
   top: 20px;
   right: 0;
@@ -673,6 +669,63 @@ html, body, #root {
   border: none;
   border-radius: 50px 0 0 50px;
   white-space: nowrap;
+}
+
+/* No image card header adjustments */
+.appt-header-bg.no-image {
+  height: auto;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #F0F2F5;
+}
+
+.appt-header-overlay.no-image {
+  position: relative;
+  background: none;
+  padding: 16px 20px;
+}
+
+.appt-avatar-placeholder.no-image {
+  background: #F2F4F7;
+  color: #02352F;
+}
+
+.appt-header-doctor-name.no-image {
+  color: #02352F;
+}
+
+.appt-header-doctor-specialty.no-image {
+  color: #667085;
+}
+
+.status-confirmed.no-image {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: #FFFFFF;
+  color: #02352c;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 50px 0 0 50px;
+  white-space: nowrap;
+  border: 1px solid #F0F2F5;
+  border-right: none;
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.status-completed.no-image {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: #D2F19E;
+  color: #02352c;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 50px 0 0 50px;
+  white-space: nowrap;
+  border: none;
+  box-shadow: none;
 }
 
 /* Appointment Details */
@@ -2936,6 +2989,856 @@ html, body, #root {
   background-color: #E5E7EB;
   margin: 0;
 }
+
+/* =========================================
+   HOSPITALS LIST PAGE FLOW
+   ========================================= */
+.hospitals-page-container {
+  min-height: 100vh;
+  background-color: #F2F4F7;
+  display: flex;
+  flex-direction: column;
+}
+
+.hospitals-header {
+  background-color: #F2F4F7;
+  padding: 24px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hospitals-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hospitals-back-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.hospitals-back-btn:active {
+  transform: scale(0.95);
+}
+
+.hospitals-page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+
+.hospitals-location-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.location-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-pin-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.location-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.location-change-btn {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hospitals-search-row {
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrap {
+  flex: 1;
+  position: relative;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  display: block;
+}
+
+.hospitals-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #02352F;
+  font-family: var(--font);
+}
+
+.hospitals-search-input::placeholder {
+  color: #98A2B3;
+}
+
+.hospitals-filter-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease;
+}
+
+.hospitals-filter-btn:active {
+  transform: scale(0.95);
+}
+
+.filter-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.hospitals-list-content {
+  padding: 0 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================================
+   HOSPITAL LIST ITEM CARD STYLE
+   ========================================= */
+.hospital-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.hospital-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+
+.hospital-logo-placeholder {
+  width: 50px;
+  height: 50px;
+  background-color: #F2F4F7;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.hospital-header-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hospital-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #02352F;
+  margin: 0;
+}
+
+.hospital-open-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hospital-clock-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.hospital-open-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #00A63E;
+}
+
+.hospital-distance-badge {
+  border: 1px solid #E5E7EB;
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #02352F;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.hospital-address-container {
+  background-color: #FFFFFF;
+  border: 1px solid #F0F2F5;
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.hospital-google-pin {
+  width: 20px;
+  height: auto;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: block;
+}
+
+.hospital-address-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #02352F;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hospital-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hospital-doctors-count {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.count-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: #02352F;
+  line-height: 1;
+}
+
+.count-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #667085;
+}
+
+.hospital-view-btn {
+  background-color: #D2F19E;
+  color: #02352F;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.hospital-view-btn:active {
+  transform: scale(0.95);
+}
+
+.hospital-card.preferred {
+  border: 1.5px solid #92E066;
+}
+
+.hospital-preferred-badge {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: #92E066;
+  color: #02352F;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 50px 0 0 50px;
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+}
+
+/* =========================================
+   DETECTING LOCATION FLOW
+   ========================================= */
+.location-detecting-container {
+  justify-content: flex-start;
+}
+
+.detecting-location-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  margin-top: 60px;
+}
+
+.gps-scanner-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 28px;
+  z-index: 1;
+}
+
+.gps-ping-icon {
+  width: 40px;
+  height: auto;
+  animation: gpsBounce 1.5s ease-in-out infinite;
+}
+
+.sonar-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid #92E066;
+  animation: sonarSpread 2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.detecting-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #02352F;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.detecting-sub {
+  font-size: 14px;
+  font-weight: 500;
+  color: #667085;
+  text-align: center;
+  margin: 0;
+}
+
+.detecting-location-hint {
+  font-size: 15px;
+  font-weight: 600;
+  color: #02352F;
+  margin-top: 16px;
+  text-align: center;
+  background-color: rgba(2, 53, 47, 0.05);
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+/* Animations */
+@keyframes gpsBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes sonarSpread {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   DOCTORS LIST PAGE FLOW
+   ========================================= */
+.doctors-page-container {
+  min-height: 100vh;
+  background-color: #F2F4F7;
+  display: flex;
+  flex-direction: column;
+}
+
+.doctors-header {
+  background-color: #F2F4F7;
+  padding: 24px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doctors-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.doctors-back-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.doctors-back-btn:active {
+  transform: scale(0.95);
+}
+
+.doctors-page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+
+.doctors-location-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.doctors-search-row {
+  display: flex;
+  align-items: center;
+}
+
+.doctors-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #02352F;
+  font-family: var(--font);
+}
+
+.doctors-search-input::placeholder {
+  color: #98A2B3;
+}
+
+.doctors-filter-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease;
+}
+
+.doctors-filter-btn:active {
+  transform: scale(0.95);
+}
+
+.doctors-list-content {
+  padding: 0 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================================
+   DOCTOR CARD STYLE
+   ========================================= */
+.doctor-card {
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  border: 1.5px solid transparent;
+}
+
+.doctor-card.preferred {
+  border: 1.5px solid #92E066;
+}
+
+.doctor-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.doctor-logo-placeholder {
+  width: 50px;
+  height: 50px;
+  background-color: #EAECEF;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.doctor-header-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.doctor-card-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #02352F;
+  margin: 0;
+}
+
+.doctor-specialty {
+  font-size: 15px;
+  font-weight: 500;
+  color: #667085;
+  margin: 0;
+}
+
+.doctor-hospital-container {
+  background-color: #FFFFFF;
+  border: 1px solid #F0F2F5;
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.doctor-hospital-container.has-preferred {
+  padding-right: 100px;
+}
+
+.doctor-hospital-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.doctor-hospital-icon {
+  width: 20px;
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+}
+
+.doctor-hospital-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #02352F;
+  margin: 0;
+}
+
+.badge-preferred-inline {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #92E066;
+  color: #02352F;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 50px 0 0 50px;
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+}
+
+.doctor-address-container {
+  background-color: #FFFFFF;
+  border: 1px solid #F0F2F5;
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.doctor-google-pin {
+  width: 20px;
+  height: auto;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: block;
+}
+
+.doctor-address-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #02352F;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doctor-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doctor-fee-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doctor-fee-amount {
+  font-size: 20px;
+  font-weight: 700;
+  color: #00B14F;
+  line-height: 1;
+}
+
+.doctor-fee-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #667085;
+}
+
+.doctor-book-btn {
+  background-color: #D2F19E;
+  color: #02352F;
+  border: none;
+  border-radius: 100px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.doctor-book-btn:active {
+  transform: scale(0.95);
+}
+
+/* =========================================
+   REPORTS PAGE FLOW
+   ========================================= */
+.reports-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.report-summary-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+}
+
+.report-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: rgba(146, 224, 102, 0.15);
+}
+
+.report-icon-wrapper.upload {
+  background-color: #D2F19E;
+}
+
+.report-summary-icon {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
+.report-summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.report-summary-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.report-summary-subtitle {
+  font-size: 13px;
+  color: #667085;
+  font-weight: 500;
+}
+
+.report-summary-count-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.report-summary-count {
+  font-size: 20px;
+  font-weight: 700;
+  color: #02352F;
+}
+
+/* Document Item Card */
+.report-doc-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+  margin-bottom: 12px;
+}
+
+.report-doc-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.report-doc-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.report-doc-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.report-doc-meta {
+  font-size: 13px;
+  font-weight: 500;
+  color: #667085;
+  margin: 0;
+}
+
+.report-doc-badge-row {
+  margin-top: 4px;
+}
+
+/* Status Badges */
+.report-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.report-badge.issues {
+  background-color: #FFE6E6;
+  color: #FF5858;
+}
+
+.report-badge.normal {
+  background-color: #ECF5E7;
+  color: #3F7A5C;
+}
+
+.report-doc-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
 
 
 
