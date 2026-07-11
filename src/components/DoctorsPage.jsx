@@ -167,7 +167,7 @@ export default function DoctorsPage({ onBack }) {
                   <span className="doctor-fee-label">Consultation Fee</span>
                 </div>
                 <button className="doctor-book-btn" type="button">
-                  Book Appointment
+                  Book Now
                 </button>
               </div>
             </div>

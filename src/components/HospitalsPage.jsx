@@ -131,7 +131,6 @@ export default function HospitalsPage({ onBack }) {
                 
                 {/* Header detail row */}
                 <div className="hospital-card-header">
-                  <div className="hospital-logo-placeholder"></div>
                   <div className="hospital-header-details">
                     <h3 className="hospital-card-name">{hospital.name}</h3>
                     <div className="hospital-open-row">

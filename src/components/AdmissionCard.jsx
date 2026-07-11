@@ -3,9 +3,14 @@ import admissionBg from '../assets/Admitted.jpg';
 import assignedDoctorIcon from '../assets/Assigned doctor.svg';
 import reasonIcon from '../assets/Reason Icon.svg';
 
-export default function AdmissionCard() {
+export default function AdmissionCard({ onCardClick }) {
   return (
-    <div className="admission-card" id="admission-card">
+    <div 
+      className="admission-card" 
+      id="admission-card"
+      onClick={onCardClick}
+      style={{ cursor: onCardClick ? 'pointer' : 'default' }}
+    >
       {/* Top Header Row with image background */}
       <div 
         className="admission-header" 

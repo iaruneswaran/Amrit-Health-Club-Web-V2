@@ -19,6 +19,7 @@ import HospitalsPage from './components/HospitalsPage'
 import DoctorsPage from './components/DoctorsPage'
 import HistoryPage from './components/HistoryPage'
 import ReportsPage from './components/ReportsPage'
+import IPPatientPage from './components/IPPatientPage'
 import continueArrow from './assets/Continue Arrow.svg'
 import labIcon from './assets/Lab.svg'
 import consultationIcon from './assets/Consultation.svg'
@@ -106,6 +107,7 @@ export default function App() {
   const [showHospitalsPage, setShowHospitalsPage] = useState(false)
   const [showDoctorsPage, setShowDoctorsPage] = useState(false)
   const [showHistoryPage, setShowHistoryPage] = useState(false)
+  const [showIPPage, setShowIPPage] = useState(false)
   const [activeTab, setActiveTab] = useState(0)
   const [pulsePageHasBack, setPulsePageHasBack] = useState(false)
   const [selectedTimeframe, setSelectedTimeframe] = useState('W')
@@ -221,6 +223,15 @@ export default function App() {
       )
     }
 
+    if (showIPPage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <IPPatientPage onBack={() => setShowIPPage(false)} />
+        </>
+      )
+    }
+
     if (activeTab === 0) {
       // Home/Dashboard tab
       return (
@@ -249,7 +260,7 @@ export default function App() {
             </div>
             <div className="section-group">
               <p className="section-title">Admission Overview</p>
-              <AdmissionCard />
+              <AdmissionCard onCardClick={() => setShowIPPage(true)} />
             </div>
             <div className="section-group">
               <p className="section-title">Preferred Doctors</p>

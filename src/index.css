@@ -2080,6 +2080,18 @@ html, body, #root {
   font-weight: 600;
 }
 
+.admission-tap-hint {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 10px 20px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #3F7A5C;
+  border-top: 1px solid #F2F4F7;
+}
+
 /* =========================================
    PREFERRED DOCTORS CARD
    ========================================= */
@@ -3280,7 +3292,7 @@ html, body, #root {
   border: none;
   border-radius: 100px;
   padding: 10px 24px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -3678,7 +3690,7 @@ html, body, #root {
   border: none;
   border-radius: 100px;
   padding: 12px 24px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -3838,6 +3850,858 @@ html, body, #root {
   justify-content: center;
   color: #000000;
 }
+
+/* =========================================
+   IP PATIENT PAGE
+   ========================================= */
+.ip-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #F2F4F7;
+  overflow-x: hidden;
+}
+
+/* Header */
+.ip-header {
+  position: relative;
+  height: 200px;
+  background-size: cover;
+  background-position: center top;
+  flex-shrink: 0;
+}
+
+.ip-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%);
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.ip-back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  transition: background 0.15s ease;
+}
+
+.ip-back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ip-header-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ip-avatar {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 14px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark-navy);
+  text-align: center;
+  line-height: 1;
+}
+
+.ip-patient-info {
+  flex: 1;
+}
+
+.ip-patient-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 3px;
+}
+
+.ip-patient-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  margin: 0 0 6px;
+}
+
+.ip-location-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #D2F19E;
+  font-weight: 500;
+}
+
+.ip-ward-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #D2F19E;
+  animation: ip-pulse 2s infinite;
+}
+
+@keyframes ip-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+
+.ip-status-badge {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: #FFFFFF;
+  color: #02352c;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 50px 0 0 50px;
+  white-space: nowrap;
+}
+
+/* Stats Strip */
+.ip-stats-strip {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 16px 20px;
+  border-bottom: 1px solid #F2F4F7;
+}
+
+.ip-stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.ip-stat-label {
+  font-size: 11px;
+  color: #98A2B3;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ip-stat-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.ip-stat-green {
+  color: #3F7A5C !important;
+}
+
+.ip-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: #F2F4F7;
+}
+
+/* Tab Bar */
+.ip-tab-bar {
+  display: flex;
+  background: #FFFFFF;
+  padding: 0 12px;
+  border-bottom: 1px solid #F2F4F7;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  gap: 4px;
+}
+
+.ip-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 14px 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #98A2B3;
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.ip-tab-btn.active {
+  color: #02352F;
+  border-bottom-color: #3F7A5C;
+}
+
+/* Content Area */
+.ip-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 32px;
+}
+
+/* Cards */
+.ip-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.ip-card-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ip-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+}
+
+.ip-section-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.ip-reason-text {
+  font-size: 14px;
+  color: #667085;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Live badge */
+.ip-live-badge {
+  background: #FFE6E6;
+  color: #FF5858;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 100px;
+  letter-spacing: 0.5px;
+  animation: ip-live-pulse 2s infinite;
+}
+
+@keyframes ip-live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Mini Vitals Grid */
+.ip-vitals-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ip-vital-mini {
+  background: #F9FAFB;
+  border-radius: 14px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ip-vital-mini.caution {
+  background: #FFF8F1;
+  border: 1px solid #FDDCB5;
+}
+
+.ip-vital-mini-icon {
+  font-size: 18px;
+}
+
+.ip-vital-mini-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1;
+}
+
+.ip-vital-mini-unit {
+  font-size: 11px;
+  font-weight: 500;
+  color: #98A2B3;
+  margin-left: 2px;
+}
+
+.ip-vital-mini-label {
+  font-size: 11px;
+  color: #98A2B3;
+  font-weight: 500;
+}
+
+/* Timeline */
+.ip-timeline {
+  position: relative;
+}
+
+.ip-timeline-item {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.ip-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.ip-timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.ip-timeline-dot.admit { background: #D2F19E; border: 2px solid #3F7A5C; }
+.ip-timeline-dot.procedure { background: #FDDCB5; border: 2px solid #F79009; }
+.ip-timeline-dot.transfer { background: #D1E9FF; border: 2px solid #0BA5EC; }
+
+.ip-timeline-line {
+  position: absolute;
+  left: 6px;
+  top: 18px;
+  bottom: 0;
+  width: 2px;
+  background: #F2F4F7;
+}
+
+.ip-timeline-body {
+  flex: 1;
+}
+
+.ip-timeline-event {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 3px;
+}
+
+.ip-timeline-meta {
+  font-size: 12px;
+  color: #98A2B3;
+  margin: 0;
+}
+
+/* Care Team */
+.ip-care-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F9FAFB;
+}
+
+.ip-care-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ip-care-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ECF5E7;
+  color: #3F7A5C;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ip-care-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ip-care-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 2px;
+}
+
+.ip-care-role {
+  font-size: 12px;
+  color: #667085;
+  margin: 0;
+}
+
+.ip-care-contact-btn {
+  width: 36px;
+  height: 36px;
+  background: #ECF5E7;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Diagnostics */
+.ip-diagnostic-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #F9FAFB;
+}
+
+.ip-diagnostic-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ip-diagnostic-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ip-diagnostic-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.ip-diagnostic-dot.normal { background: #D2F19E; }
+.ip-diagnostic-dot.abnormal { background: #FF5858; }
+
+.ip-diagnostic-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 2px;
+}
+
+.ip-diagnostic-result {
+  font-size: 12px;
+  color: #667085;
+  margin: 0;
+}
+
+.ip-diagnostic-time {
+  font-size: 11px;
+  color: #98A2B3;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Medications */
+.ip-med-header-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.ip-med-count-badge {
+  background: #ECF5E7;
+  color: #3F7A5C;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.ip-med-updated {
+  font-size: 12px;
+  color: #98A2B3;
+}
+
+.ip-med-card {
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.ip-med-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ip-med-icon-wrap {
+  width: 40px;
+  height: 40px;
+  background: #ECF5E7;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ip-med-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.ip-med-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.ip-med-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 3px;
+}
+
+.ip-med-dose {
+  font-size: 12px;
+  color: #667085;
+  margin: 0;
+}
+
+.ip-med-route {
+  background: #F2F4F7;
+  padding: 1px 6px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #667085;
+}
+
+.ip-med-status {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+.ip-med-status.active { background: #ECF5E7; color: #3F7A5C; }
+.ip-med-status.ongoing { background: #D1E9FF; color: #0BA5EC; }
+.ip-med-status.prn { background: #F2F4F7; color: #667085; }
+
+.ip-med-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid #F9FAFB;
+}
+
+.ip-med-next {
+  font-size: 12px;
+  color: #98A2B3;
+}
+
+.ip-note-card {
+  background: #FFF8E7;
+  border: 1px solid #FDDCB5;
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.ip-note-text {
+  font-size: 13px;
+  color: #92400E;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Vitals Tab */
+.ip-vitals-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ip-vitals-time {
+  font-size: 12px;
+  color: #98A2B3;
+}
+
+.ip-vitals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ip-vital-card {
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ip-vital-card.caution {
+  background: #FFF8F1;
+  border: 1px solid #FDDCB5;
+}
+
+.ip-vital-icon {
+  font-size: 22px;
+}
+
+.ip-vital-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.ip-vital-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1;
+}
+
+.ip-vital-unit {
+  font-size: 12px;
+  color: #98A2B3;
+  font-weight: 500;
+}
+
+.ip-vital-label {
+  font-size: 11px;
+  color: #667085;
+  margin: 0;
+  font-weight: 500;
+}
+
+.ip-vital-trend {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.ip-vital-trend.stable { background: #ECF5E7; color: #3F7A5C; }
+.ip-vital-trend.down { background: #D1E9FF; color: #0BA5EC; }
+.ip-vital-trend.up { background: #FFE6E6; color: #FF5858; }
+
+/* Vitals Log Table */
+.ip-vitals-log-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ip-log-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.5fr 1fr 0.8fr;
+  padding: 10px 0;
+  border-bottom: 1px solid #F2F4F7;
+  font-size: 13px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.ip-log-row:last-child {
+  border-bottom: none;
+}
+
+.ip-log-row.header {
+  font-size: 11px;
+  font-weight: 600;
+  color: #98A2B3;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding-bottom: 8px;
+}
+
+.log-caution { color: #FF5858; font-weight: 700; }
+.log-normal { color: #3F7A5C; }
+
+/* Billing */
+.ip-bill-summary-card {
+  background: linear-gradient(135deg, #02352F 0%, #3F7A5C 100%);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ip-bill-summary-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin: 0 0 4px;
+  font-weight: 500;
+}
+
+.ip-bill-summary-amount {
+  font-size: 28px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 4px;
+  letter-spacing: -0.5px;
+}
+
+.ip-bill-summary-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+.ip-bill-status-badge {
+  background: #FFE6E6;
+  color: #FF5858;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+.ip-deposit-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ip-deposit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ip-deposit-label {
+  font-size: 13px;
+  color: #667085;
+}
+
+.ip-deposit-amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3F7A5C;
+}
+
+.ip-deposit-due {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FF5858;
+}
+
+.ip-bill-category {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ip-bill-cat-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #98A2B3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 4px;
+  margin: 0;
+}
+
+.ip-bill-items-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 4px 16px;
+}
+
+.ip-bill-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #F9FAFB;
+}
+
+.ip-bill-item-row:last-child {
+  border-bottom: none;
+}
+
+.ip-bill-item-name {
+  font-size: 13px;
+  color: #000000;
+  font-weight: 500;
+  flex: 1;
+  padding-right: 12px;
+}
+
+.ip-bill-item-amount {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  flex-shrink: 0;
+}
+
+.ip-bill-total-card {
+  background: #F9FAFB;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1.5px solid #F2F4F7;
+}
+
+.ip-bill-total-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.ip-bill-total-amount {
+  font-size: 18px;
+  font-weight: 800;
+  color: #000000;
+}
+
+.ip-pay-btn {
+  background: #D2F19E;
+  color: #02352F;
+  border: none;
+  border-radius: 100px;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.2s;
+}
+
+.ip-pay-btn:active {
+  transform: scale(0.98);
+}
+
 
 
 
