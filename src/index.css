@@ -1218,7 +1218,7 @@ html, body, #root {
 .onboarding-btn {
   width: 100%;
   height: 56px;
-  border-radius: 24px;
+  border-radius: 28px;
   background: #D2F19E;
   border: none;
   display: flex;
@@ -2403,7 +2403,7 @@ html, body, #root {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
 
 .ai-voice-container {
@@ -2530,7 +2530,7 @@ html, body, #root {
   border-radius: 20px 4px 20px 20px; /* Pointed top-right */
   text-align: left;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .ai-bubble {
@@ -5388,7 +5388,13 @@ html, body, #root {
 
 /* ── Confirmed page ───────────────────────── */
 .booking-confirmed-page {
-  background: #FFFFFF;
+  background: linear-gradient(180deg, #FFFFFF 50%, #F2F4F7 100%);
+}
+
+.booking-confirmed-page .booking-cta-btn {
+  height: 41.75px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .booking-confirmed-body {
@@ -5506,15 +5512,18 @@ html, body, #root {
 
 .ai-booking-done-btn {
   margin-top: 10px;
-  padding: 10px;
   background: #D2F19E;
   color: #02352F;
   border: none;
   border-radius: 12px;
-  font-weight: 700;
   cursor: pointer;
   width: 100%;
-  text-align: center;
+  height: 41.75px;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ai-chat-options {
@@ -5530,7 +5539,7 @@ html, body, #root {
   color: #1A1A1A;
   border-radius: 12px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   border: 1px solid #E4E7EC;
   transition: all 0.2s ease;
 }
