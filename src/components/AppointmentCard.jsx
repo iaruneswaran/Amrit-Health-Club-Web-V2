@@ -1,4 +1,4 @@
-﻿import doctorImage from '../assets/Doctor Image.svg';
+import doctorImage from '../assets/Doctor Image.svg';
 import appointmentBg from '../assets/Consultation.jpg';
 
 function PersonIcon() {

@@ -1,10 +1,10 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import searchIcon from '../assets/Search.svg';
 import filterIcon from '../assets/Filter.svg';
 import googleLocationIcon from '../assets/Google Location.svg';
 import continueArrow from '../assets/Continue Arrow.svg';
 
-const doctorsList = [
+export const doctorsList = [
   {
     id: 1,
     name: "Dr. Amelia Carter",
@@ -43,7 +43,7 @@ const doctorsList = [
   }
 ];
 
-export default function DoctorsPage({ onBack }) {
+export default function DoctorsPage({ onBack, onBookNow }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentLocation, setCurrentLocation] = useState('UL Cyber Park, Kozhikode');
   const [isDetecting, setIsDetecting] = useState(false);
@@ -166,7 +166,7 @@ export default function DoctorsPage({ onBack }) {
                   <span className="doctor-fee-amount">{doctor.fee}</span>
                   <span className="doctor-fee-label">Consultation Fee</span>
                 </div>
-                <button className="doctor-book-btn" type="button">
+                <button className="doctor-book-btn" type="button" onClick={() => onBookNow && onBookNow(doctor)}>
                   Book Now
                 </button>
               </div>

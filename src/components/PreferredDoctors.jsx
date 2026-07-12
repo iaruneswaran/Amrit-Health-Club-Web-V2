@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 const preferredDoctors = [
   {
@@ -31,7 +31,7 @@ const preferredDoctors = [
   }
 ];
 
-export default function PreferredDoctors() {
+export default function PreferredDoctors({ onBookNow }) {
   return (
     <div className="preferred-doctors-container">
       {preferredDoctors.map((doc) => (
@@ -49,7 +49,7 @@ export default function PreferredDoctors() {
               <span className="pref-doctor-fee-label">Fee</span>
               <span className="pref-doctor-fee-value">{doc.fee}</span>
             </div>
-            <button className="pref-doctor-book-btn" type="button">
+            <button className="pref-doctor-book-btn" type="button" onClick={() => onBookNow && onBookNow(doc)}>
               Book
             </button>
           </div>

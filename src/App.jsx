@@ -28,6 +28,7 @@ import vitalsIcon from './assets/Vitals.svg'
 import statusArrow from './assets/Status Arrow.svg'
 import pulseImage from './assets/Pulse Page Header Image.jpg'
 import pulsePageLogo from './assets/Pulse Page Logo.png'
+import BookingFlow from './components/BookingFlow'
 
 const timeframeData = {
   D: {
@@ -109,6 +110,7 @@ export default function App() {
   const [showDoctorsPage, setShowDoctorsPage] = useState(false)
   const [showHistoryPage, setShowHistoryPage] = useState(false)
   const [showIPPage, setShowIPPage] = useState(false)
+  const [bookingDoctor, setBookingDoctor] = useState(null)
   const [activeTab, setActiveTab] = useState(0)
   const [pulsePageHasBack, setPulsePageHasBack] = useState(false)
   const [selectedTimeframe, setSelectedTimeframe] = useState('W')
@@ -197,11 +199,20 @@ export default function App() {
       )
     }
 
+    if (bookingDoctor) {
+      return (
+        <BookingFlow
+          doctor={bookingDoctor}
+          onBack={() => setBookingDoctor(null)}
+        />
+      )
+    }
+
     if (showHospitalsPage) {
       return (
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
-          <HospitalsPage onBack={() => setShowHospitalsPage(false)} />
+          <HospitalsPage onBack={() => setShowHospitalsPage(false)} onBookNow={(doc) => setBookingDoctor(doc)} />
         </>
       )
     }
@@ -210,7 +221,7 @@ export default function App() {
       return (
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
-          <DoctorsPage onBack={() => setShowDoctorsPage(false)} />
+          <DoctorsPage onBack={() => setShowDoctorsPage(false)} onBookNow={(doc) => setBookingDoctor(doc)} />
         </>
       )
     }
@@ -265,7 +276,7 @@ export default function App() {
             </div>
             <div className="section-group">
               <p className="section-title">Preferred Doctors</p>
-              <PreferredDoctors />
+              <PreferredDoctors onBookNow={(doc) => setBookingDoctor(doc)} />
             </div>
             <div className="homepage-end-image-container">
               <img src={homePageEndImage} alt="Amrit Health Club Home End" className="homepage-end-image" />

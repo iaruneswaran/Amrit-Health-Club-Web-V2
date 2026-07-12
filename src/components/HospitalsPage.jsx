@@ -1,10 +1,11 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import searchIcon from '../assets/Search.svg';
 import filterIcon from '../assets/Filter.svg';
 import googleLocationIcon from '../assets/Google Location.svg';
 import continueArrow from '../assets/Continue Arrow.svg';
+import HospitalDetailPage from './HospitalDetailPage';
 
-const hospitalsList = [
+export const hospitalsList = [
   {
     id: 'st-marys',
     name: "St. Mary's Medical",
@@ -34,10 +35,11 @@ const hospitalsList = [
   }
 ];
 
-export default function HospitalsPage({ onBack }) {
+export default function HospitalsPage({ onBack, onBookNow }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentLocation, setCurrentLocation] = useState('UL Cyber Park, Kozhikode');
   const [isDetecting, setIsDetecting] = useState(false);
+  const [selectedHospital, setSelectedHospital] = useState(null);
 
   const handleLocationChange = () => {
     setIsDetecting(true);
@@ -51,6 +53,16 @@ export default function HospitalsPage({ onBack }) {
     hospital.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     hospital.address.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  if (selectedHospital) {
+    return (
+      <HospitalDetailPage 
+        hospital={selectedHospital} 
+        onBack={() => setSelectedHospital(null)}
+        onBookNow={onBookNow}
+      />
+    );
+  }
 
   if (isDetecting) {
     return (
@@ -155,7 +167,11 @@ export default function HospitalsPage({ onBack }) {
                     <span className="count-number">{hospital.doctorsCount}</span>
                     <span className="count-label">Doctors Available</span>
                   </div>
-                  <button className="hospital-view-btn" type="button">
+                  <button 
+                    className="hospital-view-btn" 
+                    type="button"
+                    onClick={() => setSelectedHospital(hospital)}
+                  >
                     View Hospital
                   </button>
                 </div>

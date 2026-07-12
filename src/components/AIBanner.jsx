@@ -1,4 +1,4 @@
-﻿/* AI sparkle SVG */
+/* AI sparkle SVG */
 function SparkleIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -17,7 +17,7 @@ export default function AIBanner({ onClick }) {
         </span>
         <div>
           <p className="ai-text-title">AI Health Assistant</p>
-          <p className="ai-text-sub">Describe Symptoms Â· Get Expert Care</p>
+          <p className="ai-text-sub">Describe Symptoms • Get Expert Care</p>
         </div>
       </div>
       <img src="/arrow-right.svg" alt="" aria-hidden="true" className="ai-arrow" style={{ height: '20px', width: 'auto' }} />

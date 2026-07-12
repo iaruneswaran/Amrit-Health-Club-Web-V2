@@ -37,7 +37,7 @@
   --radius-sm:        10px;
   --radius-md:        16px;
   --radius-lg:        22px;
-  --radius-xl:        32px;
+  --radius-xl:        24px;
   --font:             'Inter', system-ui, sans-serif;
 }
 
@@ -1218,7 +1218,7 @@ html, body, #root {
 .onboarding-btn {
   width: 100%;
   height: 56px;
-  border-radius: 28px;
+  border-radius: 24px;
   background: #D2F19E;
   border: none;
   display: flex;
@@ -1431,7 +1431,7 @@ html, body, #root {
 .login-btn {
   width: 100%;
   height: 56px;
-  border-radius: 28px;
+  border-radius: 24px;
   background: #D2F19E;
   color: #1A2E35;
   font-size: 16px;
@@ -2246,7 +2246,7 @@ html, body, #root {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1.5px solid rgba(255, 255, 255, 0.55);
-  border-radius: 40px;
+  border-radius: 24px;
   padding: 6px;
   box-shadow: none;
 }
@@ -2292,7 +2292,7 @@ html, body, #root {
   left: 6px;
   width: calc((100% - 12px) / 4);
   background: rgba(255, 255, 255, 0.88); /* bright semi-translucent container */
-  border-radius: 34px;
+  border-radius: 24px;
   z-index: 1;
   box-shadow: none;
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -2355,7 +2355,7 @@ html, body, #root {
   align-items: center;
   gap: 8px;
   background: #FFFFFF;
-  border-radius: 30px;
+  border-radius: 24px;
   padding: 0 18px;
   height: 46px;
   box-sizing: border-box;
@@ -2732,7 +2732,7 @@ html, body, #root {
   flex: 0 0 calc((100% - 14px) / 2);
   scroll-snap-align: start;
   background: #FFFFFF;
-  border-radius: 28px;
+  border-radius: 24px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -2890,7 +2890,7 @@ html, body, #root {
 
 .history-chart-card {
   background: #FFFFFF;
-  border-radius: 28px;
+  border-radius: 24px;
   padding: 20px 20px;
   box-shadow: none;
   border: 1px solid #F2F4F7;
@@ -2968,8 +2968,8 @@ html, body, #root {
    ========================================= */
 .plans-card {
   background: #FFFFFF;
-  border-radius: 28px;
-  padding: 8px 24px;
+  border-radius: 24px;
+  padding: 8px 20px;
   box-shadow: none;
   border: 1px solid #F2F4F7;
 }
@@ -3014,7 +3014,7 @@ html, body, #root {
 
 .hospitals-header {
   background-color: #F2F4F7;
-  padding: 24px 20px 16px;
+  padding: 20px 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -3234,8 +3234,8 @@ html, body, #root {
 .hospital-address-container {
   background-color: #FFFFFF;
   border: 1px solid #F0F2F5;
-  border-radius: 16px;
-  padding: 12px 16px;
+  border-radius: 24px;
+  padding: 20px 20px;
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -3274,7 +3274,7 @@ html, body, #root {
 }
 
 .count-number {
-  font-size: 28px;
+  font-size: 18px;
   font-weight: 700;
   color: #02352F;
   line-height: 1;
@@ -3430,7 +3430,7 @@ html, body, #root {
 
 .doctors-header {
   background-color: #F2F4F7;
-  padding: 24px 20px 16px;
+  padding: 20px 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -3563,14 +3563,14 @@ html, body, #root {
 }
 
 .doctor-card-name {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #02352F;
   margin: 0;
 }
 
 .doctor-specialty {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #3B3B3B;
   margin: 0;
@@ -3672,7 +3672,7 @@ html, body, #root {
 }
 
 .doctor-fee-amount {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #00B14F;
   line-height: 1;
@@ -4543,6 +4543,7 @@ html, body, #root {
 
 .ip-vital-icon {
   font-size: 22px;
+  margin-bottom: 8px;
 }
 
 .ip-vital-value-row {
@@ -4985,3 +4986,455 @@ html, body, #root {
   color: #3B3B3B;
   flex-shrink: 0;
 }
+
+/* =========================================
+   BOOKING FLOW
+   ========================================= */
+
+.booking-flow-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #F2F4F7;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Header ───────────────────────────────── */
+.booking-step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 20px 0;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.booking-back-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.booking-back-btn:active {
+  transform: scale(0.95);
+}
+
+.booking-step-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1A1A;
+  letter-spacing: -0.2px;
+}
+
+/* ── Scrollable body ──────────────────────── */
+.booking-flow-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 20px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Step dots ────────────────────────────── */
+.booking-step-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.booking-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E4E7EC;
+  transition: all 0.25s ease;
+}
+
+.booking-step-dot.active {
+  background: #D2F19E;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ── Doctor mini-card ─────────────────────── */
+.booking-doctor-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #FFFFFF;
+  border: 1px solid #F0F2F5;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.booking-doctor-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: #D2F19E;
+  color: #02352F;
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
+
+.booking-doctor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.booking-doctor-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.booking-doctor-specialty {
+  font-size: 13px;
+  color: #667085;
+}
+
+.booking-doctor-hospital {
+  font-size: 12px;
+  color: #98A2B3;
+  margin-top: 2px;
+}
+
+/* ── Section title ────────────────────────── */
+.booking-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.booking-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+/* ── Date strip ───────────────────────────── */
+.booking-date-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.booking-date-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 16px;
+  border: none;
+  background: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  min-width: 52px;
+}
+
+.booking-date-pill.selected {
+  background: #D2F19E;
+}
+
+.date-pill-day {
+  font-size: 10px;
+  font-weight: 600;
+  color: #98A2B3;
+  letter-spacing: 0.5px;
+}
+
+.booking-date-pill.selected .date-pill-day {
+  color: #02352F;
+}
+
+.date-pill-num {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.booking-date-pill.selected .date-pill-num {
+  color: #02352F;
+}
+
+.booking-selected-label {
+  font-size: 13px;
+  color: #667085;
+  font-weight: 500;
+}
+
+/* ── Chosen date row (step 2) ─────────────── */
+.booking-chosen-date-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #F0F2F5;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.booking-chosen-date-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3B3B3B;
+}
+
+/* ── Time slots ───────────────────────────── */
+.booking-time-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booking-time-group-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #667085;
+}
+
+.booking-time-slots-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.booking-time-slot {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #E4E7EC;
+  background: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3B3B3B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.booking-time-slot.selected {
+  background: #D2F19E;
+  border-color: transparent;
+  color: #02352F;
+}
+
+/* ── Summary card ─────────────────────────── */
+.booking-summary-card {
+  background: #FFFFFF;
+  border: 1px solid #F0F2F5;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.booking-summary-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 16px;
+}
+
+.booking-summary-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.booking-summary-label {
+  font-size: 13px;
+  color: #404040;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.booking-summary-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1A1A1A;
+  text-align: right;
+}
+
+.booking-summary-fee {
+  color: #02352F;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.booking-summary-divider {
+  height: 1px;
+  background: #F0F2F5;
+  width: 100%;
+}
+
+/* ── Payment option ───────────────────────── */
+.booking-payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 18px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.booking-payment-option.selected {
+  border: none;
+  background: #FFFFFF;
+}
+
+.booking-payment-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #D2F19E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.booking-payment-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.booking-payment-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.booking-payment-desc {
+  font-size: 12px;
+  color: #667085;
+  line-height: 1.4;
+}
+
+.booking-payment-note {
+  font-size: 11px;
+  color: #98A2B3;
+  margin-top: 2px;
+}
+
+.booking-payment-check {
+  flex-shrink: 0;
+}
+
+/* ── CTA bar ──────────────────────────────── */
+.booking-cta-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px 24px;
+  background: transparent;
+}
+
+.booking-cta-btn {
+  width: 100%;
+  height: 50px;
+  border-radius: 16px;
+  border: none;
+  background: #D2F19E;
+  color: #02352F;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: opacity 0.2s ease;
+}
+
+.booking-cta-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.booking-cta-btn:not(:disabled):active {
+  opacity: 0.85;
+}
+
+/* ── Confirmed page ───────────────────────── */
+.booking-confirmed-page {
+  background: #FFFFFF;
+}
+
+.booking-confirmed-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 20px 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.booking-confirmed-check-wrap {
+  margin-top: 20px;
+  animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes pop-in {
+  0%   { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.booking-confirmed-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1A1A1A;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.booking-confirmed-subtitle {
+  font-size: 14px;
+  color: #667085;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.booking-confirmed-note {
+  background: #F2F4F7;
+  border-radius: 14px;
+  padding: 14px 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.booking-confirmed-note p {
+  font-size: 13px;
+  color: #667085;
+  line-height: 1.5;
+}
+
