@@ -2071,9 +2071,9 @@ html, body, #root {
 }
 
 .assigned-doctor-badge {
-  border: 0.5px solid #92E066;
+  border: 0.5px solid #5cb85c;
   background: transparent;
-  color: #92E066;
+  color: #5cb85c;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;

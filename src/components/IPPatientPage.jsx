@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import admissionBg from '../assets/Admitted.jpg';
 import assignedDoctorIcon from '../assets/Assigned doctor.svg';
 import continueArrow from '../assets/Continue Arrow.svg';
@@ -17,6 +17,10 @@ import menuIcon from '../assets/Menu.svg';
 
 export default function IPPatientPage({ onBack }) {
   const [activeSection, setActiveSection] = useState('overview');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -229,8 +233,8 @@ export default function IPPatientPage({ onBack }) {
                     </div>
                     {member.badge === 'Primary' && (
                       <span className="assigned-doctor-badge" style={{
-                        border: '0.25px solid #92E066',
-                        color: '#92E066',
+                        border: '0.25px solid #5cb85c',
+                        color: '#5cb85c',
                         background: 'transparent'
                       }}>
                         {member.badge}
