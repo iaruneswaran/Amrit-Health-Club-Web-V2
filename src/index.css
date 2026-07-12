@@ -2071,13 +2071,13 @@ html, body, #root {
 }
 
 .assigned-doctor-badge {
-  border: 0.5px solid #5cb85c;
+  border: 1px solid #5cb85c;
   background: transparent;
   color: #5cb85c;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .admission-tap-hint {

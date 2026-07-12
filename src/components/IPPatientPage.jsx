@@ -225,15 +225,14 @@ export default function IPPatientPage({ onBack }) {
                 {careTeam.map((member, i) => (
                   <div key={i} className="assigned-doctor-row" style={{ padding: '12px 14px', border: '1.5px solid #F2F4F7', borderRadius: '16px', background: '#FFFFFF' }}>
                     <div className="assigned-doctor-info-left">
-                      <img src={assignedDoctorIcon} alt="" aria-hidden="true" className="assigned-doctor-icon" style={{ width: '22px', height: '22px' }} />
                       <div className="assigned-doctor-text">
-                        <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#02352F' }}>{member.name}</p>
+                        <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#000000' }}>{member.name}</p>
                         <p className="assigned-doctor-specialty" style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#3B3B3B' }}>{member.role}</p>
                       </div>
                     </div>
                     {member.badge === 'Primary' && (
                       <span className="assigned-doctor-badge" style={{
-                        border: '0.25px solid #5cb85c',
+                        border: '1px solid #5cb85c',
                         color: '#5cb85c',
                         background: 'transparent'
                       }}>
