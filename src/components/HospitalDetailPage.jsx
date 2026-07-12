@@ -84,7 +84,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow }) {
       </div>
 
       {/* Map Location pin & address block below stats (no card container) */}
-      <div style={{ padding: '16px 20px', background: '#FFFFFF', display: 'flex', gap: '12px', borderBottom: '1px solid #F2F4F7' }}>
+      <div style={{ padding: '16px 12px', background: '#FFFFFF', display: 'flex', gap: '12px', borderBottom: '1px solid #F2F4F7' }}>
         <img src={googleLocationIcon} alt="Map Location Pin" style={{ width: '20px', height: '20px', flexShrink: 0, marginTop: '2px' }} />
         <p style={{ fontFamily: 'var(--font)', fontSize: '14px', fontWeight: '500', color: '#02352F', margin: 0, lineHeight: '1.4' }}>
           {hospital.address}
@@ -106,7 +106,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow }) {
       </div>
 
       {/* Tab Contents */}
-      <div style={{ padding: '0 20px 30px' }}>
+      <div style={{ padding: '0 12px 30px' }}>
         {activeTab === 'overview' && (
           <div className="hospital-address-container" style={{ flexDirection: 'column', gap: '12px', alignItems: 'stretch' }}>
             <h4 className="hospital-card-name">About the Hospital</h4>
@@ -214,8 +214,8 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow }) {
         )}
 
         {activeTab === 'departments' && (
-          <div className="plans-card">
-            {['Cardiology', 'Neurology', 'Pediatrics', 'General Medicine', 'Emergency Care', 'Orthopedics'].map((dept, index, arr) => {
+          <div className="dept-grid">
+            {['Cardiology', 'Neurology', 'Pediatrics', 'General Medicine', 'Emergency Care', 'Orthopedics'].map((dept, index) => {
               const count = hospitalDoctors.filter(doc => {
                 const spec = doc.specialty.toLowerCase();
                 const d = dept.toLowerCase();
@@ -227,29 +227,17 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow }) {
               }).length;
 
               return (
-                <React.Fragment key={index}>
-                  <div className="plan-item" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px' }}>
-                    <div style={{ 
-                      width: '40px', 
-                      height: '40px', 
-                      borderRadius: 'var(--radius-sm)', 
-                      background: '#F2F4F7', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      <img src={stethoscopeIcon} alt="" style={{ width: '22px', height: '22px', display: 'block' }} />
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                      <h4 className="plan-item-title">{dept}</h4>
-                      <p className="plan-item-subtitle">
-                        {count === 1 ? '1 Doctor' : `${count} Doctors`}
-                      </p>
-                    </div>
+                <div className="dept-card" key={index}>
+                  <div className="dept-icon-wrapper">
+                    <img src={stethoscopeIcon} alt="" style={{ width: '22px', height: '22px', display: 'block' }} />
                   </div>
-                  {index < arr.length - 1 && <hr className="plan-item-divider" />}
-                </React.Fragment>
+                  <div className="dept-info">
+                    <h4 className="dept-title">{dept}</h4>
+                    <p className="dept-subtitle">
+                      {count === 1 ? '1 Doctor' : `${count} Doctors`}
+                    </p>
+                  </div>
+                </div>
               );
             })}
           </div>
