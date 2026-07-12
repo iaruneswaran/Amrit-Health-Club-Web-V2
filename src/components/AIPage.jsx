@@ -38,12 +38,14 @@ export default function AIPage({ onBack }) {
   const [typingState, setTypingState] = useState(null)
   const [isFlowActive, setIsFlowActive] = useState(false)
   
-  const chatEndRef = useRef(null)
+  const chatAreaRef = useRef(null)
   const timeoutsRef = useRef([])
 
   // Automatically scroll chat container to bottom on messages/typing update
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (chatAreaRef.current) {
+      chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight
+    }
   }, [messages, typingState])
 
   // Clear timeouts on unmount
@@ -306,7 +308,7 @@ export default function AIPage({ onBack }) {
 
       {/* Main Content Area */}
       <main className="ai-page-content">
-        <div className="ai-chat-area">
+        <div className="ai-chat-area" ref={chatAreaRef}>
           {messages.map(m => (
             <div key={m.id} style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
               <div className={`chat-bubble ${m.sender}-bubble`}>
@@ -383,7 +385,6 @@ export default function AIPage({ onBack }) {
               <span className="typing-dot"></span>
             </div>
           )}
-          <div ref={chatEndRef} />
         </div>
 
         <div className="ai-voice-container">
