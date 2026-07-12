@@ -232,7 +232,7 @@ export default function IPPatientPage({ onBack }) {
                     </div>
                     {member.badge === 'Primary' && (
                       <span className="assigned-doctor-badge" style={{
-                        border: '1px solid #5cb85c',
+                        border: '0.5px solid #5cb85c',
                         color: '#5cb85c',
                         background: 'transparent'
                       }}>
