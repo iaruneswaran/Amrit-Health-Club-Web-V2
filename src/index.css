@@ -1,5 +1,5 @@
 /* =========================================
-   AMRIT HEALTH CLUB — Global Styles
+   AMRIT HEALTH CLUB â€” Global Styles
    ========================================= */
 
 *, *::before, *::after {
@@ -51,7 +51,7 @@ html, body, #root {
 }
 
 /* =========================================
-   PHONE SHELL — centred 430px card on desktop,
+   PHONE SHELL â€” centred 430px card on desktop,
    full-width on mobile
    ========================================= */
 .page-shell {
@@ -74,14 +74,14 @@ html, body, #root {
   position: relative;
 }
 
-/* ── Tablet & small desktop: keep card centered ── */
+/* â”€â”€ Tablet & small desktop: keep card centered â”€â”€ */
 @media (min-width: 600px) {
   .page-shell {
     padding: 0;
   }
 }
 
-/* ── Mobile ≤ 480px: full viewport width, no side gaps ── */
+/* â”€â”€ Mobile â‰¤ 480px: full viewport width, no side gaps â”€â”€ */
 @media (max-width: 480px) {
   .page-shell {
     padding: 0;
@@ -95,7 +95,7 @@ html, body, #root {
   }
 }
 
-/* ── Very small phones (≤ 360px): tighten inner padding ── */
+/* â”€â”€ Very small phones (â‰¤ 360px): tighten inner padding â”€â”€ */
 @media (max-width: 360px) {
   .main-content {
     padding: 12px 12px 28px;
@@ -128,7 +128,7 @@ html, body, #root {
   opacity: 0.85;
 }
 
-/* no pseudo-element needed — real photo is used */
+/* no pseudo-element needed â€” real photo is used */
 
 .hero-content {
   position: absolute;
@@ -161,7 +161,7 @@ html, body, #root {
   cursor: pointer;
 }
 
-/* back card — the "second profile" peeking behind to the left */
+/* back card â€” the "second profile" peeking behind to the left */
 .avatar-badge::before {
   content: '';
   position: absolute;
@@ -512,7 +512,7 @@ html, body, #root {
 }
 
 .clinic-open-text {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #00A63E;
 }
@@ -694,7 +694,7 @@ html, body, #root {
 }
 
 .appt-header-doctor-specialty.no-image {
-  color: #667085;
+  color: #3B3B3B;
 }
 
 .status-confirmed.no-image {
@@ -2827,7 +2827,7 @@ html, body, #root {
   font-family: var(--font);
   font-size: 14px;
   font-weight: 500;
-  color: #667085;
+  color: #3B3B3B;
   padding: 8px 0;
   border-radius: 20px;
   cursor: pointer;
@@ -2856,7 +2856,7 @@ html, body, #root {
 .chart-stats-label {
   font-size: 14px;
   font-weight: 500;
-  color: #98A2B3;
+  color: #3B3B3B;
   letter-spacing: 0.05em;
   display: block;
   margin-bottom: 4px;
@@ -2876,14 +2876,14 @@ html, body, #root {
 .chart-stats-unit {
   font-size: 18px;
   font-weight: 500;
-  color: #667085;
+  color: #3B3B3B;
   margin-left: 6px;
 }
 
 .chart-stats-date {
   font-size: 14px;
   font-weight: 500;
-  color: #98A2B3;
+  color: #3B3B3B;
   margin-top: 4px;
   display: block;
 }
@@ -3124,7 +3124,7 @@ html, body, #root {
 }
 
 .hospitals-search-input::placeholder {
-  color: #98A2B3;
+  color: #3B3B3B;
 }
 
 .hospitals-filter-btn {
@@ -3215,7 +3215,7 @@ html, body, #root {
 }
 
 .hospital-open-text {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #00A63E;
 }
@@ -3283,7 +3283,7 @@ html, body, #root {
 .count-label {
   font-size: 14px;
   font-weight: 600;
-  color: #667085;
+  color: #3B3B3B;
 }
 
 .hospital-view-btn {
@@ -3381,7 +3381,7 @@ html, body, #root {
 .detecting-sub {
   font-size: 14px;
   font-weight: 500;
-  color: #667085;
+  color: #3B3B3B;
   text-align: center;
   margin: 0;
 }
@@ -3493,7 +3493,7 @@ html, body, #root {
 }
 
 .doctors-search-input::placeholder {
-  color: #98A2B3;
+  color: #3B3B3B;
 }
 
 .doctors-filter-btn {
@@ -3572,7 +3572,7 @@ html, body, #root {
 .doctor-specialty {
   font-size: 15px;
   font-weight: 500;
-  color: #667085;
+  color: #3B3B3B;
   margin: 0;
 }
 
@@ -3681,7 +3681,7 @@ html, body, #root {
 .doctor-fee-label {
   font-size: 14px;
   font-weight: 600;
-  color: #667085;
+  color: #3B3B3B;
 }
 
 .doctor-book-btn {
@@ -3756,7 +3756,7 @@ html, body, #root {
 
 .report-summary-subtitle {
   font-size: 13px;
-  color: #667085;
+  color: #3B3B3B;
   font-weight: 500;
 }
 
@@ -3778,15 +3778,14 @@ html, body, #root {
   border-radius: 20px;
   padding: 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
-  margin-bottom: 12px;
 }
 
 .report-doc-left {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   flex: 1;
   min-width: 0;
@@ -3812,7 +3811,7 @@ html, body, #root {
 .report-doc-meta {
   font-size: 13px;
   font-weight: 500;
-  color: #667085;
+  color: #3B3B3B;
   margin: 0;
 }
 
@@ -3844,11 +3843,21 @@ html, body, #root {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 0;
+  padding-top: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   color: #000000;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+.report-menu-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  display: block;
 }
 
 /* =========================================
@@ -3997,7 +4006,7 @@ html, body, #root {
 
 .ip-stat-label {
   font-size: 11px;
-  color: #98A2B3;
+  color: #3B3B3B;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -4010,7 +4019,7 @@ html, body, #root {
 }
 
 .ip-stat-green {
-  color: #3F7A5C !important;
+  color: #5cb85c !important;
 }
 
 .ip-stat-divider {
@@ -4038,7 +4047,7 @@ html, body, #root {
   padding: 14px 4px;
   font-size: 13px;
   font-weight: 600;
-  color: #98A2B3;
+  color: #3B3B3B;
   cursor: pointer;
   border-bottom: 2.5px solid transparent;
   transition: color 0.2s, border-color 0.2s;
@@ -4047,7 +4056,7 @@ html, body, #root {
 
 .ip-tab-btn.active {
   color: #02352F;
-  border-bottom-color: #3F7A5C;
+  border-bottom-color: #d2f19e;
 }
 
 /* Content Area */
@@ -4063,7 +4072,7 @@ html, body, #root {
 .ip-card {
   background: #FFFFFF;
   border-radius: 20px;
-  padding: 18px;
+  padding: 20px;
 }
 
 .ip-card-header-row {
@@ -4087,7 +4096,7 @@ html, body, #root {
 
 .ip-reason-text {
   font-size: 14px;
-  color: #667085;
+  color: #3B3B3B;
   line-height: 1.6;
   margin: 0;
 }
@@ -4104,9 +4113,24 @@ html, body, #root {
   animation: ip-live-pulse 2s infinite;
 }
 
-@keyframes ip-live-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+.ip-live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #FF4D4D;
+  border-radius: 50%;
+  display: inline-block;
+  animation: ip-live-dot-pulse 1.5s infinite;
+}
+
+@keyframes ip-live-dot-pulse {
+  0%, 100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 6px rgba(255, 77, 77, 0);
+  }
 }
 
 /* Mini Vitals Grid */
@@ -4119,10 +4143,10 @@ html, body, #root {
 .ip-vital-mini {
   background: #F9FAFB;
   border-radius: 14px;
-  padding: 14px 12px;
+  padding: 16px 14px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .ip-vital-mini.caution {
@@ -4144,13 +4168,13 @@ html, body, #root {
 .ip-vital-mini-unit {
   font-size: 11px;
   font-weight: 500;
-  color: #98A2B3;
+  color: #3B3B3B;
   margin-left: 2px;
 }
 
 .ip-vital-mini-label {
   font-size: 11px;
-  color: #98A2B3;
+  color: #3B3B3B;
   font-weight: 500;
 }
 
@@ -4171,21 +4195,25 @@ html, body, #root {
 }
 
 .ip-timeline-dot {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
   margin-top: 3px;
 }
 
-.ip-timeline-dot.admit { background: #D2F19E; border: 2px solid #3F7A5C; }
-.ip-timeline-dot.procedure { background: #FDDCB5; border: 2px solid #F79009; }
-.ip-timeline-dot.transfer { background: #D1E9FF; border: 2px solid #0BA5EC; }
+.ip-timeline-dot.admit { background: #D2F19E; border: none; }
+.ip-timeline-dot.procedure { background: #D2F19E; border: none; }
+.ip-timeline-dot.transfer { background: #D2F19E; border: none; }
+
+.ip-timeline-dot.admit, .ip-timeline-dot.procedure, .ip-timeline-dot.transfer {
+  animation: none;
+}
 
 .ip-timeline-line {
   position: absolute;
-  left: 6px;
-  top: 18px;
+  left: 4px;
+  top: 15px;
   bottom: 0;
   width: 2px;
   background: #F2F4F7;
@@ -4204,7 +4232,52 @@ html, body, #root {
 
 .ip-timeline-meta {
   font-size: 12px;
-  color: #98A2B3;
+  color: #3B3B3B;
+  margin: 0;
+}
+
+.ip-movements-scroll-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 0 8px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.ip-movements-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.ip-movement-card {
+  flex: 0 0 250px;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ip-movement-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ip-movement-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #02352F;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ip-movement-card-meta {
+  font-size: 12px;
+  color: #3B3B3B;
   margin: 0;
 }
 
@@ -4250,7 +4323,7 @@ html, body, #root {
 
 .ip-care-role {
   font-size: 12px;
-  color: #667085;
+  color: #3B3B3B;
   margin: 0;
 }
 
@@ -4307,13 +4380,13 @@ html, body, #root {
 
 .ip-diagnostic-result {
   font-size: 12px;
-  color: #667085;
+  color: #3B3B3B;
   margin: 0;
 }
 
 .ip-diagnostic-time {
   font-size: 11px;
-  color: #98A2B3;
+  color: #3B3B3B;
   flex-shrink: 0;
   white-space: nowrap;
 }
@@ -4331,13 +4404,13 @@ html, body, #root {
   color: #3F7A5C;
   font-size: 12px;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 8px 12px;
   border-radius: 100px;
 }
 
 .ip-med-updated {
   font-size: 12px;
-  color: #98A2B3;
+  color: #3B3B3B;
 }
 
 .ip-med-card {
@@ -4383,7 +4456,7 @@ html, body, #root {
 
 .ip-med-dose {
   font-size: 12px;
-  color: #667085;
+  color: #3B3B3B;
   margin: 0;
 }
 
@@ -4393,7 +4466,7 @@ html, body, #root {
   border-radius: 100px;
   font-size: 11px;
   font-weight: 600;
-  color: #667085;
+  color: #3B3B3B;
 }
 
 .ip-med-status {
@@ -4406,7 +4479,7 @@ html, body, #root {
 
 .ip-med-status.active { background: #ECF5E7; color: #3F7A5C; }
 .ip-med-status.ongoing { background: #D1E9FF; color: #0BA5EC; }
-.ip-med-status.prn { background: #F2F4F7; color: #667085; }
+.ip-med-status.prn { background: #F2F4F7; color: #3B3B3B; }
 
 .ip-med-footer {
   display: flex;
@@ -4418,7 +4491,7 @@ html, body, #root {
 
 .ip-med-next {
   font-size: 12px;
-  color: #98A2B3;
+  color: #3B3B3B;
 }
 
 .ip-note-card {
@@ -4444,7 +4517,7 @@ html, body, #root {
 
 .ip-vitals-time {
   font-size: 12px;
-  color: #98A2B3;
+  color: #3B3B3B;
 }
 
 .ip-vitals-grid {
@@ -4456,10 +4529,11 @@ html, body, #root {
 .ip-vital-card {
   background: #FFFFFF;
   border-radius: 18px;
-  padding: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  position: relative;
 }
 
 .ip-vital-card.caution {
@@ -4478,7 +4552,7 @@ html, body, #root {
 }
 
 .ip-vital-value {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: #000000;
   line-height: 1;
@@ -4486,13 +4560,13 @@ html, body, #root {
 
 .ip-vital-unit {
   font-size: 12px;
-  color: #98A2B3;
+  color: #3B3B3B;
   font-weight: 500;
 }
 
 .ip-vital-label {
   font-size: 11px;
-  color: #667085;
+  color: #3B3B3B;
   margin: 0;
   font-weight: 500;
 }
@@ -4503,6 +4577,9 @@ html, body, #root {
   padding: 3px 8px;
   border-radius: 100px;
   width: fit-content;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .ip-vital-trend.stable { background: #ECF5E7; color: #3F7A5C; }
@@ -4533,7 +4610,7 @@ html, body, #root {
 .ip-log-row.header {
   font-size: 11px;
   font-weight: 600;
-  color: #98A2B3;
+  color: #3B3B3B;
   text-transform: uppercase;
   letter-spacing: 0.4px;
   padding-bottom: 8px;
@@ -4544,7 +4621,7 @@ html, body, #root {
 
 /* Billing */
 .ip-bill-summary-card {
-  background: linear-gradient(135deg, #02352F 0%, #3F7A5C 100%);
+  background: linear-gradient(135deg, #D2F19E 0%, #BFE78E 100%);
   border-radius: 20px;
   padding: 20px;
   display: flex;
@@ -4554,22 +4631,22 @@ html, body, #root {
 
 .ip-bill-summary-label {
   font-size: 12px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(2, 53, 47, 0.75);
   margin: 0 0 4px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .ip-bill-summary-amount {
   font-size: 28px;
   font-weight: 800;
-  color: #FFFFFF;
+  color: #02352F;
   margin: 0 0 4px;
   letter-spacing: -0.5px;
 }
 
 .ip-bill-summary-note {
   font-size: 11px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(2, 53, 47, 0.65);
   margin: 0;
 }
 
@@ -4599,7 +4676,7 @@ html, body, #root {
 
 .ip-deposit-label {
   font-size: 13px;
-  color: #667085;
+  color: #3B3B3B;
 }
 
 .ip-deposit-amount {
@@ -4623,7 +4700,7 @@ html, body, #root {
 .ip-bill-cat-title {
   font-size: 12px;
   font-weight: 700;
-  color: #98A2B3;
+  color: #3B3B3B;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 0 4px;
@@ -4710,3 +4787,201 @@ html, body, #root {
 
 
 
+
+/* =========================================
+   PROFILE PAGE
+   ========================================= */
+.profile-main {
+  padding: 0 !important;
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #F5F5F5;
+  padding-bottom: 108px;
+}
+
+/* Header Image */
+.profile-header-image-wrap {
+  width: 100%;
+  height: 125px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.profile-header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* User Info Card */
+.profile-user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #d2f19e;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0 16px;
+  margin-top: -24px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.profile-user-card .avatar-badge-container {
+  margin-left: 10px;
+  align-self: center;
+}
+
+.profile-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #02352F;
+  line-height: 1.2;
+}
+
+.profile-user-phone {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.profile-edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.profile-edit-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.profile-section-card {
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  padding: 20px;
+  margin: 12px 16px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+.profile-section-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #3B3B3B;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* Patient Activity Grid */
+.activity-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 8px 0;
+}
+
+.activity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.activity-count {
+  font-size: 20px;
+  font-weight: 700;
+  color: #02352F;
+}
+
+.activity-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.activity-divider {
+  width: 1px;
+  height: 36px;
+  background-color: #F2F4F7;
+  margin: 0 24px;
+}
+
+/* Profile list styles */
+.profile-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #F2F4F7;
+  cursor: pointer;
+}
+
+.profile-list-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.profile-list-item-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-list-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  background-color: #ECF5E7;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-list-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.profile-list-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.profile-chevron-right {
+  color: #3B3B3B;
+  flex-shrink: 0;
+}

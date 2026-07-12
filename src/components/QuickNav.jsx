@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 const navItems = [
   { id: 'hospitals-nav', icon: '/hospital-icon.svg', label: 'Hospitals' },

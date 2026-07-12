@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import voiceIcon from '../assets/Voice Icon.svg'
 import aiMenuIcon from '../assets/Ai Menu icon.svg'
 import wellioLogo from '../assets/Wellio.svg'
@@ -108,7 +108,7 @@ export default function AIPage({ onBack }) {
             Hi
           </div>
           <div className="chat-bubble ai-bubble">
-            Hi Jordan 👋 I'm your AI Health Assistant. How are you feeling today? You can tap a symptom below or type your own.
+            Hi Jordan ðŸ‘‹ I'm your AI Health Assistant. How are you feeling today? You can tap a symptom below or type your own.
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import continueArrow from '../assets/Continue Arrow.svg';
 import AppointmentCard from './AppointmentCard';
 import AdmissionCard from './AdmissionCard';

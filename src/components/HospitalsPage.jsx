@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import searchIcon from '../assets/Search.svg';
 import filterIcon from '../assets/Filter.svg';
 import googleLocationIcon from '../assets/Google Location.svg';
@@ -163,7 +163,7 @@ export default function HospitalsPage({ onBack }) {
             ))}
 
             {filteredHospitals.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '30px 10px', color: '#667085', fontSize: '15px' }}>
+              <div style={{ textAlign: 'center', padding: '30px 10px', color: '#3B3B3B', fontSize: '15px' }}>
                 No hospitals match your search.
               </div>
             )}

@@ -1,4 +1,4 @@
-import homeIcon from '../assets/Home.svg'
+﻿import homeIcon from '../assets/Home.svg'
 import pulseIcon from '../assets/Pulse.svg'
 import reportsIcon from '../assets/Reports.svg'
 import userIcon from '../assets/User.svg'

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import hospitalImage from '../assets/Hospital Image.jpg';
 
 export default function ClinicCard() {

@@ -1,6 +1,7 @@
-import React from 'react';
+﻿import React from 'react';
 import documentIcon from '../assets/Document.svg';
 import addIcon from '../assets/Add Icon.svg';
+import menuIcon from '../assets/Menu.svg';
 
 export default function ReportsPage() {
   const documents = [
@@ -89,11 +90,7 @@ export default function ReportsPage() {
               </div>
             </div>
             <button className="report-doc-action-btn" type="button" aria-label="More options">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" />
-              </svg>
+              <img src={menuIcon} alt="More options" className="report-menu-icon" />
             </button>
           </div>
         ))}
@@ -117,11 +114,7 @@ export default function ReportsPage() {
               </div>
             </div>
             <button className="report-doc-action-btn" type="button" aria-label="More options">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" />
-              </svg>
+              <img src={menuIcon} alt="More options" className="report-menu-icon" />
             </button>
           </div>
         ))}

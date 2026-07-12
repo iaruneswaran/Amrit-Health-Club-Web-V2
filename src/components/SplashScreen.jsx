@@ -1,4 +1,4 @@
-export default function SplashScreen({ fadeOut }) {
+﻿export default function SplashScreen({ fadeOut }) {
   return (
     <div className={`splash-screen ${fadeOut ? 'fade-out' : ''}`}>
       <img

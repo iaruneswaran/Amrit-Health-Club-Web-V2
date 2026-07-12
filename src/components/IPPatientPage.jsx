@@ -4,6 +4,16 @@ import assignedDoctorIcon from '../assets/Assigned doctor.svg';
 import continueArrow from '../assets/Continue Arrow.svg';
 import pillsIcon from '../assets/Pills Icon.svg';
 import reasonIcon from '../assets/Reason Icon.svg';
+import googleLocationIcon from '../assets/Google Location.svg';
+import MedicationCard from './MedicationCard';
+import tempIcon from '../assets/Temperature.svg';
+import bpIcon from '../assets/Blood Pressure.svg';
+import spo2Icon from '../assets/SpO₂.svg';
+import hrIcon from '../assets/Heart Rate.svg';
+import rrIcon from '../assets/Respiratory Rate.svg';
+import bgIcon from '../assets/Blood Glucose.svg';
+import documentIcon from '../assets/Document.svg';
+import menuIcon from '../assets/Menu.svg';
 
 export default function IPPatientPage({ onBack }) {
   const [activeSection, setActiveSection] = useState('overview');
@@ -24,12 +34,12 @@ export default function IPPatientPage({ onBack }) {
   ];
 
   const vitals = [
-    { label: 'Temperature', value: '101.2', unit: '°F', icon: '🌡️', trend: 'down', status: 'caution' },
-    { label: 'Blood Pressure', value: '118/76', unit: 'mmHg', icon: '💓', trend: 'stable', status: 'normal' },
-    { label: 'SpO₂', value: '97', unit: '%', icon: '🫁', trend: 'stable', status: 'normal' },
-    { label: 'Heart Rate', value: '88', unit: 'bpm', icon: '❤️', trend: 'stable', status: 'normal' },
-    { label: 'Respiratory Rate', value: '18', unit: '/min', icon: '🌬️', trend: 'stable', status: 'normal' },
-    { label: 'Blood Glucose', value: '104', unit: 'mg/dL', icon: '🩸', trend: 'stable', status: 'normal' },
+    { label: 'Temperature', value: '101.2', unit: '°F', icon: tempIcon, trend: 'down', status: 'normal' },
+    { label: 'Blood Pressure', value: '118/76', unit: 'mmHg', icon: bpIcon, trend: 'stable', status: 'normal' },
+    { label: 'SpO₂', value: '97', unit: '%', icon: spo2Icon, trend: 'stable', status: 'normal' },
+    { label: 'Heart Rate', value: '88', unit: 'bpm', icon: hrIcon, trend: 'stable', status: 'normal' },
+    { label: 'Respiratory Rate', value: '18', unit: '/min', icon: rrIcon, trend: 'stable', status: 'normal' },
+    { label: 'Blood Glucose', value: '104', unit: 'mg/dL', icon: bgIcon, trend: 'stable', status: 'normal' },
   ];
 
   const wardMovements = [
@@ -44,8 +54,8 @@ export default function IPPatientPage({ onBack }) {
       { name: 'General Ward (1 day)', amount: 2000 },
     ]},
     { category: 'Consultations', items: [
-      { name: 'Dr. Amelia Carter – Cardiologist', amount: 1500 },
-      { name: 'Dr. Rajan Nair – General Physician', amount: 800 },
+      { name: 'Dr. Amelia Carter - Cardiologist', amount: 1500 },
+      { name: 'Dr. Rajan Nair - General Physician', amount: 800 },
     ]},
     { category: 'Medications', items: [
       { name: 'IV Fluids & Consumables', amount: 1200 },
@@ -66,19 +76,36 @@ export default function IPPatientPage({ onBack }) {
     sum + cat.items.reduce((s, i) => s + i.amount, 0), 0);
 
   const careTeam = [
-    { name: 'Dr. Amelia Carter', role: 'Primary Cardiologist', initials: 'AC' },
-    { name: 'Dr. Rajan Nair', role: 'General Physician', initials: 'RN' },
-    { name: 'Nurse Priya Sharma', role: 'Primary Nurse (Day)', initials: 'PS' },
-    { name: 'Nurse James Wilson', role: 'Primary Nurse (Night)', initials: 'JW' },
+    { name: 'Dr. Amelia Carter', role: 'Cardiology Specialist', badge: 'Primary' },
+    { name: 'Dr. Rajan Nair', role: 'General Physician', badge: 'Duty Doctor' },
+    { name: 'Nurse Priya Sharma', role: 'Primary Nurse (Day)', badge: 'Nurse' },
   ];
 
-  const diagnostics = [
-    { name: 'CBC', result: 'WBC elevated: 14,200', status: 'abnormal', time: 'Today, 10:00 AM' },
-    { name: 'CRP', result: '48 mg/L (High)', status: 'abnormal', time: 'Today, 10:00 AM' },
-    { name: 'LFT', result: 'Within normal range', status: 'normal', time: 'Today, 10:00 AM' },
-    { name: 'KFT', result: 'Within normal range', status: 'normal', time: 'Today, 10:00 AM' },
-    { name: 'Chest X-Ray', result: 'Mild consolidation, right lower lobe', status: 'abnormal', time: 'Today, 11:30 AM' },
-    { name: 'ECG', result: 'Normal sinus rhythm', status: 'normal', time: 'Today, 12:00 PM' },
+  const documents = [
+    {
+      id: 1,
+      name: 'Sterling-Accuris-Pathology-Sampl',
+      time: 'Just now',
+      size: '6.59 MB',
+      badge: '2 Issues',
+      status: 'issues',
+    },
+    {
+      id: 2,
+      name: 'Sterling-Accuris-Pathology-Sampl',
+      time: 'Just now',
+      size: '6.59 MB',
+      badge: '2 Issues',
+      status: 'issues',
+    },
+    {
+      id: 3,
+      name: 'Sterling-Accuris-Pathology-Sampl',
+      time: 'Just now',
+      size: '6.59 MB',
+      badge: 'Normal',
+      status: 'normal',
+    },
   ];
 
   return (
@@ -139,53 +166,49 @@ export default function IPPatientPage({ onBack }) {
       {/* Tab Content */}
       <div className="ip-content">
 
-        {/* ── OVERVIEW TAB ── */}
+        {/* â”€â”€ OVERVIEW TAB â”€â”€ */}
         {activeSection === 'overview' && (
           <>
+            {/* Location & Room Details Card */}
+            <div className="ip-card">
+              <div className="ip-card-header-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <h2 className="ip-card-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <img src={googleLocationIcon} alt="" className="ip-section-icon" style={{ width: '18px', height: '18px' }} />
+                  St. Mary's Medical
+                </h2>
+                <div className="ip-location-badge-pill" style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: '#f0f9eb', color: '#5cb85c', borderRadius: '100px', padding: '4px 10px', fontSize: '11px', fontWeight: '700', gap: '5px' }}>
+                  <span className="ip-ward-dot" style={{ width: '6px', height: '6px', backgroundColor: '#5cb85c', borderRadius: '50%' }}></span>
+                  <span>ICU B5</span>
+                </div>
+              </div>
+              <p className="ip-reason-text" style={{ fontSize: '13px', color: '#3B3B3B', lineHeight: '1.4' }}>
+                161B, 1st Floor, 6th Main, 3RD Cross Road, 3RD PHASE J P Nagar, Bangalore Karnataka India
+              </p>
+            </div>
+
             {/* Admission Reason */}
             <div className="ip-card">
-              <div className="ip-card-header-row">
+              <div className="ip-card-header-row" style={{ marginBottom: '8px' }}>
                 <img src={reasonIcon} alt="" className="ip-section-icon" />
                 <h2 className="ip-card-title">Admission Reason</h2>
-              </div>
-              <div className="ip-location-badge" style={{ marginBottom: '12px' }}>
-                <span className="ip-ward-dot"></span>
-                <span>ICU B5 • St. Mary's Medical</span>
               </div>
               <p className="ip-reason-text">
                 High fever (101.5°F) with severe body aches &amp; chills since yesterday. Suspected viral infection with possible lower respiratory involvement.
               </p>
             </div>
 
-            {/* Current Vitals Summary */}
-            <div className="ip-card">
-              <div className="ip-card-header-row">
-                <h2 className="ip-card-title">Current Vitals</h2>
-                <span className="ip-live-badge">Live</span>
-              </div>
-              <div className="ip-vitals-mini-grid">
-                {vitals.slice(0, 4).map((v, i) => (
-                  <div key={i} className={`ip-vital-mini ${v.status}`}>
-                    <span className="ip-vital-mini-icon">{v.icon}</span>
-                    <span className="ip-vital-mini-value">{v.value}<span className="ip-vital-mini-unit">{v.unit}</span></span>
-                    <span className="ip-vital-mini-label">{v.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Ward Movement Timeline */}
             <div className="ip-card">
-              <h2 className="ip-card-title" style={{ marginBottom: '16px' }}>Ward Movement</h2>
-              <div className="ip-timeline">
+              <h2 className="ip-card-title" style={{ marginBottom: '8px' }}>Ward Movement</h2>
+              <div className="ip-movements-scroll-container">
                 {wardMovements.map((m, i) => (
-                  <div key={i} className="ip-timeline-item">
-                    <div className={`ip-timeline-dot ${m.type}`}></div>
-                    <div className="ip-timeline-line" style={{ display: i === wardMovements.length - 1 ? 'none' : 'block' }}></div>
-                    <div className="ip-timeline-body">
-                      <p className="ip-timeline-event">{m.event}</p>
-                      <p className="ip-timeline-meta">{m.time} • {m.ward}, Bed {m.bed}</p>
+                  <div key={i} className="ip-movement-card">
+                    <div className="ip-movement-card-header">
+                      <span className={`ip-timeline-dot ${m.type}`} style={{ marginTop: 0 }}></span>
+                      <h3 className="ip-movement-card-title">{m.event}</h3>
                     </div>
+                    <p className="ip-movement-card-meta">{m.time} • {m.ward}, Bed {m.bed}</p>
                   </div>
                 ))}
               </div>
@@ -193,36 +216,51 @@ export default function IPPatientPage({ onBack }) {
 
             {/* Care Team */}
             <div className="ip-card">
-              <h2 className="ip-card-title" style={{ marginBottom: '16px' }}>Care Team</h2>
-              {careTeam.map((member, i) => (
-                <div key={i} className="ip-care-row">
-                  <div className="ip-care-avatar">{member.initials}</div>
-                  <div className="ip-care-info">
-                    <p className="ip-care-name">{member.name}</p>
-                    <p className="ip-care-role">{member.role}</p>
+              <h2 className="ip-card-title" style={{ marginBottom: '12px' }}>Care Team</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {careTeam.map((member, i) => (
+                  <div key={i} className="assigned-doctor-row" style={{ padding: '12px 14px', border: '1.5px solid #F2F4F7', borderRadius: '16px', background: '#FFFFFF' }}>
+                    <div className="assigned-doctor-info-left">
+                      <img src={assignedDoctorIcon} alt="" aria-hidden="true" className="assigned-doctor-icon" style={{ width: '22px', height: '22px' }} />
+                      <div className="assigned-doctor-text">
+                        <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#02352F' }}>{member.name}</p>
+                        <p className="assigned-doctor-specialty" style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#3B3B3B' }}>{member.role}</p>
+                      </div>
+                    </div>
+                    {member.badge === 'Primary' && (
+                      <span className="assigned-doctor-badge" style={{
+                        border: '0.25px solid #92E066',
+                        color: '#92E066',
+                        background: 'transparent'
+                      }}>
+                        {member.badge}
+                      </span>
+                    )}
                   </div>
-                  <button className="ip-care-contact-btn" aria-label={`Contact ${member.name}`}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F7A5C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91A16 16 0 0 0 14.09 16l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                  </button>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* Diagnostics */}
+            {/* Diagnostics & Reports */}
             <div className="ip-card">
-              <h2 className="ip-card-title" style={{ marginBottom: '16px' }}>Diagnostics &amp; Reports</h2>
-              {diagnostics.map((d, i) => (
-                <div key={i} className="ip-diagnostic-row">
-                  <div className="ip-diagnostic-left">
-                    <div className={`ip-diagnostic-dot ${d.status}`}></div>
-                    <div>
-                      <p className="ip-diagnostic-name">{d.name}</p>
-                      <p className="ip-diagnostic-result">{d.result}</p>
+              <h2 className="ip-card-title" style={{ marginBottom: '20px' }}>Diagnostics &amp; Reports</h2>
+              {documents.map((doc, index) => (
+                <div key={doc.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: index === 0 ? '0' : '16px', paddingBottom: '16px', borderBottom: index === documents.length - 1 ? 'none' : '1px solid #F2F4F7' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <div className="report-icon-wrapper" style={{ margin: '2px 0 0 0', width: '48px', height: '48px', minWidth: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={documentIcon} alt="Document" className="report-summary-icon" style={{ width: '20px', height: '20px' }} />
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p className="report-doc-name" title={doc.name}>{doc.name}</p>
+                      <p className="report-doc-meta" style={{ marginTop: '3px', marginBottom: '6px' }}>{doc.time} &bull; {doc.size}</p>
+                      <div className="report-doc-badge-row" style={{ marginTop: 0 }}>
+                        <span className={`report-badge ${doc.status}`}>{doc.badge}</span>
+                      </div>
                     </div>
                   </div>
-                  <span className="ip-diagnostic-time">{d.time.split(',')[0]}</span>
+                  <button className="report-doc-action-btn" type="button" aria-label="More options">
+                    <img src={menuIcon} alt="More options" className="report-menu-icon" />
+                  </button>
                 </div>
               ))}
             </div>
@@ -233,56 +271,35 @@ export default function IPPatientPage({ onBack }) {
         {activeSection === 'medications' && (
           <>
             <div className="ip-med-header-info">
-              <span className="ip-med-count-badge">{medications.length} Active Orders</span>
               <span className="ip-med-updated">Updated: Today 2:00 PM</span>
             </div>
-            {medications.map((med, i) => (
-              <div key={i} className="ip-med-card">
-                <div className="ip-med-top">
-                  <div className="ip-med-icon-wrap">
-                    <img src={pillsIcon} alt="" className="ip-med-icon" />
-                  </div>
-                  <div className="ip-med-details">
-                    <p className="ip-med-name">{med.name}</p>
-                    <p className="ip-med-dose">{med.dose} — {med.freq} — <span className="ip-med-route">{med.route}</span></p>
-                  </div>
-                  <span className={`ip-med-status ${med.status}`}>
-                    {med.status === 'active' ? 'Active' : med.status === 'ongoing' ? 'Running' : 'PRN'}
-                  </span>
-                </div>
-                <div className="ip-med-footer">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                  <span className="ip-med-next">Next dose: {med.next}</span>
-                </div>
-              </div>
-            ))}
-            <div className="ip-note-card">
-              <p className="ip-note-text">⚕️ Medication orders are managed by the attending physician. For any changes, contact the nursing station.</p>
-            </div>
+            <MedicationCard showImage={false} />
           </>
         )}
 
-        {/* ── VITALS TAB ── */}
+        {/* â”€â”€ VITALS TAB â”€â”€ */}
         {activeSection === 'vitals' && (
           <>
             <div className="ip-vitals-timestamp">
-              <span className="ip-live-badge">Live</span>
+              <div className="ip-live-indicator" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span className="ip-live-dot"></span>
+                <span style={{ fontSize: '11px', fontWeight: '700', color: '#FF4D4D', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Live</span>
+              </div>
               <span className="ip-vitals-time">Last updated: Today, 2:15 PM</span>
             </div>
             <div className="ip-vitals-grid">
               {vitals.map((v, i) => (
                 <div key={i} className={`ip-vital-card ${v.status}`}>
-                  <div className="ip-vital-icon">{v.icon}</div>
+                  <div className="ip-vital-icon">
+                    <img src={v.icon} alt="" style={{ width: '24px', height: '24px', display: 'block' }} />
+                  </div>
                   <div className="ip-vital-value-row">
                     <span className="ip-vital-value">{v.value}</span>
                     <span className="ip-vital-unit">{v.unit}</span>
                   </div>
                   <p className="ip-vital-label">{v.label}</p>
                   <div className={`ip-vital-trend ${v.trend}`}>
-                    {v.trend === 'down' ? '↓ Improving' : v.trend === 'up' ? '↑ Rising' : '→ Stable'}
+                    {v.trend === 'down' ? 'Improving' : v.trend === 'up' ? 'Rising' : 'Stable'}
                   </div>
                 </div>
               ))}
@@ -313,7 +330,7 @@ export default function IPPatientPage({ onBack }) {
           </>
         )}
 
-        {/* ── BILLING TAB ── */}
+        {/* â”€â”€ BILLING TAB â”€â”€ */}
         {activeSection === 'billing' && (
           <>
             <div className="ip-bill-summary-card">
@@ -322,41 +339,43 @@ export default function IPPatientPage({ onBack }) {
                 <p className="ip-bill-summary-amount">₹{totalBill.toLocaleString('en-IN')}</p>
                 <p className="ip-bill-summary-note">Interim bill • Subject to final charges</p>
               </div>
-              <div className="ip-bill-summary-right">
-                <span className="ip-bill-status-badge">Unpaid</span>
+            </div>
+
+            {/* Deposit info (Two side-by-side cards) */}
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '16px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '4px', border: '1px solid #F0F2F5' }}>
+                <span style={{ fontSize: '12px', color: '#3B3B3B', fontWeight: '500' }}>Security Deposit Paid</span>
+                <span style={{ fontSize: '18px', fontWeight: '700', color: '#3F7A5C' }}>₹5,000</span>
+              </div>
+              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '16px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '4px', border: '1px solid #F0F2F5' }}>
+                <span style={{ fontSize: '12px', color: '#3B3B3B', fontWeight: '500' }}>Balance Due</span>
+                <span style={{ fontSize: '18px', fontWeight: '700', color: '#FF5858' }}>₹{(totalBill - 5000).toLocaleString('en-IN')}</span>
               </div>
             </div>
 
-            {/* Deposit info */}
-            <div className="ip-deposit-card">
-              <div className="ip-deposit-row">
-                <span className="ip-deposit-label">Security Deposit Paid</span>
-                <span className="ip-deposit-amount">₹5,000</span>
-              </div>
-              <div className="ip-deposit-row">
-                <span className="ip-deposit-label">Balance Due</span>
-                <span className="ip-deposit-due">₹{(totalBill - 5000).toLocaleString('en-IN')}</span>
-              </div>
-            </div>
-
-            {/* Bill Breakdown */}
-            {billItems.map((cat, ci) => (
-              <div key={ci} className="ip-bill-category">
-                <p className="ip-bill-cat-title">{cat.category}</p>
-                <div className="ip-bill-items-card">
-                  {cat.items.map((item, ii) => (
-                    <div key={ii} className="ip-bill-item-row">
-                      <span className="ip-bill-item-name">{item.name}</span>
-                      <span className="ip-bill-item-amount">₹{item.amount.toLocaleString('en-IN')}</span>
-                    </div>
-                  ))}
+            {/* Bill Breakdown & Grand Total in a single wrapper */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {billItems.map((cat, ci) => (
+                <div key={ci} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#02352F', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{cat.category}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {cat.items.map((item, ii) => (
+                      <div key={ii} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '14px', color: '#3B3B3B' }}>{item.name}</span>
+                        <span style={{ fontSize: '14px', fontWeight: '600', color: '#02352F' }}>₹{item.amount.toLocaleString('en-IN')}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {ci < billItems.length - 1 && <hr style={{ border: 'none', borderBottom: '1px solid #F0F2F5', margin: '12px 0 0 0' }} />}
                 </div>
-              </div>
-            ))}
+              ))}
 
-            <div className="ip-bill-total-card">
-              <span className="ip-bill-total-label">Grand Total</span>
-              <span className="ip-bill-total-amount">₹{totalBill.toLocaleString('en-IN')}</span>
+              <hr style={{ border: 'none', borderBottom: '1.5px dashed #E5E7EB', margin: '4px 0' }} />
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '15px', fontWeight: '700', color: '#02352F' }}>Grand Total</span>
+                <span style={{ fontSize: '18px', fontWeight: '800', color: '#3F7A5C' }}>₹{totalBill.toLocaleString('en-IN')}</span>
+              </div>
             </div>
 
             <button className="ip-pay-btn">Request Final Bill</button>

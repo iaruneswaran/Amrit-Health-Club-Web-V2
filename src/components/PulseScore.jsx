@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
+﻿import { useEffect, useRef } from 'react';
 import trendIcon from '../assets/Trend.svg';
 import graphArrow from '../assets/Graph Arrow.svg';
 
 const SCORE       = 82;
 const START_ANGLE = 90;                                     // right end = 0
-const END_ANGLE   = 90 - (SCORE / 100) * 180;              // −57.6° → score position (0=right, 100=left)
+const END_ANGLE   = 90 - (SCORE / 100) * 180;              // âˆ’57.6Â° â†’ score position (0=right, 100=left)
 const DURATION    = 1600;                         // ms
 
 function getPulseGradeInfo(score) {
@@ -20,7 +20,7 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
   const cardRef      = useRef(null);
   const groupRef     = useRef(null);
   const rafRef       = useRef(null);
-  const triggeredRef = useRef(false);             // ref not state — avoids re-render
+  const triggeredRef = useRef(false);             // ref not state â€” avoids re-render
 
   useEffect(() => {
     const card = cardRef.current;
@@ -71,7 +71,7 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
       observer.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, []); /* run once on mount — no deps so cleanup never re-cancels the RAF */
+  }, []); /* run once on mount â€” no deps so cleanup never re-cancels the RAF */
 
   return (
     <div className="pulse-card" id="pulse-card" ref={cardRef}>
@@ -116,9 +116,9 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
                 {gradeInfo.grade}
               </text>
 
-              {/* ── Animated Arc Pointer Arrow ──
-                  Starts at left (−90°), sweeps to score position on scroll-into-view */}
-              {/* Sweeps right (+90°) → left, stopping at score position */}
+              {/* â”€â”€ Animated Arc Pointer Arrow â”€â”€
+                  Starts at left (âˆ’90Â°), sweeps to score position on scroll-into-view */}
+              {/* Sweeps right (+90Â°) â†’ left, stopping at score position */}
               <g ref={groupRef} transform={`rotate(${START_ANGLE}, 200, 190)`}>
                 <svg
                   x="181"
@@ -148,7 +148,7 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
               +6 vs last week
             </span>
           </div>
-          <p className="pulse-status-text">Grade {gradeInfo.grade} · {gradeInfo.status}</p>
+          <p className="pulse-status-text">Grade {gradeInfo.grade} Â· {gradeInfo.status}</p>
         </div>
       </div>
       {showFooter && (

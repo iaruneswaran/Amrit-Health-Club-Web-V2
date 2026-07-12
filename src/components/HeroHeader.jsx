@@ -1,11 +1,23 @@
-import { useState } from 'react'
+﻿import { useState, useEffect } from 'react'
 import logoutIcon from '../assets/Logout icon.svg'
 import homePageHeaderImage from '../assets/Home Page Header Image.jpg'
 
 
 export default function HeroHeader() {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedInitials, setSelectedInitials] = useState('RG')
+  const [selectedInitials, setSelectedInitials] = useState(() => {
+    return localStorage.getItem('selected_profile_initials') || 'RG'
+  })
+
+  useEffect(() => {
+    const handleProfileChange = () => {
+      setSelectedInitials(localStorage.getItem('selected_profile_initials') || 'RG')
+    }
+    window.addEventListener('profile-changed', handleProfileChange)
+    return () => {
+      window.removeEventListener('profile-changed', handleProfileChange)
+    }
+  }, [])
 
   const profiles = [
     { initials: 'RG', label: 'Ryan Gosling' },
@@ -51,6 +63,8 @@ export default function HeroHeader() {
                 className={`profile-dropdown-item ${selectedInitials === p.initials ? 'active' : ''}`}
                 onClick={() => {
                   setSelectedInitials(p.initials)
+                  localStorage.setItem('selected_profile_initials', p.initials)
+                  window.dispatchEvent(new Event('profile-changed'))
                   setIsOpen(false)
                 }}
               >

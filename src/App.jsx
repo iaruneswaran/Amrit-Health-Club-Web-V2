@@ -20,6 +20,7 @@ import DoctorsPage from './components/DoctorsPage'
 import HistoryPage from './components/HistoryPage'
 import ReportsPage from './components/ReportsPage'
 import IPPatientPage from './components/IPPatientPage'
+import ProfilePage from './components/ProfilePage'
 import continueArrow from './assets/Continue Arrow.svg'
 import labIcon from './assets/Lab.svg'
 import consultationIcon from './assets/Consultation.svg'
@@ -472,11 +473,8 @@ export default function App() {
       return (
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
-          <main className="main-content">
-            <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#02352F', marginTop: '10px' }}>Profile</h2>
-            <div style={{ background: '#FFFFFF', padding: '24px', borderRadius: '16px', marginTop: '16px', color: '#777777', textAlign: 'center' }}>
-              Profile settings coming soon.
-            </div>
+          <main className="main-content profile-main">
+            <ProfilePage />
           </main>
           <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>
