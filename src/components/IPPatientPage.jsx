@@ -226,7 +226,7 @@ export default function IPPatientPage({ onBack }) {
                   <div key={i} className="assigned-doctor-row" style={{ padding: '12px 14px', border: '1.5px solid #F2F4F7', borderRadius: '16px', background: '#FFFFFF' }}>
                     <div className="assigned-doctor-info-left">
                       <div className="assigned-doctor-text">
-                        <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#000000' }}>{member.name}</p>
+                        <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '600', color: '#000000' }}>{member.name}</p>
                         <p className="assigned-doctor-specialty" style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#3B3B3B' }}>{member.role}</p>
                       </div>
                     </div>

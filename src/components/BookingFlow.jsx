@@ -24,9 +24,9 @@ function generateDates() {
 const dates = generateDates();
 
 const timeSlots = {
-  Morning: ['08:00 AM', '08:30 AM', '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM'],
-  Afternoon: ['12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM', '03:00 PM'],
-  Evening: ['04:00 PM', '04:30 PM', '05:00 PM', '05:30 PM', '06:00 PM', '06:30 PM']
+  Morning: ['08:00 AM', '08:10 AM', '08:20 AM', '08:30 AM', '08:40 AM', '08:50 AM'],
+  Afternoon: ['12:00 PM', '12:10 PM', '12:20 PM', '12:30 PM', '12:40 PM', '12:50 PM'],
+  Evening: ['04:00 PM', '04:10 PM', '04:20 PM', '04:30 PM', '04:40 PM', '04:50 PM']
 };
 
 const sessionIcons = { Morning: '', Afternoon: '', Evening: '' };
