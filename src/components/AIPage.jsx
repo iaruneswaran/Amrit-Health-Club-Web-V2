@@ -78,40 +78,38 @@ export default function AIPage({ onBack }) {
       setTypingState('ai')
     }, 2000)
 
-    // Step 2: AI asks for department (display choice chips)
+    // Step 2: AI asks for symptoms/health issues (no options chips)
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
         {
           id: '3',
           sender: 'ai',
-          text: "Which department or specialty are you looking for?",
-          options: ["Cardiology", "Neurology", "Pediatrics"],
-          selectedOption: "Cardiology"
+          text: "Sure, let me help you with that. Can you please describe the health issues or symptoms you are experiencing?"
         }
       ])
       setTypingState(null)
       setIsListening(true)
     }, 4000)
 
-    // Step 3: User says Cardiology
+    // Step 3: User describes symptoms
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '4', sender: 'user', text: "Cardiology" }
+        { id: '4', sender: 'user', text: "I've been experiencing some chest pain and pressure lately." }
       ])
       setIsListening(false)
       setTypingState('ai')
     }, 6000)
 
-    // Step 4: AI asks for maximum distance (display distance options)
+    // Step 4: AI recommends Cardiology based on symptoms and asks for distance
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
         {
           id: '5',
           sender: 'ai',
-          text: "What is your preferred maximum distance?",
+          text: "Based on your symptoms, I recommend seeing a Cardiologist. What is your preferred maximum distance?",
           options: ["Within 2 KM", "Within 5 KM", "Within 10 KM"],
           selectedOption: "Within 2 KM"
         }

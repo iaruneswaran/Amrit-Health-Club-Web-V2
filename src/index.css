@@ -5654,9 +5654,8 @@ body,
 }
 
 .ai-booking-card {
-  background: #F2F4F7;
-  border-radius: 16px;
-  padding: 14px;
+  background: transparent;
+  padding: 0;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
