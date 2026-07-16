@@ -33,7 +33,7 @@ export default function AIPage({ onBack }) {
   
   // Custom states for the conversational booking flow
   const [messages, setMessages] = useState([
-    { id: '1', sender: 'ai', text: "Hi Jordan, I'm your AI Health Assistant. How can I help you today? You can say things like 'book a doctor'." }
+    { id: '1', sender: 'ai', text: "Hi Jordan, how can I help you today? Please describe the health concerns or symptoms you are experiencing." }
   ])
   const [typingState, setTypingState] = useState(null)
   const [isFlowActive, setIsFlowActive] = useState(false)
@@ -68,46 +68,22 @@ export default function AIPage({ onBack }) {
       timeoutsRef.current.push(t)
     }
 
-    // Step 1: User says they want to book a doctor
+    // Step 1: User describes symptoms
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '2', sender: 'user', text: "I need to book a doctor." }
+        { id: '2', sender: 'user', text: "I've been experiencing some chest pain and pressure lately." }
       ])
       setIsListening(false)
       setTypingState('ai')
     }, 2000)
 
-    // Step 2: AI asks for symptoms/health issues (no options chips)
+    // Step 2: AI recommends Cardiology based on symptoms and asks for distance
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
         {
           id: '3',
-          sender: 'ai',
-          text: "Sure, let me help you with that. Can you please describe the health issues or symptoms you are experiencing?"
-        }
-      ])
-      setTypingState(null)
-      setIsListening(true)
-    }, 4000)
-
-    // Step 3: User describes symptoms
-    queueTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        { id: '4', sender: 'user', text: "I've been experiencing some chest pain and pressure lately." }
-      ])
-      setIsListening(false)
-      setTypingState('ai')
-    }, 6000)
-
-    // Step 4: AI recommends Cardiology based on symptoms and asks for distance
-    queueTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        {
-          id: '5',
           sender: 'ai',
           text: "Based on your symptoms, I recommend seeing a Cardiologist. What is your preferred maximum distance?",
           options: ["Within 2 KM", "Within 5 KM", "Within 10 KM"],
@@ -116,24 +92,24 @@ export default function AIPage({ onBack }) {
       ])
       setTypingState(null)
       setIsListening(true)
-    }, 8000)
+    }, 4000)
 
-    // Step 5: User says within 2 KM
+    // Step 3: User says within 2 KM
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '6', sender: 'user', text: "Within 2 KM" }
+        { id: '4', sender: 'user', text: "Within 2 KM" }
       ])
       setIsListening(false)
       setTypingState('ai')
-    }, 10000)
+    }, 6000)
 
-    // Step 6: AI finds doctor, asks for date (display date options)
+    // Step 4: AI finds doctor, asks for date
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
         {
-          id: '7',
+          id: '5',
           sender: 'ai',
           text: "Found Dr. Amelia Carter at St. Mary's Medical (1.2 KM away). Which date works best?",
           options: ["Sunday, 12 July 2026", "Tomorrow"],
@@ -142,24 +118,24 @@ export default function AIPage({ onBack }) {
       ])
       setTypingState(null)
       setIsListening(true)
-    }, 12000)
+    }, 8000)
 
-    // Step 7: User says Today's date
+    // Step 5: User says Sunday, 12 July 2026
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '8', sender: 'user', text: "Sunday, 12 July 2026" }
+        { id: '6', sender: 'user', text: "Sunday, 12 July 2026" }
       ])
       setIsListening(false)
       setTypingState('ai')
-    }, 14000)
+    }, 10000)
 
-    // Step 8: AI asks for time slot (display time slots)
+    // Step 6: AI asks for time slot
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
         {
-          id: '9',
+          id: '7',
           sender: 'ai',
           text: "Which time slot works best for you?",
           options: ["08:30 AM", "09:00 AM", "09:30 AM"],
@@ -168,24 +144,24 @@ export default function AIPage({ onBack }) {
       ])
       setTypingState(null)
       setIsListening(true)
-    }, 16000)
+    }, 12000)
 
-    // Step 9: User says 08:30 AM
+    // Step 7: User says 08:30 AM
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '10', sender: 'user', text: "08:30 AM" }
+        { id: '8', sender: 'user', text: "08:30 AM" }
       ])
       setIsListening(false)
       setTypingState('ai')
-    }, 18000)
+    }, 14000)
 
-    // Step 10: AI summarizes and asks for confirmation (confirm options)
+    // Step 8: AI summarizes and asks for confirmation
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
         {
-          id: '11',
+          id: '9',
           sender: 'ai',
           text: "Dr. Amelia Carter at St. Mary's Medical on Sunday, 12 July 2026 at 08:30 AM (At Hospital Counter). Confirm this booking?",
           options: ["Confirm Booking", "Cancel"],
@@ -194,33 +170,33 @@ export default function AIPage({ onBack }) {
       ])
       setTypingState(null)
       setIsListening(true)
-    }, 20000)
+    }, 16000)
 
-    // Step 11: User confirms
+    // Step 9: User confirms
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '12', sender: 'user', text: "Confirm Booking" }
+        { id: '10', sender: 'user', text: "Confirm Booking" }
       ])
       setIsListening(false)
       setTypingState('ai')
-    }, 22000)
+    }, 18000)
 
-    // Step 12: AI processes booking
+    // Step 10: AI processes booking
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '13', sender: 'ai', text: "Processing booking... ⏳" }
+        { id: '11', sender: 'ai', text: "Processing booking... ⏳" }
       ])
       setTypingState('ai')
-    }, 24000)
+    }, 20000)
 
-    // Step 13: Confirmation card with exact requested details
+    // Step 11: Confirmation card
     queueTimeout(() => {
       setMessages(prev => [
-        ...prev.filter(msg => msg.id !== '13'),
+        ...prev.filter(msg => msg.id !== '11'),
         {
-          id: '14',
+          id: '12',
           sender: 'ai',
           text: "Your appointment has been successfully confirmed.",
           card: true,
@@ -236,7 +212,7 @@ export default function AIPage({ onBack }) {
       ])
       setTypingState(null)
       setIsFlowActive(false)
-    }, 26000)
+    }, 22000)
   }
 
   return (
@@ -259,7 +235,7 @@ export default function AIPage({ onBack }) {
         </div>
 
         <div className="drawer-content">
-          <button className="new-chat-btn" onClick={() => { setIsListening(false); setMessages([{ id: '1', sender: 'ai', text: "Hi Jordan, I'm your AI Health Assistant. How can I help you today? You can say things like 'book a doctor'." }]); setShowMenu(false); }} id="new-chat-btn">
+          <button className="new-chat-btn" onClick={() => { setIsListening(false); setMessages([{ id: '1', sender: 'ai', text: "Hi Jordan, how can I help you today? Please describe the health concerns or symptoms you are experiencing." }]); setShowMenu(false); }} id="new-chat-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
