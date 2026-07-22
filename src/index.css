@@ -9,10 +9,15 @@
   margin: 0;
   padding: 0;
   font-family: 'Inter', system-ui, sans-serif;
+  text-decoration: none !important;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+a, button, span {
+  text-decoration: none !important;
 }
 
 *::-webkit-scrollbar {
@@ -574,6 +579,490 @@ body,
   font-size: 14px;
   font-weight: 500;
   color: #000000;
+}
+
+/* =========================================
+   CLINIC CARD MODALS (BOOKING, ENQUIRY, LOCATION)
+   ========================================= */
+.clinic-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(2, 53, 47, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeInModal 0.25s ease-out forwards;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.clinic-modal-content {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 440px;
+  max-height: 85vh;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.clinic-modal-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid #F2F4F7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FAFAFB;
+}
+
+.clinic-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #02352F;
+  margin: 0;
+}
+
+.clinic-modal-subtitle {
+  font-size: 13px;
+  color: #475467;
+  margin: 2px 0 0 0;
+}
+
+.clinic-modal-close {
+  background: #F2F4F7;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #344054;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.clinic-modal-close:hover {
+  background: #E4E7EC;
+}
+
+/* Booking Modal Doctor List */
+.clinic-doctors-list {
+  padding: 16px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.clinic-doctor-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.clinic-doctor-card:hover {
+  border-color: #02352F;
+  transform: translateY(-1px);
+}
+
+.clinic-doctor-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #02352F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doctor-avatar-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.clinic-doctor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.clinic-doctor-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #02352F;
+  margin: 0;
+}
+
+.clinic-doctor-spec {
+  font-size: 13px;
+  color: #475467;
+  margin: 2px 0 6px 0;
+}
+
+.clinic-doctor-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.clinic-doctor-fee {
+  font-weight: 700;
+  color: #00A63E;
+  background: #E8F5E9;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.clinic-doctor-slot {
+  color: #155E75;
+  font-weight: 500;
+}
+
+.clinic-book-doctor-btn {
+  background: #02352F;
+  color: #FFFFFF;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
+}
+
+.clinic-book-doctor-btn:hover {
+  opacity: 0.9;
+}
+
+/* Enquiry Modal Body */
+.enquiry-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.enquiry-quick-call-card {
+  background: linear-gradient(135deg, #02352F 0%, #004D40 100%);
+  border-radius: 16px;
+  padding: 16px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.call-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.call-card-icon img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.call-card-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.call-label {
+  font-size: 11px;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.call-number {
+  font-size: 16px;
+  font-weight: 700;
+  color: #92E066;
+  text-decoration: none;
+}
+
+.call-action-btn {
+  background: #92E066;
+  color: #02352F;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #344054;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #D0D5DD;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #101828;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: #02352F;
+  box-shadow: 0 0 0 3px rgba(2, 53, 47, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.clinic-primary-btn {
+  background: #02352F;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+  transition: opacity 0.15s ease;
+}
+
+.clinic-primary-btn:hover {
+  opacity: 0.92;
+}
+
+.enquiry-success-view {
+  padding: 36px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.success-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #D1F4E0;
+  color: #00A63E;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enquiry-contact-summary {
+  font-size: 13px;
+  color: #475467;
+  background: #F8FAFC;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin: 6px 0;
+}
+
+/* Location Modal Body */
+.location-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.location-map-card {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.location-map-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+
+.location-map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(2, 53, 47, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.gps-pin-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gps-pin-icon-animated {
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}
+
+.pin-pulse {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(146, 224, 102, 0.4);
+  animation: pulseScale 1.5s infinite ease-out;
+}
+
+@keyframes pulseScale {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.location-badge-overlay {
+  background: #02352F;
+  color: #92E066;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.location-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.location-detail-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.location-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.location-address-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #02352F;
+  margin: 0 0 4px 0;
+}
+
+.location-address-text {
+  font-size: 13px;
+  color: #475467;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.location-info-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.info-pill {
+  background: #F8FAFC;
+  border: 1px solid #EAECF0;
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pill-label {
+  font-size: 10px;
+  color: #667085;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.pill-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1D2939;
+}
+
+.pill-value.open {
+  color: #00A63E;
+}
+
+.directions-btn {
+  text-decoration: none;
 }
 
 /* =========================================
@@ -1556,7 +2045,7 @@ body,
   color: #5CB85C;
   font-weight: 600;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .otp-help {
@@ -1567,7 +2056,7 @@ body,
   margin-top: 20px;
   cursor: pointer;
   font-family: var(--font);
-  text-decoration: underline;
+  text-decoration: none;
   display: block;
 }
 
@@ -2626,6 +3115,7 @@ body,
   border-radius: 4px 20px 20px 20px;
   /* Pointed top-left */
   border: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 18px 18px;
 }
 
 /* =========================================
@@ -5426,14 +5916,14 @@ body,
 }
 
 .booking-summary-label {
-  font-size: 13px;
+  font-size: 14px;
   color: #404040;
   font-weight: 500;
   flex-shrink: 0;
 }
 
 .booking-summary-value {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #1A1A1A;
   text-align: right;
@@ -5666,15 +6156,17 @@ body,
 .ai-booking-card-row {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .ai-booking-card-label {
   color: #667085;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .ai-booking-card-value {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #1A1A1A;
 }
@@ -5707,7 +6199,7 @@ body,
   background: #FFFFFF;
   color: #1A1A1A;
   border-radius: 12px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   border: 1px solid #E4E7EC;
   transition: all 0.2s ease;

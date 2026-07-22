@@ -16,15 +16,42 @@ export const doctorsList = [
   },
   {
     id: 2,
-    name: "Dr. Amelia Carter",
-    specialty: "Cardiology Specialist",
-    fee: "₹500",
+    name: "Dr. Rajiv Sharma",
+    specialty: "General Physician",
+    fee: "₹400",
     address: "161B, 1st Floor,6th Main, 3RD Cross Road, 3RD PHASE J P Nagar, Bangalore Karnataka India",
     hospitalName: "St. Mary's Medical",
     isPreferred: false
   },
   {
     id: 3,
+    name: "Dr. Priya Nair",
+    specialty: "Dermatology Specialist",
+    fee: "₹600",
+    address: "161B, 1st Floor,6th Main, 3RD Cross Road, 3RD PHASE J P Nagar, Bangalore Karnataka India",
+    hospitalName: "St. Mary's Medical",
+    isPreferred: false
+  },
+  {
+    id: 4,
+    name: "Dr. Ananya Roy",
+    specialty: "Orthopedic Surgeon",
+    fee: "₹700",
+    address: "161B, 1st Floor,6th Main, 3RD Cross Road, 3RD PHASE J P Nagar, Bangalore Karnataka India",
+    hospitalName: "St. Mary's Medical",
+    isPreferred: false
+  },
+  {
+    id: 5,
+    name: "Dr. Vikram Seth",
+    specialty: "Pediatrician Specialist",
+    fee: "₹450",
+    address: "161B, 1st Floor,6th Main, 3RD Cross Road, 3RD PHASE J P Nagar, Bangalore Karnataka India",
+    hospitalName: "St. Mary's Medical",
+    isPreferred: false
+  },
+  {
+    id: 6,
     name: "Dr. Marcus Vance",
     specialty: "Neurology Specialist",
     fee: "₹600",
@@ -33,7 +60,7 @@ export const doctorsList = [
     isPreferred: false
   },
   {
-    id: 4,
+    id: 7,
     name: "Dr. Sarah Jenkins",
     specialty: "Pediatrician Specialist",
     fee: "₹450",

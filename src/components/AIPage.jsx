@@ -72,7 +72,7 @@ export default function AIPage({ onBack }) {
     queueTimeout(() => {
       setMessages(prev => [
         ...prev,
-        { id: '2', sender: 'user', text: "I've been experiencing some chest pain and pressure lately." }
+        { id: '2', sender: 'user', text: "I've been experiencing some chest pain and pressure lately, along with a high fever and a persistent cough." }
       ])
       setIsListening(false)
       setTypingState('ai')
@@ -338,7 +338,7 @@ export default function AIPage({ onBack }) {
                     </div>
 
                     <div style={{ borderTop: '1px solid #E4E7EC', paddingTop: '8px', marginTop: '4px', textAlign: 'center' }}>
-                      <p style={{ margin: 0, fontSize: '11px', color: '#667085', lineHeight: '1.4', fontWeight: '500' }}>
+                      <p style={{ margin: 0, fontSize: '12px', color: '#667085', lineHeight: '1.4', fontWeight: '500' }}>
                         {m.cardDetails.note}
                       </p>
                     </div>

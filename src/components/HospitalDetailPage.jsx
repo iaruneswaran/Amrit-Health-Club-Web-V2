@@ -20,8 +20,8 @@ const imageMap = {
   'baby-memorial': babyMemorialImg
 };
 
-export default function HospitalDetailPage({ hospital, onBack, onBookNow }) {
-  const [activeTab, setActiveTab] = useState('overview');
+export default function HospitalDetailPage({ hospital, onBack, onBookNow, initialTab = 'overview' }) {
+  const [activeTab, setActiveTab] = useState(initialTab);
 
   const hospitalImg = imageMap[hospital.id] || stMarysImg;
 

@@ -15,7 +15,8 @@ import Onboarding from './components/Onboarding'
 import LoginFlow from './components/LoginFlow'
 import NavBar from './components/NavBar'
 import AIPage from './components/AIPage'
-import HospitalsPage from './components/HospitalsPage'
+import HospitalsPage, { hospitalsList } from './components/HospitalsPage'
+import HospitalDetailPage from './components/HospitalDetailPage'
 import DoctorsPage from './components/DoctorsPage'
 import HistoryPage from './components/HistoryPage'
 import ReportsPage from './components/ReportsPage'
@@ -111,6 +112,8 @@ export default function App() {
   const [showHistoryPage, setShowHistoryPage] = useState(false)
   const [showIPPage, setShowIPPage] = useState(false)
   const [bookingDoctor, setBookingDoctor] = useState(null)
+  const [selectedHospital, setSelectedHospital] = useState(null)
+  const [hospitalInitialTab, setHospitalInitialTab] = useState('overview')
   const [activeTab, setActiveTab] = useState(0)
   const [pulsePageHasBack, setPulsePageHasBack] = useState(false)
   const [selectedTimeframe, setSelectedTimeframe] = useState('W')
@@ -208,6 +211,23 @@ export default function App() {
       )
     }
 
+    if (selectedHospital) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <HospitalDetailPage
+            hospital={selectedHospital}
+            initialTab={hospitalInitialTab}
+            onBack={() => {
+              setSelectedHospital(null)
+              setHospitalInitialTab('overview')
+            }}
+            onBookNow={(doc) => setBookingDoctor(doc)}
+          />
+        </>
+      )
+    }
+
     if (showHospitalsPage) {
       return (
         <>
@@ -257,7 +277,13 @@ export default function App() {
               onDoctorsClick={() => setShowDoctorsPage(true)} 
               onHistoryClick={() => setShowHistoryPage(true)}
             />
-            <ClinicCard />
+            <ClinicCard
+              onBookNow={(doc) => setBookingDoctor(doc)}
+              onViewHospital={(tab = 'overview') => {
+                setSelectedHospital(hospitalsList[0])
+                setHospitalInitialTab(tab)
+              }}
+            />
             <div className="section-group">
               <p className="section-title">Booked Appointments</p>
               <AppointmentCard />
