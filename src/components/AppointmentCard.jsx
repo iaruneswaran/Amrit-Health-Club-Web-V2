@@ -44,15 +44,6 @@ export default function AppointmentCard({ showImage = true, isPast = false }) {
         className={`appt-header-bg ${showImage ? '' : 'no-image'}`}
         style={showImage ? { backgroundImage: `url(${appointmentBg})` } : {}}
       >
-        <div className={`appt-header-overlay ${showImage ? '' : 'no-image'}`}>
-          <div className="appt-profile-row">
-            <div className={`appt-avatar-placeholder ${showImage ? '' : 'no-image'}`}>AC</div>
-            <div className="appt-header-doctor-info">
-              <h4 className={`appt-header-doctor-name ${showImage ? '' : 'no-image'}`}>Dr. Amelia Carter</h4>
-              <p className={`appt-header-doctor-specialty ${showImage ? '' : 'no-image'}`}>Cardiology Specialist</p>
-            </div>
-          </div>
-        </div>
         <span className={`${isPast ? "status-completed" : "status-confirmed"} ${showImage ? '' : 'no-image'}`} aria-label={isPast ? "Appointment status: Completed" : "Appointment status: Confirmed"}>
           {isPast ? "Completed" : "Confirmed"}
         </span>
@@ -60,6 +51,13 @@ export default function AppointmentCard({ showImage = true, isPast = false }) {
 
       {/* Details */}
       <div className="appt-details">
+        <div className="appt-profile-row">
+          <div className="appt-avatar-placeholder">AC</div>
+          <div className="appt-header-doctor-info">
+            <h4 className="appt-header-doctor-name">Dr. Amelia Carter</h4>
+            <p className="appt-header-doctor-specialty">Cardiology Specialist</p>
+          </div>
+        </div>
         {/* Date & Location row */}
         <div className="appt-row-two">
           <div className="detail-block">

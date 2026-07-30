@@ -46,7 +46,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
           </button>
           
           <div className="ip-header-content">
-            <div className="ip-avatar" style={{ color: '#02352F', background: '#FFFFFF', fontWeight: 'bold' }}>
+            <div className="ip-avatar" style={{ color: '#6D3914', background: '#F5EFE6', fontWeight: 'bold' }}>
               {hospital.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
             </div>
             <div className="ip-patient-info">
@@ -58,7 +58,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
             </div>
           </div>
           {hospital.isPreferred && (
-            <span className="ip-status-badge" style={{ background: '#92E066', color: '#02352F' }}>
+            <span className="ip-status-badge" style={{ background: '#90644B', color: '#FFFFFF' }}>
               Preferred
             </span>
           )}

@@ -52,33 +52,6 @@ export default function IPPatientPage({ onBack }) {
     { time: 'Yesterday, 8:00 AM', event: 'Shifted to General Ward', ward: 'Ward 3', bed: 'G12', type: 'transfer' },
   ];
 
-  const billItems = [
-    { category: 'Room & Board', items: [
-      { name: 'ICU Bed Charges (2 days)', amount: 8000 },
-      { name: 'General Ward (1 day)', amount: 2000 },
-    ]},
-    { category: 'Consultations', items: [
-      { name: 'Dr. Amelia Carter - Cardiologist', amount: 1500 },
-      { name: 'Dr. Rajan Nair - General Physician', amount: 800 },
-    ]},
-    { category: 'Medications', items: [
-      { name: 'IV Fluids & Consumables', amount: 1200 },
-      { name: 'Prescribed Medicines', amount: 640 },
-    ]},
-    { category: 'Diagnostics', items: [
-      { name: 'CBC, CRP, LFT, KFT Panel', amount: 2400 },
-      { name: 'Chest X-Ray', amount: 600 },
-      { name: 'ECG', amount: 300 },
-    ]},
-    { category: 'Nursing & Services', items: [
-      { name: 'Nursing Charges', amount: 800 },
-      { name: 'Physiotherapy Session', amount: 500 },
-    ]},
-  ];
-
-  const totalBill = billItems.reduce((sum, cat) =>
-    sum + cat.items.reduce((s, i) => s + i.amount, 0), 0);
-
   const careTeam = [
     { name: 'Dr. Amelia Carter', role: 'Cardiology Specialist', badge: 'Primary' },
     { name: 'Dr. Rajan Nair', role: 'General Physician', badge: 'Duty Doctor' },
@@ -170,7 +143,7 @@ export default function IPPatientPage({ onBack }) {
       {/* Tab Content */}
       <div className="ip-content">
 
-        {/* â”€â”€ OVERVIEW TAB â”€â”€ */}
+        {/* ── OVERVIEW TAB ── */}
         {activeSection === 'overview' && (
           <>
             {/* Location & Room Details Card */}
@@ -200,7 +173,6 @@ export default function IPPatientPage({ onBack }) {
                 High fever (101.5°F) with severe body aches &amp; chills since yesterday. Suspected viral infection with possible lower respiratory involvement.
               </p>
             </div>
-
 
             {/* Ward Movement Timeline */}
             <div className="ip-card">
@@ -280,7 +252,7 @@ export default function IPPatientPage({ onBack }) {
           </>
         )}
 
-        {/* â”€â”€ VITALS TAB â”€â”€ */}
+        {/* ── VITALS TAB ── */}
         {activeSection === 'vitals' && (
           <>
             <div className="ip-vitals-timestamp">
@@ -333,55 +305,306 @@ export default function IPPatientPage({ onBack }) {
           </>
         )}
 
-        {/* â”€â”€ BILLING TAB â”€â”€ */}
+        {/* ── BILLING TAB ── */}
         {activeSection === 'billing' && (
           <>
+            {/* Top Hero Summary Banner Card */}
             <div className="ip-bill-summary-card">
               <div className="ip-bill-summary-left">
-                <p className="ip-bill-summary-label">Estimated Total</p>
-                <p className="ip-bill-summary-amount">₹{totalBill.toLocaleString('en-IN')}</p>
+                <p className="ip-bill-summary-label">Net Payable</p>
+                <p className="ip-bill-summary-amount">₹3,600.00</p>
                 <p className="ip-bill-summary-note">Interim bill • Subject to final charges</p>
               </div>
             </div>
 
-            {/* Deposit info (Two side-by-side cards) */}
+            {/* Key Metrics Overview */}
             <div style={{ display: 'flex', gap: '12px' }}>
-              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '16px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '4px', border: '1px solid #F0F2F5' }}>
-                <span style={{ fontSize: '12px', color: '#3B3B3B', fontWeight: '500' }}>Security Deposit Paid</span>
-                <span style={{ fontSize: '18px', fontWeight: '700', color: '#3F7A5C' }}>₹5,000</span>
+              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: '1px solid #F2F4F7' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#388E3C' }} />
+                  <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Amount Paid</span>
+                </div>
+                <span style={{ fontSize: '18px', fontWeight: '700', color: '#2C1810' }}>₹1,000.00</span>
               </div>
-              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '16px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '4px', border: '1px solid #F0F2F5' }}>
-                <span style={{ fontSize: '12px', color: '#3B3B3B', fontWeight: '500' }}>Balance Due</span>
-                <span style={{ fontSize: '18px', fontWeight: '700', color: '#FF5858' }}>₹{(totalBill - 5000).toLocaleString('en-IN')}</span>
+              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: '1px solid #FEE4E2' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#D92D20' }} />
+                  <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Balance To Pay</span>
+                </div>
+                <span style={{ fontSize: '18px', fontWeight: '700', color: '#D92D20' }}>₹2,600.00</span>
               </div>
             </div>
 
-            {/* Bill Breakdown & Grand Total in a single wrapper */}
-            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              {billItems.map((cat, ci) => (
-                <div key={ci} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#02352F', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{cat.category}</p>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {cat.items.map((item, ii) => (
-                      <div key={ii} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '14px', color: '#3B3B3B' }}>{item.name}</span>
-                        <span style={{ fontSize: '14px', fontWeight: '600', color: '#02352F' }}>₹{item.amount.toLocaleString('en-IN')}</span>
-                      </div>
-                    ))}
-                  </div>
-                  {ci < billItems.length - 1 && <hr style={{ border: 'none', borderBottom: '1px solid #F0F2F5', margin: '12px 0 0 0' }} />}
-                </div>
-              ))}
+            {/* 1. Consultation Card */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                Consultation
+              </p>
+              
+              <div className="ip-bill-table-container">
+                <table className="ip-bill-table">
+                  <thead>
+                    <tr>
+                      <th>Particulars</th>
+                      <th>Service Date</th>
+                      <th className="num-col">Rate</th>
+                      <th className="num-col">Discount(%)</th>
+                      <th className="num-col">Qty</th>
+                      <th className="num-col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="particulars-cell">Dr Mimmi Ashraf Consultation Charge</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">400</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">1</td>
+                      <td className="num-col-bold">400</td>
+                    </tr>
+                    <tr>
+                      <td className="particulars-cell">Dr. Amelia Carter Routine Rounds</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">100</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">1</td>
+                      <td className="num-col-bold">100</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-              <hr style={{ border: 'none', borderBottom: '1.5px dashed #E5E7EB', margin: '4px 0' }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>500</span>
+              </div>
+            </div>
+
+            {/* 2. Investigation Card */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                Investigation &amp; Diagnostics
+              </p>
+              
+              <div className="ip-bill-table-container">
+                <table className="ip-bill-table">
+                  <thead>
+                    <tr>
+                      <th>Particulars</th>
+                      <th>Service Date</th>
+                      <th className="num-col">Rate</th>
+                      <th className="num-col">Discount(%)</th>
+                      <th className="num-col">Qty</th>
+                      <th className="num-col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="particulars-cell">Lab investigation (CBC &amp; Culture)</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">750</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">1</td>
+                      <td className="num-col-bold">750</td>
+                    </tr>
+                    <tr>
+                      <td className="particulars-cell">CRP &amp; Serum Electrolytes Panel</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">450</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">1</td>
+                      <td className="num-col-bold">450</td>
+                    </tr>
+                    <tr>
+                      <td className="particulars-cell">Chest X-Ray PA View</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">300</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">1</td>
+                      <td className="num-col-bold">300</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>1500</span>
+              </div>
+            </div>
+
+            {/* 3. Pharmacy & Consumables Card */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                Pharmacy &amp; Consumables
+              </p>
+              
+              <div className="ip-bill-table-container">
+                <table className="ip-bill-table">
+                  <thead>
+                    <tr>
+                      <th>Particulars</th>
+                      <th>Service Date</th>
+                      <th className="num-col">Rate</th>
+                      <th className="num-col">Discount(%)</th>
+                      <th className="num-col">Qty</th>
+                      <th className="num-col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="particulars-cell">Amoxicillin 250mg Injection</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">120</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">2</td>
+                      <td className="num-col-bold">240</td>
+                    </tr>
+                    <tr>
+                      <td className="particulars-cell">IV Normal Saline 500ml</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">90</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">2</td>
+                      <td className="num-col-bold">180</td>
+                    </tr>
+                    <tr>
+                      <td className="particulars-cell">Pantoprazole 40mg IV Injection</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">100</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">1</td>
+                      <td className="num-col-bold">100</td>
+                    </tr>
+                    <tr>
+                      <td className="particulars-cell">Syringes &amp; IV Cannula Set</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">80</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">1</td>
+                      <td className="num-col-bold">80</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>600</span>
+              </div>
+            </div>
+
+            {/* 4. Room & Ward Charges Card */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                Room &amp; Ward Charges
+              </p>
+              
+              <div className="ip-bill-table-container">
+                <table className="ip-bill-table">
+                  <thead>
+                    <tr>
+                      <th>Particulars</th>
+                      <th>Service Date</th>
+                      <th className="num-col">Rate</th>
+                      <th className="num-col">Discount(%)</th>
+                      <th className="num-col">Qty</th>
+                      <th className="num-col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="particulars-cell">ICU Bed Charges (B5)</td>
+                      <td>30/07/2026</td>
+                      <td className="num-col">500</td>
+                      <td className="num-col">0</td>
+                      <td className="num-col">2</td>
+                      <td className="num-col-bold">1000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>1000</span>
+              </div>
+            </div>
+
+            {/* 4. CHARGES Card */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                  CHARGES
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Subtotal</span>
+                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹3,600.00</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Discount</span>
+                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Tax amount</span>
+                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                </div>
+              </div>
+
+              <hr style={{ border: 'none', borderBottom: '1px dashed #E5E7EB', margin: '4px 0' }} />
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '15px', fontWeight: '700', color: '#02352F' }}>Grand Total</span>
-                <span style={{ fontSize: '18px', fontWeight: '800', color: '#3F7A5C' }}>₹{totalBill.toLocaleString('en-IN')}</span>
+                <span style={{ fontSize: '15px', fontWeight: '700', color: '#2C1810' }}>Net payable</span>
+                <span style={{ fontSize: '16px', fontWeight: '800', color: '#90644B' }}>₹3,600.00</span>
               </div>
             </div>
 
-            <button className="ip-pay-btn">Request Final Bill</button>
+            {/* 5. PAYMENTS Card */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/>
+                  <line x1="2" y1="10" x2="22" y2="10"/>
+                </svg>
+                <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                  PAYMENTS
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Amount paid</span>
+                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹1,000.00</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Advance collected</span>
+                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Balance in advance</span>
+                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                </div>
+              </div>
+
+              <hr style={{ border: 'none', borderBottom: '1px dashed #E5E7EB', margin: '4px 0' }} />
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '15px', fontWeight: '700', color: '#2C1810' }}>Balance to pay</span>
+                <span style={{ fontSize: '16px', fontWeight: '800', color: '#D92D20' }}>₹2,600.00</span>
+              </div>
+            </div>
+
+            {/* Primary Action Button */}
+            <button className="ip-pay-btn" style={{ background: '#90644b', color: '#ffffff', borderRadius: '16px', padding: '16px', fontSize: '15px', fontWeight: '600', border: 'none', cursor: 'pointer' }}>
+              Pay Balance ₹2,600.00
+            </button>
           </>
         )}
       </div>

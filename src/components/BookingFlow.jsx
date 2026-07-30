@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import continueArrow from '../assets/Continue Arrow.svg';
 import clockIcon from '../assets/Clock Icon.svg';
 import markedIcon from '../assets/Marked.svg';
@@ -215,7 +215,7 @@ export default function BookingFlow({ doctor, onBack }) {
         <div className="booking-confirmed-body">
           <div className="booking-confirmed-check-wrap">
             <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-              <circle cx="36" cy="36" r="36" fill="#D2F19E" />
+              <circle cx="36" cy="36" r="36" fill="#E1D8C7" />
               <polyline points="18,36 30,49 54,23" stroke="#2D6A2D" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
@@ -265,3 +265,4 @@ export default function BookingFlow({ doctor, onBack }) {
 
   return null;
 }
+

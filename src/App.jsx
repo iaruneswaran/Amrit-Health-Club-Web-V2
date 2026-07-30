@@ -444,7 +444,7 @@ export default function App() {
                           {/* Score bar */}
                           <path
                             d={barPath}
-                            fill="#D2F19E"
+                            fill="#90644B"
                           />
                           {/* X-Axis Label */}
                           <text
@@ -527,5 +527,6 @@ export default function App() {
     </div>
   )
 }
+
 
 

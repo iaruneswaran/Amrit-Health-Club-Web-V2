@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import admissionBg from '../assets/Admitted.jpg';
 import assignedDoctorIcon from '../assets/Assigned doctor.svg';
 import reasonIcon from '../assets/Reason Icon.svg';
@@ -16,20 +16,18 @@ export default function AdmissionCard({ onCardClick }) {
         className="admission-header" 
         style={{ backgroundImage: `url(${admissionBg})` }}
       >
-        <div className="admission-header-overlay">
-          <div className="admission-profile-row">
-            <div className="admission-avatar-placeholder">RG</div>
-            <div className="admission-header-doctor-info">
-              <h4 className="admission-header-doctor-name">Ryan Gosling</h4>
-              <p className="admission-header-doctor-specialty">Male, 36 • ID: AHC-9824</p>
-            </div>
-          </div>
-        </div>
         <span className="status-admitted" aria-label="Admission status: Admitted">Admitted</span>
       </div>
 
       {/* Body Area */}
       <div className="admission-body">
+        <div className="admission-profile-row">
+          <div className="admission-avatar-placeholder">RG</div>
+          <div className="admission-header-doctor-info">
+            <h4 className="admission-header-doctor-name">Ryan Gosling</h4>
+            <p className="admission-header-doctor-specialty">Male, 36 • ID: AHC-9824</p>
+          </div>
+        </div>
         {/* Admission Reason card */}
         <div className="admission-reason-box">
           <div className="admission-reason-header">
@@ -52,7 +50,7 @@ export default function AdmissionCard({ onCardClick }) {
           </div>
           <div className="admission-status-box">
             <span className="admission-status-label">Room / Bed</span>
-            <span className="admission-status-value highlight-green">ICU B5</span>
+            <span className="admission-status-value highlight-primary">ICU B5</span>
           </div>
         </div>
 
@@ -74,3 +72,4 @@ export default function AdmissionCard({ onCardClick }) {
     </div>
   );
 }
+

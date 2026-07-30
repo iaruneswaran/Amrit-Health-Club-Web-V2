@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+﻿import { useState, useRef, useEffect } from 'react'
 import voiceIcon from '../assets/Voice Icon.svg'
 import aiMenuIcon from '../assets/Ai Menu icon.svg'
 import wellioLogo from '../assets/Wellio.svg'
@@ -7,7 +7,7 @@ import wellioIcon from '../assets/Wellio Icon.svg'
 
 function BackArrowIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#02352F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <line x1="19" y1="12" x2="5" y2="12"></line>
       <polyline points="12 19 5 12 12 5"></polyline>
     </svg>
@@ -227,7 +227,7 @@ export default function AIPage({ onBack }) {
         <div className="drawer-header">
           <p className="drawer-title">Conversations</p>
           <button className="drawer-close-btn" onClick={() => setShowMenu(false)} aria-label="Close menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#02352F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -307,12 +307,12 @@ export default function AIPage({ onBack }) {
                   <div className="ai-booking-card" style={{ gap: '10px' }}>
                     <div className="booking-confirmed-check-wrap" style={{ display: 'flex', justifyContent: 'center', margin: '6px 0 12px' }}>
                       <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-                        <circle cx="36" cy="36" r="36" fill="#D2F19E" />
+                        <circle cx="36" cy="36" r="36" fill="#E1D8C7" />
                         <polyline points="18,36 30,49 54,23" stroke="#2D6A2D" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <div style={{ textAlign: 'center', marginBottom: '8px' }}>
-                      <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '800', color: '#02352F' }}>Appointment Booked!</h4>
+                      <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '800', color: '#90644B' }}>Appointment Booked!</h4>
                       <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#667085', fontWeight: '500' }}>Your appointment has been successfully confirmed.</p>
                     </div>
                     
@@ -379,3 +379,4 @@ export default function AIPage({ onBack }) {
     </div>
   )
 }
+

@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import logoutIcon from '../assets/Logout icon.svg'
 import homePageHeaderImage from '../assets/Home Page Header Image.jpg'
 
@@ -72,16 +72,16 @@ export default function HeroHeader() {
                 <span className="dropdown-item-label">{p.label}</span>
               </div>
             ))}
-            <div className="profile-dropdown-divider" style={{ borderTop: '1px solid #E5E7EB', margin: '4px 0' }} />
+            <div className="profile-dropdown-divider" style={{ borderTop: '1px dashed #E5E7EB', margin: '4px 0' }} />
             <div
               className="profile-dropdown-item"
               onClick={() => {
                 localStorage.clear()
                 window.location.reload()
               }}
-              style={{ color: '#3F7A5C' }}
+              style={{ color: '#B08060' }}
             >
-              <div className="dropdown-item-badge" style={{ backgroundColor: '#EEF7E2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="dropdown-item-badge" style={{ backgroundColor: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img src={logoutIcon} alt="Logout" style={{ width: '18px', height: '18px' }} />
               </div>
               <span className="dropdown-item-label" style={{ fontWeight: '500', fontSize: '16px' }}>Logout</span>
@@ -92,3 +92,4 @@ export default function HeroHeader() {
     </header>
   )
 }
+
