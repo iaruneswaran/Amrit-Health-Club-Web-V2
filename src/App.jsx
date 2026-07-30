@@ -250,7 +250,17 @@ export default function App() {
       return (
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
-          <HistoryPage onBack={() => setShowHistoryPage(false)} />
+          <HistoryPage 
+            onBack={() => setShowHistoryPage(false)} 
+            onSelectIP={() => {
+              setShowHistoryPage(false);
+              setShowIPPage(true);
+            }} 
+            onBookAppointment={(doc) => {
+              setShowHistoryPage(false);
+              setBookingDoctor(doc);
+            }}
+          />
         </>
       )
     }
@@ -286,7 +296,9 @@ export default function App() {
             />
             <div className="section-group">
               <p className="section-title">Booked Appointments</p>
-              <AppointmentCard />
+              <AppointmentCard 
+                onActionClick={() => setBookingDoctor({ name: 'Dr. Amelia Carter', specialty: 'Cardiology Specialist', hospital: "St. Mary's Medical", fee: '₹500' })}
+              />
             </div>
             <div className="section-group">
               <p className="section-title">Your Pulse Score</p>

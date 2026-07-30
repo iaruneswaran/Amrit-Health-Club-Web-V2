@@ -36,7 +36,7 @@ function ReasonSmIcon() {
   )
 }
 
-export default function AppointmentCard({ showImage = true, isPast = false }) {
+export default function AppointmentCard({ showImage = true, isPast = false, onActionClick, onSecondaryClick }) {
   return (
     <div className="appointment-card" id="appointment-card">
       {/* Doctor row with background image */}
@@ -90,10 +90,26 @@ export default function AppointmentCard({ showImage = true, isPast = false }) {
       </div>
 
       <div className="appt-actions">
-        <button id={isPast ? "followup-btn" : "reschedule-btn"} className="btn-primary" type="button">
+        <button 
+          id={isPast ? "followup-btn" : "reschedule-btn"} 
+          className="btn-primary" 
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onActionClick) onActionClick();
+          }}
+        >
           {isPast ? "Follow up" : "Reschedule"}
         </button>
-        <button id={isPast ? "prescription-btn" : "cancel-appt-btn"} className="btn-secondary" type="button">
+        <button 
+          id={isPast ? "prescription-btn" : "cancel-appt-btn"} 
+          className="btn-secondary" 
+          type="button" 
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onSecondaryClick) onSecondaryClick();
+          }}
+        >
           {isPast ? "Prescription" : "Cancel"}
         </button>
       </div>

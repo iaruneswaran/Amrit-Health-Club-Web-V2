@@ -14,9 +14,13 @@ import rrIcon from '../assets/Respiratory Rate.svg';
 import bgIcon from '../assets/Blood Glucose.svg';
 import documentIcon from '../assets/Document.svg';
 import menuIcon from '../assets/Menu.svg';
+import ReportSummaryModal from './ReportSummaryModal';
+import ReportActionMenuModal from './ReportActionMenuModal';
 
 export default function IPPatientPage({ onBack }) {
   const [activeSection, setActiveSection] = useState('overview');
+  const [selectedReport, setSelectedReport] = useState(null);
+  const [actionMenuDoc, setActionMenuDoc] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -146,23 +150,6 @@ export default function IPPatientPage({ onBack }) {
         {/* ── OVERVIEW TAB ── */}
         {activeSection === 'overview' && (
           <>
-            {/* Location & Room Details Card */}
-            <div className="ip-card">
-              <div className="ip-card-header-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <h2 className="ip-card-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <img src={googleLocationIcon} alt="" className="ip-section-icon" style={{ width: '18px', height: '18px' }} />
-                  St. Mary's Medical
-                </h2>
-                <div className="ip-location-badge-pill" style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: '#f0f9eb', color: '#5cb85c', borderRadius: '100px', padding: '4px 10px', fontSize: '11px', fontWeight: '700', gap: '5px' }}>
-                  <span className="ip-ward-dot" style={{ width: '6px', height: '6px', backgroundColor: '#5cb85c', borderRadius: '50%' }}></span>
-                  <span>ICU B5</span>
-                </div>
-              </div>
-              <p className="ip-reason-text" style={{ fontSize: '13px', color: '#3B3B3B', lineHeight: '1.4' }}>
-                161B, 1st Floor, 6th Main, 3RD Cross Road, 3RD PHASE J P Nagar, Bangalore Karnataka India
-              </p>
-            </div>
-
             {/* Admission Reason */}
             <div className="ip-card">
               <div className="ip-card-header-row" style={{ marginBottom: '8px' }}>
@@ -220,7 +207,11 @@ export default function IPPatientPage({ onBack }) {
             <div className="ip-card">
               <h2 className="ip-card-title" style={{ marginBottom: '20px' }}>Diagnostics &amp; Reports</h2>
               {documents.map((doc, index) => (
-                <div key={doc.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: index === 0 ? '0' : '16px', paddingBottom: '16px', borderBottom: index === documents.length - 1 ? 'none' : '1px solid #F2F4F7' }}>
+                <div 
+                  key={doc.id} 
+                  onClick={() => setSelectedReport(doc)}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: index === 0 ? '0' : '16px', paddingBottom: '16px', borderBottom: index === documents.length - 1 ? 'none' : '1px solid #F2F4F7', cursor: 'pointer' }}
+                >
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                     <div className="report-icon-wrapper" style={{ margin: '2px 0 0 0', width: '48px', height: '48px', minWidth: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <img src={documentIcon} alt="Document" className="report-summary-icon" style={{ width: '20px', height: '20px' }} />
@@ -233,12 +224,30 @@ export default function IPPatientPage({ onBack }) {
                       </div>
                     </div>
                   </div>
-                  <button className="report-doc-action-btn" type="button" aria-label="More options">
+                  <button 
+                    className="report-doc-action-btn" 
+                    type="button" 
+                    aria-label="More options" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActionMenuDoc(doc);
+                    }}
+                  >
                     <img src={menuIcon} alt="More options" className="report-menu-icon" />
                   </button>
                 </div>
               ))}
             </div>
+
+            {/* Report Summary Modal */}
+            <ReportSummaryModal doc={selectedReport} onClose={() => setSelectedReport(null)} />
+
+            {/* 3-Dot Action Menu Sheet */}
+            <ReportActionMenuModal 
+              doc={actionMenuDoc} 
+              onClose={() => setActionMenuDoc(null)} 
+              onViewSummary={(doc) => setSelectedReport(doc)}
+            />
           </>
         )}
 
