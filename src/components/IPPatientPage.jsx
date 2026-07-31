@@ -340,6 +340,13 @@ export default function IPPatientPage({ onBack }) {
               </div>
             </div>
 
+            {/* Section Header Title */}
+            <div style={{ margin: '4px 0 -2px 0' }}>
+              <p style={{ margin: 0, fontSize: '15px', fontWeight: '700', color: '#2C1810', letterSpacing: '-0.2px' }}>
+                Transaction History
+              </p>
+            </div>
+
             {/* 1. Consultation Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
@@ -371,9 +378,9 @@ export default function IPPatientPage({ onBack }) {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹500.00</span>
+                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹500.00</span>
               </div>
             </div>
 
@@ -409,9 +416,9 @@ export default function IPPatientPage({ onBack }) {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹1,500.00</span>
+                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹1,500.00</span>
               </div>
             </div>
 
@@ -471,9 +478,9 @@ export default function IPPatientPage({ onBack }) {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹600.00</span>
+                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹600.00</span>
               </div>
             </div>
 
@@ -507,9 +514,9 @@ export default function IPPatientPage({ onBack }) {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹1,000.00</span>
+                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹1,000.00</span>
               </div>
             </div>
 
