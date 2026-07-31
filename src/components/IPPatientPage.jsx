@@ -16,11 +16,13 @@ import documentIcon from '../assets/Document.svg';
 import menuIcon from '../assets/Menu.svg';
 import ReportSummaryModal from './ReportSummaryModal';
 import ReportActionMenuModal from './ReportActionMenuModal';
+import TransactionBillModal from './TransactionBillModal';
 
 export default function IPPatientPage({ onBack }) {
   const [activeSection, setActiveSection] = useState('overview');
   const [selectedReport, setSelectedReport] = useState(null);
   const [actionMenuDoc, setActionMenuDoc] = useState(null);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -328,215 +330,186 @@ export default function IPPatientPage({ onBack }) {
 
             {/* Key Metrics Overview */}
             <div style={{ display: 'flex', gap: '12px' }}>
-              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: '1px solid #F2F4F7' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#388E3C' }} />
-                  <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Amount Paid</span>
-                </div>
+              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: 'none' }}>
+                <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Amount Paid</span>
                 <span style={{ fontSize: '18px', fontWeight: '700', color: '#2C1810' }}>₹1,000.00</span>
               </div>
-              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: '1px solid #FEE4E2' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#D92D20' }} />
-                  <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Balance To Pay</span>
-                </div>
+              <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: 'none' }}>
+                <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Balance To Pay</span>
                 <span style={{ fontSize: '18px', fontWeight: '700', color: '#D92D20' }}>₹2,600.00</span>
               </div>
             </div>
 
             {/* 1. Consultation Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
                 Consultation
               </p>
               
-              <div className="ip-bill-table-container">
-                <table className="ip-bill-table">
-                  <thead>
-                    <tr>
-                      <th>Particulars</th>
-                      <th>Service Date</th>
-                      <th className="num-col">Rate</th>
-                      <th className="num-col">Discount(%)</th>
-                      <th className="num-col">Qty</th>
-                      <th className="num-col">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="particulars-cell">Dr Mimmi Ashraf Consultation Charge</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">400</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">1</td>
-                      <td className="num-col-bold">400</td>
-                    </tr>
-                    <tr>
-                      <td className="particulars-cell">Dr. Amelia Carter Routine Rounds</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">100</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">1</td>
-                      <td className="num-col-bold">100</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div 
+                className="ip-bill-date-row"
+                onClick={() => setSelectedTransaction({
+                  txnId: 'TXN-884101',
+                  date: '30/07/2026',
+                  time: '10:30 AM',
+                  category: 'Consultation',
+                  title: 'Doctor Consultation & Routine Rounds',
+                  amount: '₹500.00',
+                  items: [
+                    { name: 'Dr Mimmi Ashraf Consultation Charge', rate: 400, qty: 1, amount: 400 },
+                    { name: 'Dr. Amelia Carter Routine Rounds', rate: 100, qty: 1, amount: 100 }
+                  ]
+                })}
+              >
+                <div className="ip-bill-txn-info">
+                  <span className="ip-bill-txnid-text">TXN-884101</span>
+                  <span className="ip-bill-time-sub">30/07/2026 · 10:30 AM</span>
+                </div>
+                <div className="ip-bill-txn-right">
+                  <span className="ip-bill-amount">₹500.00</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>500</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹500.00</span>
               </div>
             </div>
 
             {/* 2. Investigation Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
                 Investigation &amp; Diagnostics
               </p>
               
-              <div className="ip-bill-table-container">
-                <table className="ip-bill-table">
-                  <thead>
-                    <tr>
-                      <th>Particulars</th>
-                      <th>Service Date</th>
-                      <th className="num-col">Rate</th>
-                      <th className="num-col">Discount(%)</th>
-                      <th className="num-col">Qty</th>
-                      <th className="num-col">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="particulars-cell">Lab investigation (CBC &amp; Culture)</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">750</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">1</td>
-                      <td className="num-col-bold">750</td>
-                    </tr>
-                    <tr>
-                      <td className="particulars-cell">CRP &amp; Serum Electrolytes Panel</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">450</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">1</td>
-                      <td className="num-col-bold">450</td>
-                    </tr>
-                    <tr>
-                      <td className="particulars-cell">Chest X-Ray PA View</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">300</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">1</td>
-                      <td className="num-col-bold">300</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div 
+                className="ip-bill-date-row"
+                onClick={() => setSelectedTransaction({
+                  txnId: 'TXN-884102',
+                  date: '30/07/2026',
+                  time: '11:45 AM',
+                  category: 'Investigation & Diagnostics',
+                  title: 'Lab Tests (CBC, Culture) & Chest X-Ray',
+                  amount: '₹1,500.00',
+                  items: [
+                    { name: 'Lab investigation (CBC & Culture)', rate: 750, qty: 1, amount: 750 },
+                    { name: 'CRP & Serum Electrolytes Panel', rate: 450, qty: 1, amount: 450 },
+                    { name: 'Chest X-Ray PA View', rate: 300, qty: 1, amount: 300 }
+                  ]
+                })}
+              >
+                <div className="ip-bill-txn-info">
+                  <span className="ip-bill-txnid-text">TXN-884102</span>
+                  <span className="ip-bill-time-sub">30/07/2026 · 11:45 AM</span>
+                </div>
+                <div className="ip-bill-txn-right">
+                  <span className="ip-bill-amount">₹1,500.00</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>1500</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹1,500.00</span>
               </div>
             </div>
 
-            {/* 3. Pharmacy & Consumables Card */}
-            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+            {/* 3. Pharmacy & Consumables Card - Multi-Date Transactions */}
+            <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
                 Pharmacy &amp; Consumables
               </p>
               
-              <div className="ip-bill-table-container">
-                <table className="ip-bill-table">
-                  <thead>
-                    <tr>
-                      <th>Particulars</th>
-                      <th>Service Date</th>
-                      <th className="num-col">Rate</th>
-                      <th className="num-col">Discount(%)</th>
-                      <th className="num-col">Qty</th>
-                      <th className="num-col">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="particulars-cell">Amoxicillin 250mg Injection</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">120</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">2</td>
-                      <td className="num-col-bold">240</td>
-                    </tr>
-                    <tr>
-                      <td className="particulars-cell">IV Normal Saline 500ml</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">90</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">2</td>
-                      <td className="num-col-bold">180</td>
-                    </tr>
-                    <tr>
-                      <td className="particulars-cell">Pantoprazole 40mg IV Injection</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">100</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">1</td>
-                      <td className="num-col-bold">100</td>
-                    </tr>
-                    <tr>
-                      <td className="particulars-cell">Syringes &amp; IV Cannula Set</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">80</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">1</td>
-                      <td className="num-col-bold">80</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div 
+                className="ip-bill-date-row"
+                onClick={() => setSelectedTransaction({
+                  txnId: 'TXN-884103',
+                  date: '30/07/2026',
+                  time: '04:15 PM',
+                  category: 'Pharmacy & Consumables',
+                  title: 'Amoxicillin 250mg & IV Normal Saline',
+                  amount: '₹420.00',
+                  items: [
+                    { name: 'Amoxicillin 250mg Injection', rate: 120, qty: 2, amount: 240 },
+                    { name: 'IV Normal Saline 500ml', rate: 90, qty: 2, amount: 180 }
+                  ]
+                })}
+              >
+                <div className="ip-bill-txn-info">
+                  <span className="ip-bill-txnid-text">TXN-884103</span>
+                  <span className="ip-bill-time-sub">30/07/2026 · 04:15 PM</span>
+                </div>
+                <div className="ip-bill-txn-right">
+                  <span className="ip-bill-amount">₹420.00</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <div 
+                className="ip-bill-date-row"
+                onClick={() => setSelectedTransaction({
+                  txnId: 'TXN-884098',
+                  date: '29/07/2026',
+                  time: '08:00 PM',
+                  category: 'Pharmacy & Consumables',
+                  title: 'Pantoprazole IV & Cannula Set',
+                  amount: '₹180.00',
+                  items: [
+                    { name: 'Pantoprazole 40mg IV Injection', rate: 100, qty: 1, amount: 100 },
+                    { name: 'Syringes & IV Cannula Set', rate: 80, qty: 1, amount: 80 }
+                  ]
+                })}
+              >
+                <div className="ip-bill-txn-info">
+                  <span className="ip-bill-txnid-text">TXN-884098</span>
+                  <span className="ip-bill-time-sub">29/07/2026 · 08:00 PM</span>
+                </div>
+                <div className="ip-bill-txn-right">
+                  <span className="ip-bill-amount">₹180.00</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>600</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹600.00</span>
               </div>
             </div>
 
             {/* 4. Room & Ward Charges Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
                 Room &amp; Ward Charges
               </p>
               
-              <div className="ip-bill-table-container">
-                <table className="ip-bill-table">
-                  <thead>
-                    <tr>
-                      <th>Particulars</th>
-                      <th>Service Date</th>
-                      <th className="num-col">Rate</th>
-                      <th className="num-col">Discount(%)</th>
-                      <th className="num-col">Qty</th>
-                      <th className="num-col">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="particulars-cell">ICU Bed Charges (B5)</td>
-                      <td>30/07/2026</td>
-                      <td className="num-col">500</td>
-                      <td className="num-col">0</td>
-                      <td className="num-col">2</td>
-                      <td className="num-col-bold">1000</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div 
+                className="ip-bill-date-row"
+                onClick={() => setSelectedTransaction({
+                  txnId: 'TXN-884104',
+                  date: '30/07/2026',
+                  time: '12:00 PM',
+                  category: 'Room & Ward Charges',
+                  title: 'ICU Bed Stay (2 Days)',
+                  amount: '₹1,000.00',
+                  items: [
+                    { name: 'ICU Bed Charges (B5)', rate: 500, qty: 2, amount: 1000 }
+                  ]
+                })}
+              >
+                <div className="ip-bill-txn-info">
+                  <span className="ip-bill-txnid-text">TXN-884104</span>
+                  <span className="ip-bill-time-sub">30/07/2026 · 12:00 PM</span>
+                </div>
+                <div className="ip-bill-txn-right">
+                  <span className="ip-bill-amount">₹1,000.00</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
                 <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>1000</span>
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#90644B' }}>₹1,000.00</span>
               </div>
             </div>
 
@@ -547,8 +520,8 @@ export default function IPPatientPage({ onBack }) {
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14 2 14 8 20 8"/>
                 </svg>
-                <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
-                  CHARGES
+                <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+                  Charges
                 </p>
               </div>
 
@@ -582,8 +555,8 @@ export default function IPPatientPage({ onBack }) {
                   <rect x="2" y="5" width="20" height="14" rx="2"/>
                   <line x1="2" y1="10" x2="22" y2="10"/>
                 </svg>
-                <p style={{ margin: 0, fontSize: '13px', fontWeight: '700', color: '#90644B', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
-                  PAYMENTS
+                <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+                  Payments
                 </p>
               </div>
 
@@ -617,6 +590,14 @@ export default function IPPatientPage({ onBack }) {
           </>
         )}
       </div>
+
+      {/* Transaction Bill Modal */}
+      {selectedTransaction && (
+        <TransactionBillModal
+          transaction={selectedTransaction}
+          onClose={() => setSelectedTransaction(null)}
+        />
+      )}
     </div>
   );
 }

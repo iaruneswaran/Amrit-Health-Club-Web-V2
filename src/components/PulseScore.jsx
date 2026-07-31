@@ -87,27 +87,33 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
         <div className="pulse-gauge-column">
           <div className="pulse-gauge-container">
             <svg viewBox="0 0 400 210" className="pulse-gauge-svg" aria-hidden="true">
-              {/* Left segment */}
+              <defs>
+                <filter id="arrow-subtle-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#000000" floodOpacity="0.22" />
+                </filter>
+              </defs>
+
+              {/* Left segment - Active Grade A Range */}
               <path
                 d="M 28 190 A 172 172 0 0 1 103.82 47.41 L 122.88 80.42 A 134 134 0 0 0 66 190 Z"
-                fill="#98EC6D"
-                stroke="#98EC6D"
+                fill="#FFFFFF"
+                stroke="#FFFFFF"
                 strokeWidth="16"
                 strokeLinejoin="round"
               />
-              {/* Middle segment */}
+              {/* Middle segment - Medium Grade Range */}
               <path
                 d="M 124.60 35.41 A 172 172 0 0 1 275.40 35.41 L 256.34 68.42 A 134 134 0 0 0 143.66 68.42 Z"
-                fill="#C6F194"
-                stroke="#C6F194"
+                fill="#E1D8C7"
+                stroke="#E1D8C7"
                 strokeWidth="16"
                 strokeLinejoin="round"
               />
-              {/* Right segment */}
+              {/* Right segment - Low Grade Range */}
               <path
                 d="M 296.18 47.41 A 172 172 0 0 1 372 190 L 334 190 A 134 134 0 0 0 277.12 80.42 Z"
-                fill="#E2F8D3"
-                stroke="#E2F8D3"
+                fill="#A8886E"
+                stroke="#A8886E"
                 strokeWidth="16"
                 strokeLinejoin="round"
               />
@@ -116,9 +122,7 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
                 {gradeInfo.grade}
               </text>
 
-              {/* -- Animated Arc Pointer Arrow --
-                  Starts at left (-90°), sweeps to score position on scroll-into-view */}
-              {/* Sweeps right (+90°) -> left, stopping at score position */}
+              {/* -- Animated Arc Pointer Arrow -- */}
               <g ref={groupRef} transform={`rotate(${START_ANGLE}, 200, 190)`}>
                 <svg
                   x="181"
@@ -126,8 +130,9 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
                   width="38"
                   height="32"
                   viewBox="0 0 11 9"
+                  style={{ filter: 'drop-shadow(0px 1.5px 2.5px rgba(0, 0, 0, 0.25))' }}
                 >
-                  <path d="M5.19629 9L0.000136209 -2.51246e-08L10.3924 8.834e-07L5.19629 9Z" fill="#008C45"/>
+                  <path d="M5.19629 9L0.000136209 -2.51246e-08L10.3924 8.834e-07L5.19629 9Z" fill="#FFFFFF" filter="url(#arrow-subtle-shadow)" />
                 </svg>
               </g>
             </svg>

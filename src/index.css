@@ -7103,4 +7103,71 @@ body,
   font-size: 15px;
   margin-top: 2px;
 }
+
+/* =========================================
+   IP BILLING TRANSACTION HISTORY STYLES
+   ========================================= */
+.ip-bill-date-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed #E5E7EB;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.ip-bill-date-row:last-of-type {
+  border-bottom: none;
+}
+
+.ip-bill-date-row:hover {
+  opacity: 0.8;
+}
+
+.ip-bill-txn-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ip-bill-txnid-text {
+  font-size: 14px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.ip-bill-time-sub {
+  font-size: 14px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.ip-bill-txn-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ip-bill-amount {
+  font-size: 15px;
+  font-weight: 700;
+  color: #90644B;
+}
+
+.report-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.85);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 99999;
+  padding: 16px;
+}
 
