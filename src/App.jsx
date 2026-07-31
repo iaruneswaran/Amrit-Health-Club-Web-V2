@@ -30,6 +30,7 @@ import statusArrow from './assets/Status Arrow.svg'
 import pulseImage from './assets/Pulse Page Header Image.jpg'
 import pulsePageLogo from './assets/Pulse Page Logo.png'
 import BookingFlow from './components/BookingFlow'
+import PreOpPage from './components/PreOpPage'
 
 const timeframeData = {
   D: {
@@ -118,6 +119,23 @@ export default function App() {
   const [pulsePageHasBack, setPulsePageHasBack] = useState(false)
   const [selectedTimeframe, setSelectedTimeframe] = useState('W')
 
+  const [showPreOpPage, setShowPreOpPage] = useState(false)
+  const [preOpCompleted, setPreOpCompleted] = useState(() => {
+    return localStorage.getItem('preop_completed') === 'true'
+  })
+  const [preOpData, setPreOpData] = useState(() => {
+    const saved = localStorage.getItem('preop_data')
+    return saved ? JSON.parse(saved) : null
+  })
+
+  const handleCompletePreOp = (data) => {
+    setPreOpCompleted(true)
+    setPreOpData(data)
+    localStorage.setItem('preop_completed', 'true')
+    localStorage.setItem('preop_data', JSON.stringify(data))
+    setShowPreOpPage(false)
+  }
+
   const handleImprovementPlansClick = () => {
     setPulsePageHasBack(true)
     setActiveTab(1)
@@ -162,7 +180,7 @@ export default function App() {
     if (pageShell) {
       pageShell.scrollTop = 0
     }
-  }, [activeTab])
+  }, [activeTab, showPreOpPage])
 
   const handleOnboardingComplete = () => {
     setShowOnboarding(false)
@@ -189,6 +207,19 @@ export default function App() {
         <>
           <LoginFlow onLoginComplete={handleLoginComplete} />
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
+        </>
+      )
+    }
+
+    if (showPreOpPage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <PreOpPage 
+            onBack={() => setShowPreOpPage(false)} 
+            onComplete={handleCompletePreOp}
+            initialData={preOpData}
+          />
         </>
       )
     }
@@ -297,7 +328,10 @@ export default function App() {
             <div className="section-group">
               <p className="section-title">Booked Appointments</p>
               <AppointmentCard 
-                onActionClick={() => setBookingDoctor({ name: 'Dr. Amelia Carter', specialty: 'Cardiology Specialist', hospital: "St. Mary's Medical", fee: '₹500' })}
+                preOpCompleted={preOpCompleted}
+                preOpData={preOpData}
+                onPreOpClick={() => setShowPreOpPage(true)}
+                onActionClick={() => setShowPreOpPage(true)}
               />
             </div>
             <div className="section-group">

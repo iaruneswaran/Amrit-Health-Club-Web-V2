@@ -36,7 +36,28 @@ function ReasonSmIcon() {
   )
 }
 
-export default function AppointmentCard({ showImage = true, isPast = false, onActionClick, onSecondaryClick }) {
+export default function AppointmentCard({ 
+  showImage = true, 
+  isPast = false, 
+  onActionClick, 
+  onSecondaryClick,
+  preOpCompleted = false,
+  preOpData = null,
+  onPreOpClick
+}) {
+  const handlePrimaryClick = (e) => {
+    e.stopPropagation();
+    if (!isPast && onPreOpClick) {
+      onPreOpClick();
+    } else if (onActionClick) {
+      onActionClick();
+    }
+  };
+
+  const primaryBtnLabel = isPast 
+    ? "Follow up" 
+    : (preOpCompleted ? "Pre OP Completed" : "Complete Pre OP");
+
   return (
     <div className="appointment-card" id="appointment-card">
       {/* Doctor row with background image */}
@@ -77,32 +98,44 @@ export default function AppointmentCard({ showImage = true, isPast = false, onAc
           </div>
         </div>
 
-        {/* Reason */}
-        <div className="reason-block">
-          <div className="detail-label-row">
-            <img src="/reason-green.svg" alt="" aria-hidden="true" style={{ height: '16px', width: 'auto' }} />
-            Reason for Visit
+        {/* Reason for Visit Block */}
+        {!isPast && !preOpCompleted ? (
+          <div className="reason-block reason-pending">
+            <div className="detail-label-row">
+              <img src="/reason-green.svg" alt="" aria-hidden="true" style={{ height: '16px', width: 'auto' }} />
+              Reason for Visit
+            </div>
+            <p className="reason-text pending-text">
+              Complete your Pre OP
+            </p>
           </div>
-          <p className="reason-text">
-            High fever (101.5°F) with severe body aches &amp; chills since yesterday
-          </p>
-        </div>
+        ) : (
+          <div className="reason-block reason-completed">
+            <div className="detail-label-row" style={{ justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <img src="/reason-green.svg" alt="" aria-hidden="true" style={{ height: '16px', width: 'auto' }} />
+                Reason for Visit
+              </div>
+              {preOpCompleted && <span className="preop-card-badge completed">Pre-OP Completed</span>}
+            </div>
+            <p className="reason-text">
+              {preOpData?.reason || "High fever (101.5°F) with severe body aches & chills since yesterday"}
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="appt-actions">
         <button 
-          id={isPast ? "followup-btn" : "reschedule-btn"} 
-          className="btn-primary" 
+          id={isPast ? "followup-btn" : "pre-op-btn"} 
+          className="btn-primary"
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (onActionClick) onActionClick();
-          }}
+          onClick={handlePrimaryClick}
         >
-          {isPast ? "Follow up" : "Reschedule"}
+          {primaryBtnLabel}
         </button>
         <button 
-          id={isPast ? "prescription-btn" : "cancel-appt-btn"} 
+          id={isPast ? "prescription-btn" : "reschedule-appt-btn"} 
           className="btn-secondary" 
           type="button" 
           onClick={(e) => {
@@ -110,7 +143,7 @@ export default function AppointmentCard({ showImage = true, isPast = false, onAc
             if (onSecondaryClick) onSecondaryClick();
           }}
         >
-          {isPast ? "Prescription" : "Cancel"}
+          {isPast ? "Prescription" : "Reschedule"}
         </button>
       </div>
     </div>

@@ -1,13 +1,13 @@
-﻿import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import voiceIcon from '../assets/Voice Icon.svg'
 import aiMenuIcon from '../assets/Ai Menu icon.svg'
 import wellioLogo from '../assets/Wellio.svg'
 import markedIcon from '../assets/Marked.svg'
 import wellioIcon from '../assets/Wellio Icon.svg'
 
-function BackArrowIcon() {
+function BackArrowIcon({ color = "#FFFFFF" }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <line x1="19" y1="12" x2="5" y2="12"></line>
       <polyline points="12 19 5 12 12 5"></polyline>
     </svg>
