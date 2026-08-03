@@ -3,6 +3,7 @@ import searchIcon from '../assets/Search.svg';
 import filterIcon from '../assets/Filter.svg';
 import googleLocationIcon from '../assets/Google Location.svg';
 import continueArrow from '../assets/Continue Arrow.svg';
+import hospitalIcon from '../assets/Doctor Icon.svg';
 import HospitalDetailPage from './HospitalDetailPage';
 
 export const hospitalsList = [
@@ -143,6 +144,23 @@ export default function HospitalsPage({ onBack, onBookNow }) {
                 
                 {/* Header detail row */}
                 <div className="hospital-card-header">
+                  {/* Hospital avatar: 2-letter initials */}
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '14px',
+                    background: '#F2F4F7',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    fontSize: '15px',
+                    fontWeight: '600',
+                    color: '#CCA266',
+                    letterSpacing: '0.5px'
+                  }}>
+                    {hospital.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+                  </div>
                   <div className="hospital-header-details">
                     <h3 className="hospital-card-name">{hospital.name}</h3>
                     <div className="hospital-open-row">

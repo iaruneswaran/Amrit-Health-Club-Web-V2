@@ -161,7 +161,9 @@ export default function DoctorsPage({ onBack, onBookNow }) {
             <div className={`doctor-card ${doctor.isPreferred ? 'preferred' : ''}`} key={doctor.id}>
               {/* Header detail row */}
               <div className="doctor-card-header">
-                <div className="doctor-logo-placeholder"></div>
+                <div className="doctor-logo-placeholder">
+                  {doctor.name.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+                </div>
                 <div className="doctor-header-details">
                   <h3 className="doctor-card-name">{doctor.name}</h3>
                   <span className="doctor-specialty">{doctor.specialty}</span>
@@ -172,7 +174,7 @@ export default function DoctorsPage({ onBack, onBookNow }) {
               {doctor.hospitalName && (
                 <div className={`doctor-hospital-container ${doctor.isPreferred ? 'has-preferred' : ''}`}>
                   <div className="doctor-hospital-left">
-                    <img src="/hospital-icon.svg" alt="Hospital" className="doctor-hospital-icon" />
+                    <img src="/hospital-icon.svg" alt="Hospital" className="doctor-hospital-icon" style={{ filter: 'invert(71%) sepia(30%) saturate(632%) hue-rotate(1deg) brightness(91%) contrast(87%)' }} />
                     <span className="doctor-hospital-name">{doctor.hospitalName}</span>
                   </div>
                   {doctor.isPreferred && (

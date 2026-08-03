@@ -50,10 +50,10 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
               {hospital.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
             </div>
             <div className="ip-patient-info">
-              <h1 className="ip-patient-name">{hospital.name}</h1>
+              <h1 className="ip-patient-name" style={{ color: '#CCA266' }}>{hospital.name}</h1>
               <p className="ip-patient-meta" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
-                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px',  }} />
-                <span>{hospital.openStatus}</span>
+                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px', filter: 'brightness(0)' }} />
+                <span style={{ color: '#000000' }}>{hospital.openStatus}</span>
               </p>
             </div>
           </div>
@@ -249,7 +249,9 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
               <div className={`doctor-card ${doctor.isPreferred ? 'preferred' : ''}`} key={doctor.id}>
                 {/* Header detail row */}
                 <div className="doctor-card-header">
-                  <div className="doctor-logo-placeholder"></div>
+                  <div className="doctor-logo-placeholder">
+                    {doctor.name.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+                  </div>
                   <div className="doctor-header-details">
                     <h3 className="doctor-card-name">{doctor.name}</h3>
                     <span className="doctor-specialty">{doctor.specialty}</span>
@@ -260,7 +262,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
                 {doctor.hospitalName && (
                   <div className={`doctor-hospital-container ${doctor.isPreferred ? 'has-preferred' : ''}`}>
                     <div className="doctor-hospital-left">
-                      <img src="/hospital-icon.svg" alt="Hospital" className="doctor-hospital-icon" />
+                      <img src="/hospital-icon.svg" alt="Hospital" className="doctor-hospital-icon" style={{ filter: 'invert(71%) sepia(30%) saturate(632%) hue-rotate(1deg) brightness(91%) contrast(87%)' }} />
                       <span className="doctor-hospital-name">{doctor.hospitalName}</span>
                     </div>
                     {doctor.isPreferred && (
