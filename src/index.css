@@ -1217,7 +1217,7 @@ body,
   width: 15px;
   height: 9px;
   display: block;
-  filter: brightness(0) saturate(100%) invert(33%) sepia(76%) saturate(700%) hue-rotate(115deg) brightness(85%) contrast(120%);
+  filter: brightness(0) invert(1);
 }.pulse-status-text {
   font-size: 14px;
   font-weight: 500;
