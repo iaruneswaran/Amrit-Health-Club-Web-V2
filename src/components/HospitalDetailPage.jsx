@@ -42,23 +42,23 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
       <div className="ip-header" style={{ backgroundImage: `url(${hospitalImg})` }}>
         <div className="ip-header-overlay">
           <button className="ip-back-btn" onClick={onBack} aria-label="Go back">
-            <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '14px', height: '14px', filter: 'brightness(0) invert(1)' }} />
+            <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '14px', height: '14px',  }} />
           </button>
           
           <div className="ip-header-content">
-            <div className="ip-avatar" style={{ color: '#6D3914', background: '#F5EFE6', fontWeight: 'bold' }}>
+            <div className="ip-avatar" style={{ color: '#000000', background: '#F2F4F7', fontWeight: '500' }}>
               {hospital.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
             </div>
             <div className="ip-patient-info">
               <h1 className="ip-patient-name">{hospital.name}</h1>
               <p className="ip-patient-meta" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
-                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px', filter: 'brightness(0) invert(1)' }} />
+                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px',  }} />
                 <span>{hospital.openStatus}</span>
               </p>
             </div>
           </div>
           {hospital.isPreferred && (
-            <span className="ip-status-badge" style={{ background: '#90644B', color: '#FFFFFF' }}>
+            <span className="ip-status-badge" style={{ background: '#CCA266', color: '#FFFFFF' }}>
               Preferred
             </span>
           )}
@@ -68,12 +68,12 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
       {/* Quick Stats Strip */}
       <div className="ip-stats-strip" style={{ padding: '16px 8px' }}>
         <div className="ip-stat-item">
-          <span className="ip-stat-value" style={{ color: '#02352F', fontSize: '16px' }}>{hospital.distance}</span>
+          <span className="ip-stat-value" style={{ color: '#000000', fontSize: '16px' }}>{hospital.distance}</span>
           <span className="ip-stat-label" style={{ textTransform: 'none', fontSize: '14px' }}>Distance</span>
         </div>
         <div className="ip-stat-divider" style={{ margin: '0 20px' }} />
         <div className="ip-stat-item">
-          <span className="ip-stat-value" style={{ color: '#02352F', fontSize: '16px' }}>{hospital.doctorsCount}</span>
+          <span className="ip-stat-value" style={{ color: '#000000', fontSize: '16px' }}>{hospital.doctorsCount}</span>
           <span className="ip-stat-label" style={{ textTransform: 'none', fontSize: '14px', whiteSpace: 'nowrap' }}>Doctors Available</span>
         </div>
         <div className="ip-stat-divider" style={{ margin: '0 20px' }} />
@@ -86,13 +86,13 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
       {/* Map Location pin & address block below stats (no card container) */}
       <div style={{ padding: '16px 12px', background: '#FFFFFF', display: 'flex', gap: '12px', borderBottom: '1px solid #F2F4F7' }}>
         <img src={googleLocationIcon} alt="Map Location Pin" style={{ width: '20px', height: '20px', flexShrink: 0, marginTop: '2px' }} />
-        <p style={{ fontFamily: 'var(--font)', fontSize: '14px', fontWeight: '500', color: '#02352F', margin: 0, lineHeight: '1.4' }}>
+        <p style={{ fontFamily: 'var(--font)', fontSize: '14px', fontWeight: '500', color: '#000000', margin: 0, lineHeight: '1.4' }}>
           {hospital.address}
         </p>
       </div>
 
       {/* Tab Navigation */}
-      <div className="ip-tab-bar" style={{ position: 'sticky', top: 0, zIndex: 10, background: '#FFFFFF', borderBottom: '1px solid #E5E7EB', marginBottom: '16px' }}>
+      <div className="ip-tab-bar" style={{ position: 'sticky', top: 0, zIndex: 10, background: '#FFFFFF', borderBottom: '1px solid #F2F4F7', marginBottom: '16px' }}>
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -113,8 +113,8 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
             <p className="hospital-address-text" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: '1.5' }}>
               {hospital.name} is a premier healthcare facility offering comprehensive medical care. Equipped with advanced technology and staffed by top-tier medical professionals, we are committed to delivering the highest quality patient care and clinical excellence.
             </p>
-            <div style={{ borderTop: '1px solid #F0F2F5', paddingTop: '12px', marginTop: '4px' }}>
-              <p className="hospital-address-text" style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>
+            <div style={{ borderTop: '1px solid #F2F4F7', paddingTop: '12px', marginTop: '4px' }}>
+              <p className="hospital-address-text" style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
                 Contact & Timings
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '8px' }}>
@@ -169,8 +169,8 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
             </div>
 
             {/* Services Offered */}
-            <div style={{ borderTop: '1px solid #F0F2F5', paddingTop: '12px', marginTop: '12px' }}>
-              <p className="hospital-address-text" style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>
+            <div style={{ borderTop: '1px solid #F2F4F7', paddingTop: '12px', marginTop: '12px' }}>
+              <p className="hospital-address-text" style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
                 Services Offered
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -190,20 +190,20 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
             </div>
 
             {/* Key Specialties */}
-            <div style={{ borderTop: '1px solid #F0F2F5', paddingTop: '12px', marginTop: '12px' }}>
-              <p className="hospital-address-text" style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>
+            <div style={{ borderTop: '1px solid #F2F4F7', paddingTop: '12px', marginTop: '12px' }}>
+              <p className="hospital-address-text" style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
                 Key Specialties
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {['Cardiology', 'Neurology', 'Pediatrics', 'Orthopedics', 'General Medicine', 'Emergency Care'].map((spec, index) => (
                   <span key={index} className="hospital-address-text" style={{ 
                     display: 'inline-block', 
-                    background: '#D2F19E', 
-                    color: '#02352F',
+                    background: '#CCA266', 
+                    color: '#555555',
                     borderRadius: 'var(--radius-sm)', 
                     padding: '6px 12px', 
                     fontSize: '13px',
-                    fontWeight: '600'
+                    fontWeight: '500'
                   }}>
                     {spec}
                   </span>
@@ -291,7 +291,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
             ))}
 
             {hospitalDoctors.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '30px 10px', color: '#3B3B3B', fontSize: '15px' }}>
+              <div style={{ textAlign: 'center', padding: '30px 10px', color: '#000000', fontSize: '15px' }}>
                 No doctors currently available at this hospital.
               </div>
             )}

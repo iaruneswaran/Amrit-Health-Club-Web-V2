@@ -215,8 +215,8 @@ export default function BookingFlow({ doctor, onBack }) {
         <div className="booking-confirmed-body">
           <div className="booking-confirmed-check-wrap">
             <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-              <circle cx="36" cy="36" r="36" fill="#E1D8C7" />
-              <polyline points="18,36 30,49 54,23" stroke="#2D6A2D" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="36" cy="36" r="36" fill="#FFFFFF" />
+              <polyline points="18,36 30,49 54,23" stroke="#CCA266" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <h1 className="booking-confirmed-title">Appointment Booked!</h1>

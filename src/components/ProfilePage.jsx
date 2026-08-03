@@ -135,7 +135,7 @@ export default function ProfilePage() {
               </div>
               <span className="profile-list-label">Payment Methods</span>
             </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B3B3B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </div>
@@ -147,7 +147,7 @@ export default function ProfilePage() {
               </div>
               <span className="profile-list-label">Address</span>
             </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B3B3B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </div>
@@ -159,7 +159,7 @@ export default function ProfilePage() {
               </div>
               <span className="profile-list-label">Language</span>
             </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B3B3B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </div>
@@ -171,7 +171,7 @@ export default function ProfilePage() {
               </div>
               <span className="profile-list-label">Mobile Number</span>
             </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B3B3B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </div>
@@ -189,7 +189,7 @@ export default function ProfilePage() {
               </div>
               <span className="profile-list-label">Log Out</span>
             </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B3B3B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </div>
@@ -201,7 +201,7 @@ export default function ProfilePage() {
               </div>
               <span className="profile-list-label">Delete Account</span>
             </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B3B3B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </div>

@@ -263,7 +263,7 @@ export default function ClinicCard({ onBookNow, onViewHospital }) {
                   rel="noopener noreferrer"
                   className="clinic-primary-btn directions-btn"
                 >
-                  <img src={googleLocationIcon} alt="" style={{ width: '18px', height: '18px', filter: 'brightness(0) invert(1)' }} />
+                  <img src={googleLocationIcon} alt="" style={{ width: '18px', height: '18px',  }} />
                   Get Directions in Google Maps
                 </a>
               </div>

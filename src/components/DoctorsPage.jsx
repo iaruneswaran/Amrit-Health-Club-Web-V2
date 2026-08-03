@@ -201,7 +201,7 @@ export default function DoctorsPage({ onBack, onBookNow }) {
           ))}
 
           {filteredDoctors.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '30px 10px', color: '#3B3B3B', fontSize: '15px' }}>
+            <div style={{ textAlign: 'center', padding: '30px 10px', color: '#000000', fontSize: '15px' }}>
               No doctors match your search.
             </div>
           )}

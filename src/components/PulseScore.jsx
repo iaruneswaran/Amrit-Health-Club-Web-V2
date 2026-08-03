@@ -96,29 +96,29 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
               {/* Left segment - Active Grade A Range */}
               <path
                 d="M 28 190 A 172 172 0 0 1 103.82 47.41 L 122.88 80.42 A 134 134 0 0 0 66 190 Z"
-                fill="#FFFFFF"
-                stroke="#FFFFFF"
+                fill="#92E066"
+                stroke="#92E066"
                 strokeWidth="16"
                 strokeLinejoin="round"
               />
               {/* Middle segment - Medium Grade Range */}
               <path
                 d="M 124.60 35.41 A 172 172 0 0 1 275.40 35.41 L 256.34 68.42 A 134 134 0 0 0 143.66 68.42 Z"
-                fill="#E1D8C7"
-                stroke="#E1D8C7"
+                fill="#D2F19E"
+                stroke="#D2F19E"
                 strokeWidth="16"
                 strokeLinejoin="round"
               />
               {/* Right segment - Low Grade Range */}
               <path
                 d="M 296.18 47.41 A 172 172 0 0 1 372 190 L 334 190 A 134 134 0 0 0 277.12 80.42 Z"
-                fill="#A8886E"
-                stroke="#A8886E"
+                fill="#DCF6CF"
+                stroke="#DCF6CF"
                 strokeWidth="16"
                 strokeLinejoin="round"
               />
               {/* Grade Letter */}
-              <text x="195" y="196" fill="#FFFFFF" fontSize="120" fontWeight="800" textAnchor="middle">
+              <text x="195" y="196" fill="#FFFFFF" fontSize="120" fontWeight="700" textAnchor="middle">
                 {gradeInfo.grade}
               </text>
 
@@ -130,9 +130,9 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
                   width="38"
                   height="32"
                   viewBox="0 0 11 9"
-                  style={{ filter: 'drop-shadow(0px 1.5px 2.5px rgba(0, 0, 0, 0.25))' }}
+                  style={{}}
                 >
-                  <path d="M5.19629 9L0.000136209 -2.51246e-08L10.3924 8.834e-07L5.19629 9Z" fill="#FFFFFF" filter="url(#arrow-subtle-shadow)" />
+                  <path d="M5.19629 9L0.000136209 -2.51246e-08L10.3924 8.834e-07L5.19629 9Z" fill="#008C45" />
                 </svg>
               </g>
             </svg>

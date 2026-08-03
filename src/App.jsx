@@ -368,7 +368,7 @@ export default function App() {
             <img src={pulseImage} alt="" className="pulse-page-header-bg" />
             {pulsePageHasBack && (
               <button className="pulse-back-btn" onClick={handleBackToHome} aria-label="Go back">
-                <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', filter: 'brightness(0) invert(1)', width: '16px', height: '14px' }} />
+                <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '16px', height: '14px' }} />
               </button>
             )}
             <div className="pulse-page-header-overlay">
@@ -454,11 +454,11 @@ export default function App() {
                     <line x1="8" y1="200" x2="305" y2="200" stroke="#F2F4F7" strokeWidth="1" />
 
                     {/* Y-Axis Labels on the Right */}
-                    <text x="312" y="24" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">100</text>
-                    <text x="312" y="69" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">80</text>
-                    <text x="312" y="114" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">60</text>
-                    <text x="312" y="159" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">40</text>
-                    <text x="312" y="204" fill="#98A2B3" fontSize="12" fontWeight="500" textAnchor="start">20</text>
+                    <text x="312" y="24" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">100</text>
+                    <text x="312" y="69" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">80</text>
+                    <text x="312" y="114" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">60</text>
+                    <text x="312" y="159" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">40</text>
+                    <text x="312" y="204" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">20</text>
 
                     {/* Vertical Dashed Grid Lines and Bars */}
                     {timeframeData[selectedTimeframe].points.map((pt, index) => {
@@ -490,13 +490,13 @@ export default function App() {
                           {/* Score bar */}
                           <path
                             d={barPath}
-                            fill="#90644B"
+                            fill="#CCA266"
                           />
                           {/* X-Axis Label */}
                           <text
                             x={xCenter}
                             y="222"
-                            fill="#98A2B3"
+                            fill="#CCA266"
                             fontSize="12"
                             fontWeight="500"
                             textAnchor="middle"

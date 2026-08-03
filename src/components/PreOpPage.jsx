@@ -46,7 +46,7 @@ export default function PreOpPage({ onBack, onComplete, initialData }) {
   return (
     <div className="preop-page-container">
       {/* Header */}
-      <header className="doctors-header" style={{ padding: '16px 20px', backgroundColor: '#FFFFFF', borderBottom: '1px solid #E5E7EB', position: 'sticky', top: 0, zIndex: 50 }}>
+      <header className="doctors-header" style={{ padding: '16px 20px', backgroundColor: '#FFFFFF', borderBottom: '1px solid #F2F4F7', position: 'sticky', top: 0, zIndex: 50 }}>
         <div className="doctors-title-row" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button 
             className="doctors-back-btn" 
@@ -56,7 +56,7 @@ export default function PreOpPage({ onBack, onComplete, initialData }) {
           >
             <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '18px', height: '16px' }} />
           </button>
-          <h1 className="doctors-page-title" style={{ fontSize: '18px', fontWeight: '600', color: '#111827', margin: 0 }}>
+          <h1 className="doctors-page-title" style={{ fontSize: '18px', fontWeight: '500', color: '#000000', margin: 0 }}>
             Pre-OP Health Form
           </h1>
         </div>

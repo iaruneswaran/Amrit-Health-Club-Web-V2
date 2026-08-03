@@ -227,7 +227,7 @@ export default function AIPage({ onBack }) {
         <div className="drawer-header">
           <p className="drawer-title">Conversations</p>
           <button className="drawer-close-btn" onClick={() => setShowMenu(false)} aria-label="Close menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -292,12 +292,16 @@ export default function AIPage({ onBack }) {
                 {m.options && (
                   <div className="ai-chat-options">
                     {m.options.map(opt => (
-                      <span 
+                      <button 
+                        type="button" 
                         key={opt} 
                         className={`ai-chat-chip ${m.selectedOption === opt ? 'selected' : ''}`}
+                        onClick={() => {
+                          setMessages(prev => prev.map(msg => msg.id === m.id ? { ...msg, selectedOption: opt } : msg));
+                        }}
                       >
                         {opt}
-                      </span>
+                      </button>
                     ))}
                   </div>
                 )}
@@ -307,13 +311,13 @@ export default function AIPage({ onBack }) {
                   <div className="ai-booking-card" style={{ gap: '10px' }}>
                     <div className="booking-confirmed-check-wrap" style={{ display: 'flex', justifyContent: 'center', margin: '6px 0 12px' }}>
                       <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-                        <circle cx="36" cy="36" r="36" fill="#E1D8C7" />
-                        <polyline points="18,36 30,49 54,23" stroke="#2D6A2D" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                        <circle cx="36" cy="36" r="36" fill="#FFFFFF" />
+                        <polyline points="18,36 30,49 54,23" stroke="#CCA266" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <div style={{ textAlign: 'center', marginBottom: '8px' }}>
-                      <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '800', color: '#90644B' }}>Appointment Booked!</h4>
-                      <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#667085', fontWeight: '500' }}>Your appointment has been successfully confirmed.</p>
+                      <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '500',color: '#000000' }}>Appointment Booked!</h4>
+                      <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#555555', fontWeight: '500' }}>Your appointment has been successfully confirmed.</p>
                     </div>
                     
                     <div className="ai-booking-card-row">
@@ -337,8 +341,8 @@ export default function AIPage({ onBack }) {
                       <span className="ai-booking-card-value">{m.cardDetails.payment}</span>
                     </div>
 
-                    <div style={{ borderTop: '1px solid #E4E7EC', paddingTop: '8px', marginTop: '4px', textAlign: 'center' }}>
-                      <p style={{ margin: 0, fontSize: '12px', color: '#667085', lineHeight: '1.4', fontWeight: '500' }}>
+                    <div style={{ borderTop: '1px solid #F2F4F7', paddingTop: '8px', marginTop: '4px', textAlign: 'center' }}>
+                      <p style={{ margin: 0, fontSize: '12px', color: '#555555', lineHeight: '1.4', fontWeight: '500' }}>
                         {m.cardDetails.note}
                       </p>
                     </div>

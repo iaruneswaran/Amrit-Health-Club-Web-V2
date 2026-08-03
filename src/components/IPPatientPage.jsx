@@ -97,7 +97,7 @@ export default function IPPatientPage({ onBack }) {
       <div className="ip-header" style={{ backgroundImage: `url(${admissionBg})` }}>
         <div className="ip-header-overlay">
           <button className="ip-back-btn" onClick={onBack} aria-label="Go back">
-            <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '14px', height: '14px', filter: 'brightness(0) invert(1)' }} />
+            <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '14px', height: '14px',  }} />
           </button>
           <div className="ip-header-content">
             <div className="ip-avatar">RG</div>
@@ -187,14 +187,13 @@ export default function IPPatientPage({ onBack }) {
                   <div key={i} className="assigned-doctor-row" style={{ padding: '12px 14px', border: '1.5px solid #F2F4F7', borderRadius: '16px', background: '#FFFFFF' }}>
                     <div className="assigned-doctor-info-left">
                       <div className="assigned-doctor-text">
-                        <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '600', color: '#000000' }}>{member.name}</p>
-                        <p className="assigned-doctor-specialty" style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#3B3B3B' }}>{member.role}</p>
+                        <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>{member.name}</p>
+                        <p className="assigned-doctor-specialty" style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#555555' }}>{member.role}</p>
                       </div>
                     </div>
                     {member.badge === 'Primary' && (
                       <span className="assigned-doctor-badge" style={{
-                        border: '0.5px solid #5cb85c',
-                        color: '#5cb85c',
+                        border: '0.5px solid #CCA266',color: '#000000',
                         background: 'transparent'
                       }}>
                         {member.badge}
@@ -269,7 +268,7 @@ export default function IPPatientPage({ onBack }) {
             <div className="ip-vitals-timestamp">
               <div className="ip-live-indicator" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span className="ip-live-dot"></span>
-                <span style={{ fontSize: '11px', fontWeight: '700', color: '#FF4D4D', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Live</span>
+                <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Live</span>
               </div>
               <span className="ip-vitals-time">Last updated: Today, 2:15 PM</span>
             </div>
@@ -331,25 +330,25 @@ export default function IPPatientPage({ onBack }) {
             {/* Key Metrics Overview */}
             <div style={{ display: 'flex', gap: '12px' }}>
               <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: 'none' }}>
-                <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Amount Paid</span>
-                <span style={{ fontSize: '18px', fontWeight: '700', color: '#2C1810' }}>₹1,000.00</span>
+                <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Amount Paid</span>
+                <span style={{ fontSize: '18px', fontWeight: '500', color: '#000000' }}>₹1,000.00</span>
               </div>
               <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: 'none' }}>
-                <span style={{ fontSize: '12px', color: '#666666', fontWeight: '500' }}>Balance To Pay</span>
-                <span style={{ fontSize: '18px', fontWeight: '700', color: '#D92D20' }}>₹2,600.00</span>
+                <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Balance To Pay</span>
+                <span style={{ fontSize: '18px', fontWeight: '500',color: '#000000' }}>₹2,600.00</span>
               </div>
             </div>
 
             {/* Section Header Title */}
             <div style={{ margin: '4px 0 -2px 0' }}>
-              <p style={{ margin: 0, fontSize: '15px', fontWeight: '700', color: '#2C1810', letterSpacing: '-0.2px' }}>
+              <p style={{ margin: 0, fontSize: '15px', fontWeight: '500', color: '#000000', letterSpacing: '-0.2px' }}>
                 Transaction History
               </p>
             </div>
 
             {/* 1. Consultation Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '500',color: '#000000' }}>
                 Consultation
               </p>
               
@@ -374,19 +373,19 @@ export default function IPPatientPage({ onBack }) {
                 </div>
                 <div className="ip-bill-txn-right">
                   <span className="ip-bill-amount">₹500.00</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
-                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹500.00</span>
+                <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555' }}>Sub Total</span>
+                <span style={{ fontSize: '15px', fontWeight: '500',color: '#000000' }}>₹500.00</span>
               </div>
             </div>
 
             {/* 2. Investigation Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '500',color: '#000000' }}>
                 Investigation &amp; Diagnostics
               </p>
               
@@ -412,19 +411,19 @@ export default function IPPatientPage({ onBack }) {
                 </div>
                 <div className="ip-bill-txn-right">
                   <span className="ip-bill-amount">₹1,500.00</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
-                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹1,500.00</span>
+                <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555' }}>Sub Total</span>
+                <span style={{ fontSize: '15px', fontWeight: '500',color: '#000000' }}>₹1,500.00</span>
               </div>
             </div>
 
             {/* 3. Pharmacy & Consumables Card - Multi-Date Transactions */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '500',color: '#000000' }}>
                 Pharmacy &amp; Consumables
               </p>
               
@@ -449,7 +448,7 @@ export default function IPPatientPage({ onBack }) {
                 </div>
                 <div className="ip-bill-txn-right">
                   <span className="ip-bill-amount">₹420.00</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </div>
               </div>
 
@@ -474,19 +473,19 @@ export default function IPPatientPage({ onBack }) {
                 </div>
                 <div className="ip-bill-txn-right">
                   <span className="ip-bill-amount">₹180.00</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
-                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹600.00</span>
+                <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555' }}>Sub Total</span>
+                <span style={{ fontSize: '15px', fontWeight: '500',color: '#000000' }}>₹600.00</span>
               </div>
             </div>
 
             {/* 4. Room & Ward Charges Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+              <p style={{ margin: 0, fontSize: '14px', fontWeight: '500',color: '#000000' }}>
                 Room &amp; Ward Charges
               </p>
               
@@ -510,88 +509,88 @@ export default function IPPatientPage({ onBack }) {
                 </div>
                 <div className="ip-bill-txn-right">
                   <span className="ip-bill-amount">₹1,000.00</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px' }}>
-                <span style={{ fontSize: '13px', fontWeight: '700', color: '#5A3E2B' }}>Sub Total</span>
-                <span style={{ fontSize: '15px', fontWeight: '700', color: '#90644B' }}>₹1,000.00</span>
+                <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555' }}>Sub Total</span>
+                <span style={{ fontSize: '15px', fontWeight: '500',color: '#000000' }}>₹1,000.00</span>
               </div>
             </div>
 
             {/* 4. CHARGES Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14 2 14 8 20 8"/>
                 </svg>
-                <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+                <p style={{ margin: 0, fontSize: '14px', fontWeight: '500',color: '#000000' }}>
                   Charges
                 </p>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Subtotal</span>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹3,600.00</span>
+                  <span style={{ fontSize: '14px', color: '#000000' }}>Subtotal</span>
+                  <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>₹3,600.00</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Discount</span>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                  <span style={{ fontSize: '14px', color: '#000000' }}>Discount</span>
+                  <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>₹0.00</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Tax amount</span>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                  <span style={{ fontSize: '14px', color: '#000000' }}>Tax amount</span>
+                  <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>₹0.00</span>
                 </div>
               </div>
 
-              <hr style={{ border: 'none', borderBottom: '1px dashed #E5E7EB', margin: '4px 0' }} />
+              <hr style={{ border: 'none', borderBottom: '1px dashed #F2F4F7', margin: '4px 0' }} />
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '15px', fontWeight: '700', color: '#2C1810' }}>Net payable</span>
-                <span style={{ fontSize: '16px', fontWeight: '800', color: '#90644B' }}>₹3,600.00</span>
+                <span style={{ fontSize: '15px', fontWeight: '500', color: '#000000' }}>Net payable</span>
+                <span style={{ fontSize: '16px', fontWeight: '500',color: '#000000' }}>₹3,600.00</span>
               </div>
             </div>
 
             {/* 5. PAYMENTS Card */}
             <div className="ip-card" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#90644B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="5" width="20" height="14" rx="2"/>
                   <line x1="2" y1="10" x2="22" y2="10"/>
                 </svg>
-                <p style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#90644B' }}>
+                <p style={{ margin: 0, fontSize: '14px', fontWeight: '500',color: '#000000' }}>
                   Payments
                 </p>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Amount paid</span>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹1,000.00</span>
+                  <span style={{ fontSize: '14px', color: '#000000' }}>Amount paid</span>
+                  <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>₹1,000.00</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Advance collected</span>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                  <span style={{ fontSize: '14px', color: '#000000' }}>Advance collected</span>
+                  <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>₹0.00</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '14px', color: '#5A3E2B' }}>Balance in advance</span>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#000000' }}>₹0.00</span>
+                  <span style={{ fontSize: '14px', color: '#000000' }}>Balance in advance</span>
+                  <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>₹0.00</span>
                 </div>
               </div>
 
-              <hr style={{ border: 'none', borderBottom: '1px dashed #E5E7EB', margin: '4px 0' }} />
+              <hr style={{ border: 'none', borderBottom: '1px dashed #F2F4F7', margin: '4px 0' }} />
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '15px', fontWeight: '700', color: '#2C1810' }}>Balance to pay</span>
-                <span style={{ fontSize: '16px', fontWeight: '800', color: '#D92D20' }}>₹2,600.00</span>
+                <span style={{ fontSize: '15px', fontWeight: '500', color: '#000000' }}>Balance to pay</span>
+                <span style={{ fontSize: '16px', fontWeight: '500',color: '#000000' }}>₹2,600.00</span>
               </div>
             </div>
 
             {/* Primary Action Button */}
-            <button className="ip-pay-btn" style={{ background: '#90644b', color: '#ffffff', borderRadius: '16px', padding: '16px', fontSize: '15px', fontWeight: '600', border: 'none', cursor: 'pointer' }}>
+            <button className="ip-pay-btn" style={{ background: '#CCA266', color: '#FFFFFF', borderRadius: '16px', padding: '16px', fontSize: '15px', fontWeight: '500', border: 'none', cursor: 'pointer' }}>
               Pay Balance ₹2,600.00
             </button>
           </>

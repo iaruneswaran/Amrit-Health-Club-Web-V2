@@ -4,7 +4,7 @@
 <path d="M24 0H0V24H24V0Z" fill="white"/>
 </mask>
 <g mask="url(#mask0_459_743)">
-<path d="M9 6L15 12L9 18" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9 6L15 12L9 18" stroke="#CCA266" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 <defs>

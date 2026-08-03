@@ -86,23 +86,23 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
       >
         {/* Top Drag Bar */}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-          <div style={{ width: '40px', height: '4px', borderRadius: '2px', backgroundColor: '#E5E7EB' }} />
+          <div style={{ width: '40px', height: '4px', borderRadius: '2px', backgroundColor: '#F2F4F7' }} />
         </div>
 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
           <div>
-            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', margin: 0 }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '500', color: '#000000', margin: 0 }}>
               Upload Lab Report
             </h3>
-            <p style={{ fontSize: '12px', color: '#6B7280', margin: '2px 0 0 0' }}>
+            <p style={{ fontSize: '12px', color: '#555555', margin: '2px 0 0 0' }}>
               Upload PDF or image files (CBC, Lipid, Thyroid, Pathology)
             </p>
           </div>
           <button 
             onClick={onClose}
             style={{
-              background: '#F3F4F6',
+              background: '#F2F4F7',
               border: 'none',
               borderRadius: '50%',
               width: '32px',
@@ -112,7 +112,7 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '18px',
-              color: '#4B5563'
+              color: '#000000'
             }}
           >
             &times;
@@ -127,10 +127,10 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              border: '2px dashed #D1D5DB',
+              border: '2px dashed #F2F4F7',
               borderRadius: '16px',
               padding: '28px 16px',
-              backgroundColor: '#F9FAFB',
+              backgroundColor: '#FFFFFF',
               cursor: 'pointer',
               transition: 'border-color 0.2s',
               marginBottom: '16px'
@@ -141,15 +141,15 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
                 onChange={handleFileSelect}
                 style={{ display: 'none' }}
               />
-              <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#F3EFEA', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '10px' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#90644b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '10px' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                   <polyline points="17 8 12 3 7 8"/>
                   <line x1="12" y1="3" x2="12" y2="15"/>
                 </svg>
               </div>
-              <span style={{ fontSize: '14px', fontWeight: '600', color: '#111827' }}>Click to browse file</span>
-              <span style={{ fontSize: '12px', color: '#6B7280', marginTop: '4px' }}>Supports PDF, PNG, JPG (Max 25MB)</span>
+              <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>Click to browse file</span>
+              <span style={{ fontSize: '12px', color: '#555555', marginTop: '4px' }}>Supports PDF, PNG, JPG (Max 25MB)</span>
             </label>
 
             {/* Quick Demo Upload Button */}
@@ -159,13 +159,13 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
                 width: '100%',
                 height: '46px',
                 borderRadius: '23px',
-                backgroundColor: '#90644b',
+                backgroundColor: '#CCA266',
                 color: '#FFFFFF',
-                fontWeight: '600',
+                fontWeight: '500',
                 fontSize: '14px',
                 border: 'none',
                 cursor: 'pointer',
-                boxShadow: '0 4px 12px rgba(144, 100, 75, 0.2)'
+                boxShadow: '0 4px 12px rgba(204, 162, 102, 0.2)'
               }}
             >
               Upload Sample Lab Report
@@ -173,8 +173,8 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
           </div>
         ) : (
           <div style={{ padding: '20px 0', textAlign: 'center' }}>
-            <div style={{ width: '60px', height: '60px', borderRadius: '50%', backgroundColor: '#F3EFEA', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#90644b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div style={{ width: '60px', height: '60px', borderRadius: '50%', backgroundColor: '#FFFFFF', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="2" x2="12" y2="6"/>
                 <line x1="12" y1="18" x2="12" y2="22"/>
                 <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
@@ -185,15 +185,15 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
                 <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
               </svg>
             </div>
-            <h4 style={{ fontSize: '15px', fontWeight: '600', color: '#111827', margin: '0 0 6px 0' }}>
+            <h4 style={{ fontSize: '15px', fontWeight: '500', color: '#000000', margin: '0 0 6px 0' }}>
               {statusMessage}
             </h4>
 
             {/* Progress Bar */}
-            <div style={{ width: '100%', height: '8px', borderRadius: '4px', backgroundColor: '#F3F4F6', overflow: 'hidden', margin: '14px 0 8px 0' }}>
-              <div style={{ width: `${uploadProgress}%`, height: '100%', backgroundColor: '#90644b', borderRadius: '4px', transition: 'width 0.4s ease' }} />
+            <div style={{ width: '100%', height: '8px', borderRadius: '4px', backgroundColor: '#F2F4F7', overflow: 'hidden', margin: '14px 0 8px 0' }}>
+              <div style={{ width: `${uploadProgress}%`, height: '100%', backgroundColor: '#CCA266', borderRadius: '4px', transition: 'width 0.4s ease' }} />
             </div>
-            <span style={{ fontSize: '12px', color: '#6B7280', fontWeight: '500' }}>{uploadProgress}% completed</span>
+            <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>{uploadProgress}% completed</span>
           </div>
         )}
       </div>

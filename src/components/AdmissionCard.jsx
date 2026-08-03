@@ -25,16 +25,16 @@ export default function AdmissionCard({ onCardClick }) {
           <div className="admission-avatar-placeholder">RG</div>
           <div className="admission-header-doctor-info">
             <h4 className="admission-header-doctor-name">Ryan Gosling</h4>
-            <p className="admission-header-doctor-specialty">Male, 36 • ID: AHC-9824</p>
+            <p className="admission-header-doctor-specialty" style={{ color: "#555555" }}>Male, 36 • ID: AHC-9824</p>
           </div>
         </div>
         {/* Admission Reason card */}
         <div className="admission-reason-box">
           <div className="admission-reason-header">
             <img src={reasonIcon} alt="" aria-hidden="true" className="admission-reason-icon" />
-            <span className="admission-reason-title">Admission Reason</span>
+            <span className="admission-reason-title" style={{ color: "#555555" }}>Admission Reason</span>
           </div>
-          <p className="admission-reason-text">
+          <p className="admission-reason-text" style={{ color: "#000000" }}>
             High fever (101.5°F) with severe body aches & chills since yesterday
           </p>
         </div>

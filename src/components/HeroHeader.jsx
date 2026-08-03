@@ -72,14 +72,14 @@ export default function HeroHeader() {
                 <span className="dropdown-item-label">{p.label}</span>
               </div>
             ))}
-            <div className="profile-dropdown-divider" style={{ borderTop: '1px dashed #E5E7EB', margin: '4px 0' }} />
+            <div className="profile-dropdown-divider" style={{ borderTop: '1px dashed #F2F4F7', margin: '4px 0' }} />
             <div
               className="profile-dropdown-item"
               onClick={() => {
                 localStorage.clear()
                 window.location.reload()
               }}
-              style={{ color: '#B08060' }}
+              style={{ color: '#000000' }}
             >
               <div className="dropdown-item-badge" style={{ backgroundColor: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img src={logoutIcon} alt="Logout" style={{ width: '18px', height: '18px' }} />

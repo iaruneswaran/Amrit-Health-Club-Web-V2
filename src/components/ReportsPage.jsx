@@ -69,12 +69,12 @@ export default function ReportsPage() {
           top: '24px',
           left: '50%',
           transform: 'translateX(-50%)',
-          backgroundColor: '#10B981',
+          backgroundColor: '#CCA266',
           color: '#FFFFFF',
           padding: '12px 20px',
           borderRadius: '24px',
           fontSize: '14px',
-          fontWeight: '600',
+          fontWeight: '500',
           boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
           zIndex: 1200,
           animation: 'fadeIn 0.2s ease'
@@ -83,7 +83,7 @@ export default function ReportsPage() {
         </div>
       )}
 
-      <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#000000', marginTop: '10px' }}>My Reports</h2>
+      <h2 style={{ fontSize: '20px', fontWeight: '500', color: '#000000', marginTop: '10px' }}>My Reports</h2>
       
       {/* Top Grid */}
       <div className="reports-grid">

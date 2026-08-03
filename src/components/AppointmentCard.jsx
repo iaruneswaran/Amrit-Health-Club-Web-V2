@@ -4,8 +4,8 @@ import appointmentBg from '../assets/Consultation.jpg';
 function PersonIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="7" r="4" stroke="#999" strokeWidth="1.8"/>
-      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#999" strokeWidth="1.8" strokeLinecap="round"/>
+      <circle cx="12" cy="7" r="4" stroke="#CCA266" strokeWidth="1.8"/>
+      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#CCA266" strokeWidth="1.8" strokeLinecap="round"/>
     </svg>
   )
 }
