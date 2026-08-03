@@ -232,8 +232,6 @@ body,
   background: rgba(204, 162, 102, 0.08);
 }.profile-dropdown-item.active {
   background: rgba(204, 162, 102, 0.12);
-  border-left: 3px solid #CCA266;
-  padding-left: 7px;
 }.dropdown-item-badge {
   width: 28px;
   height: 28px;
@@ -1356,7 +1354,7 @@ body,
   width: auto;
   object-fit: contain;
   display: block;
-  
+  filter: brightness(0) invert(1);
 }.onboarding-skip-btn {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1384,7 +1382,7 @@ body,
   gap: 28px;
   z-index: 10;
 }.onboarding-title {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   font-family: 'Nexa', 'Inter', sans-serif;
   font-size: 38px;
   font-weight: 500;
@@ -1456,7 +1454,7 @@ body,
   width: 16px;
   height: 16px;
   display: block;
-  
+  filter: brightness(0) invert(1);
 }/* Animations */
 @keyframes fadeInBg {
   from {
