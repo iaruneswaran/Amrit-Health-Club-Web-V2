@@ -245,18 +245,22 @@ export default function AIPage({ onBack }) {
 
           <div className="prev-convos-section">
             <div className="convo-list">
-              <div className="convo-item active">
-                <p className="convo-name">High Fever Assessment</p>
-              </div>
-              <div className="convo-item">
-                <p className="convo-name">General Health Inquiry</p>
-              </div>
-              <div className="convo-item">
-                <p className="convo-name">Body Ache &amp; Fatigue</p>
-              </div>
-              <div className="convo-item">
-                <p className="convo-name">Pulse Score Guidance</p>
-              </div>
+              {[
+                { name: 'High Fever Assessment', date: 'Today, 9:30 AM', active: true },
+                { name: 'General Health Inquiry', date: 'Yesterday', active: false },
+                { name: 'Body Ache & Fatigue', date: '3 Jul 2026', active: false },
+                { name: 'Pulse Score Guidance', date: '1 Jul 2026', active: false },
+              ].map((item, idx) => (
+                <div key={idx} className={`convo-item ${item.active ? 'active' : ''}`} onClick={() => setShowMenu(false)}>
+                  <div>
+                    <p className="convo-name" style={{ margin: 0 }}>{item.name}</p>
+                    <span className="convo-date">{item.date}</span>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              ))}
             </div>
           </div>
         </div>
