@@ -15,7 +15,7 @@ export default function ReportsPage() {
   const [documents, setDocuments] = useState([
     {
       id: 1,
-      name: 'Sterling-Accuris-Pathology-Sampl',
+      name: 'Sterling-Accuris-Pathology-Sample',
       time: 'Just now',
       size: '6.59 MB',
       badge: '2 Issues',
@@ -23,28 +23,71 @@ export default function ReportsPage() {
     },
     {
       id: 2,
-      name: 'Sterling-Accuris-Pathology-Sampl',
-      time: 'Just now',
-      size: '6.59 MB',
+      name: 'Complete-Blood-Count-CBC-Report',
+      time: '2 hours ago',
+      size: '3.24 MB',
       badge: '2 Issues',
       status: 'issues',
     },
     {
       id: 3,
-      name: 'Sterling-Accuris-Pathology-Sampl',
-      time: 'Just now',
-      size: '6.59 MB',
+      name: 'Comprehensive-Metabolic-Panel-Report',
+      time: '4 hours ago',
+      size: '4.12 MB',
       badge: 'Normal',
       status: 'normal',
     },
   ]);
 
-  const [yesterdayDocuments] = useState([
+  const [yesterdayDocuments, setYesterdayDocuments] = useState([
     {
       id: 4,
-      name: 'Sterling-Accuris-Pathology-Sampl',
-      time: 'Just now',
-      size: '6.59 MB',
+      name: 'Lipid-Profile-Panels-2026',
+      time: 'Yesterday, 5:30 PM',
+      size: '2.85 MB',
+      badge: 'Normal',
+      status: 'normal',
+    },
+    {
+      id: 5,
+      name: 'Thyroid-Function-Test-TSH-Panel',
+      time: 'Yesterday, 11:20 AM',
+      size: '1.95 MB',
+      badge: '1 Issue',
+      status: 'issues',
+    },
+  ]);
+
+  const [earlierDocuments, setEarlierDocuments] = useState([
+    {
+      id: 6,
+      name: 'HbA1c-Glycated-Hemoglobin-Analysis',
+      time: 'Jul 28, 2026',
+      size: '5.10 MB',
+      badge: 'Normal',
+      status: 'normal',
+    },
+    {
+      id: 7,
+      name: 'Renal-Function-KFT-Diagnostic-Report',
+      time: 'Jul 25, 2026',
+      size: '4.30 MB',
+      badge: 'Normal',
+      status: 'normal',
+    },
+    {
+      id: 8,
+      name: 'Vitamin-D3-B12-Assay-Report',
+      time: 'Jul 20, 2026',
+      size: '2.10 MB',
+      badge: '1 Issue',
+      status: 'issues',
+    },
+    {
+      id: 9,
+      name: 'Chest-XRay-Radiology-Scan',
+      time: 'Jul 15, 2026',
+      size: '8.75 MB',
       badge: 'Normal',
       status: 'normal',
     },
@@ -58,7 +101,7 @@ export default function ReportsPage() {
     }, 3000);
   };
 
-  const totalCount = documents.length + yesterdayDocuments.length;
+  const totalCount = documents.length + yesterdayDocuments.length + earlierDocuments.length;
 
   return (
     <div className="reports-page">
@@ -153,9 +196,46 @@ export default function ReportsPage() {
       </div>
 
       {/* Yesterday Section */}
-      <div className="section-group">
+      <div className="section-group" style={{ marginBottom: '20px' }}>
         <p className="section-title">Yesterday</p>
         {yesterdayDocuments.map((doc) => (
+          <div 
+            className="report-doc-card" 
+            key={doc.id}
+            onClick={() => setSelectedDoc(doc)}
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="report-doc-left">
+              <div className="report-icon-wrapper">
+                <img src={documentIcon} alt="Document" className="report-summary-icon" />
+              </div>
+              <div className="report-doc-details">
+                <p className="report-doc-name" title={doc.name}>{doc.name}</p>
+                <p className="report-doc-meta">{doc.time} &bull; {doc.size}</p>
+                <div className="report-doc-badge-row">
+                  <span className={`report-badge ${doc.status}`}>{doc.badge}</span>
+                </div>
+              </div>
+            </div>
+            <button 
+              className="report-doc-action-btn" 
+              type="button" 
+              aria-label="More options" 
+              onClick={(e) => {
+                e.stopPropagation();
+                setActionMenuDoc(doc);
+              }}
+            >
+              <img src={menuIcon} alt="More options" className="report-menu-icon" />
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Earlier Section */}
+      <div className="section-group">
+        <p className="section-title">Earlier</p>
+        {earlierDocuments.map((doc) => (
           <div 
             className="report-doc-card" 
             key={doc.id}
