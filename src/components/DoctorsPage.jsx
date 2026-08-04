@@ -75,6 +75,36 @@ export default function DoctorsPage({ onBack, onBookNow }) {
   const [currentLocation, setCurrentLocation] = useState('UL Cyber Park, Kozhikode');
   const [isDetecting, setIsDetecting] = useState(false);
 
+  // Filter States
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [selectedSpecialty, setSelectedSpecialty] = useState('All');
+  const [selectedHospital, setSelectedHospital] = useState('All');
+  const [preferredOnly, setPreferredOnly] = useState(false);
+  const [sortBy, setSortBy] = useState('default');
+
+  // Draft States for Modal
+  const [draftSpecialty, setDraftSpecialty] = useState('All');
+  const [draftHospital, setDraftHospital] = useState('All');
+  const [draftPreferredOnly, setDraftPreferredOnly] = useState(false);
+  const [draftSortBy, setDraftSortBy] = useState('default');
+
+  const specialties = [
+    'All',
+    'Cardiology',
+    'General Physician',
+    'Dermatology',
+    'Orthopedic',
+    'Pediatrician',
+    'Neurology'
+  ];
+
+  const hospitals = [
+    'All',
+    "St. Mary's Medical",
+    'Aster MIMS',
+    'Baby Memorial'
+  ];
+
   const handleLocationChange = () => {
     setIsDetecting(true);
     setTimeout(() => {
@@ -83,11 +113,66 @@ export default function DoctorsPage({ onBack, onBookNow }) {
     }, 2000);
   };
 
-  const filteredDoctors = doctorsList.filter(doctor => 
-    doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    doctor.specialty.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    doctor.address.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const openFilterModal = () => {
+    setDraftSpecialty(selectedSpecialty);
+    setDraftHospital(selectedHospital);
+    setDraftPreferredOnly(preferredOnly);
+    setDraftSortBy(sortBy);
+    setShowFilterModal(true);
+  };
+
+  const handleApplyFilters = () => {
+    setSelectedSpecialty(draftSpecialty);
+    setSelectedHospital(draftHospital);
+    setPreferredOnly(draftPreferredOnly);
+    setSortBy(draftSortBy);
+    setShowFilterModal(false);
+  };
+
+  const handleResetFilters = () => {
+    setDraftSpecialty('All');
+    setDraftHospital('All');
+    setDraftPreferredOnly(false);
+    setDraftSortBy('default');
+  };
+
+  const activeFilterCount = 
+    (selectedSpecialty !== 'All' ? 1 : 0) +
+    (selectedHospital !== 'All' ? 1 : 0) +
+    (preferredOnly ? 1 : 0) +
+    (sortBy !== 'default' ? 1 : 0);
+
+  const filteredDoctors = doctorsList.filter(doctor => {
+    const matchesSearch = 
+      doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      doctor.specialty.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      doctor.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (doctor.hospitalName && doctor.hospitalName.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    const matchesSpecialty = 
+      selectedSpecialty === 'All' || 
+      doctor.specialty.toLowerCase().includes(selectedSpecialty.toLowerCase());
+
+    const matchesHospital = 
+      selectedHospital === 'All' || 
+      (doctor.hospitalName && doctor.hospitalName.toLowerCase().includes(selectedHospital.toLowerCase()));
+
+    const matchesPreferred = !preferredOnly || doctor.isPreferred;
+
+    return matchesSearch && matchesSpecialty && matchesHospital && matchesPreferred;
+  }).sort((a, b) => {
+    if (sortBy === 'fee-asc') {
+      const feeA = parseInt(a.fee.replace(/[^\d]/g, ''), 10) || 0;
+      const feeB = parseInt(b.fee.replace(/[^\d]/g, ''), 10) || 0;
+      return feeA - feeB;
+    }
+    if (sortBy === 'fee-desc') {
+      const feeA = parseInt(a.fee.replace(/[^\d]/g, ''), 10) || 0;
+      const feeB = parseInt(b.fee.replace(/[^\d]/g, ''), 10) || 0;
+      return feeB - feeA;
+    }
+    return 0;
+  });
 
   if (isDetecting) {
     return (
@@ -148,8 +233,14 @@ export default function DoctorsPage({ onBack, onBookNow }) {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <button className="doctors-filter-btn" type="button" aria-label="Filter doctors">
+          <button 
+            className={`doctors-filter-btn ${activeFilterCount > 0 ? 'active' : ''}`} 
+            type="button" 
+            aria-label="Filter doctors"
+            onClick={openFilterModal}
+          >
             <img src={filterIcon} alt="" aria-hidden="true" className="filter-icon" />
+            {activeFilterCount > 0 && <span className="filter-badge">{activeFilterCount}</span>}
           </button>
         </div>
       </header>
@@ -178,7 +269,7 @@ export default function DoctorsPage({ onBack, onBookNow }) {
                     <span className="doctor-hospital-name">{doctor.hospitalName}</span>
                   </div>
                   {doctor.isPreferred && (
-                    <span className="badge-preferred-inline">Prefered</span>
+                    <span className="badge-preferred-inline">Preferred</span>
                   )}
                 </div>
               )}
@@ -204,11 +295,117 @@ export default function DoctorsPage({ onBack, onBookNow }) {
 
           {filteredDoctors.length === 0 && (
             <div style={{ textAlign: 'center', padding: '30px 10px', color: '#000000', fontSize: '15px' }}>
-              No doctors match your search.
+              No doctors match your filters or search.
             </div>
           )}
         </div>
       </main>
+
+      {/* FILTER MODAL */}
+      {showFilterModal && (
+        <div className="filter-modal-overlay" onClick={() => setShowFilterModal(false)}>
+          <div className="filter-modal-sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="filter-modal-header">
+              <div className="filter-modal-title-wrap">
+                <h3 className="filter-modal-title">Filter Doctors</h3>
+              </div>
+              <div className="filter-header-actions">
+                <button type="button" className="filter-reset-btn" onClick={handleResetFilters}>
+                  Reset
+                </button>
+                <button 
+                  className="clinic-modal-close" 
+                  onClick={() => setShowFilterModal(false)} 
+                  type="button" 
+                  aria-label="Close filter"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <div className="filter-modal-body">
+              {/* Specialty Section */}
+              <div className="filter-section">
+                <h4 className="filter-section-title">Specialty</h4>
+                <div className="filter-chips-wrap">
+                  {specialties.map(spec => (
+                    <button
+                      key={spec}
+                      type="button"
+                      className={`filter-chip ${draftSpecialty === spec ? 'active' : ''}`}
+                      onClick={() => setDraftSpecialty(spec)}
+                    >
+                      {spec}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Hospital Section */}
+              <div className="filter-section">
+                <h4 className="filter-section-title">Hospital</h4>
+                <div className="filter-chips-wrap">
+                  {hospitals.map(hosp => (
+                    <button
+                      key={hosp}
+                      type="button"
+                      className={`filter-chip ${draftHospital === hosp ? 'active' : ''}`}
+                      onClick={() => setDraftHospital(hosp)}
+                    >
+                      {hosp}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Preferred Only Toggle */}
+              <div className="filter-section">
+                <div className="filter-toggle-row" onClick={() => setDraftPreferredOnly(!draftPreferredOnly)}>
+                  <span className="filter-toggle-label">Preferred Doctors Only</span>
+                  <div className={`filter-toggle-switch ${draftPreferredOnly ? 'active' : ''}`}>
+                    <div className="filter-toggle-dot"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sort By Section */}
+              <div className="filter-section">
+                <h4 className="filter-section-title">Sort By Consultation Fee</h4>
+                <div className="filter-chips-wrap">
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftSortBy === 'default' ? 'active' : ''}`}
+                    onClick={() => setDraftSortBy('default')}
+                  >
+                    Default
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftSortBy === 'fee-asc' ? 'active' : ''}`}
+                    onClick={() => setDraftSortBy('fee-asc')}
+                  >
+                    Fee: Low to High
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftSortBy === 'fee-desc' ? 'active' : ''}`}
+                    onClick={() => setDraftSortBy('fee-desc')}
+                  >
+                    Fee: High to Low
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="filter-modal-footer">
+              <button type="button" className="filter-apply-btn" onClick={handleApplyFilters}>
+                Apply Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

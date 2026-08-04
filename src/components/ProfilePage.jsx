@@ -8,50 +8,58 @@ import mobileIcon from '../assets/Mobile Number.svg';
 import logoutItemIcon from '../assets/Log Out.svg';
 import deleteIcon from '../assets/Delete Account.svg';
 
-export default function ProfilePage() {
+const ChevronRight = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="9 18 15 12 9 6" />
+  </svg>
+);
+
+export default function ProfilePage({ onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedInitials, setSelectedInitials] = useState(() => {
-    return localStorage.getItem('selected_profile_initials') || 'RG';
-  });
+  const [selectedInitials, setSelectedInitials] = useState(() =>
+    localStorage.getItem('selected_profile_initials') || 'RG'
+  );
 
   useEffect(() => {
-    const handleProfileChange = () => {
-      setSelectedInitials(localStorage.getItem('selected_profile_initials') || 'RG');
-    };
-    window.addEventListener('profile-changed', handleProfileChange);
-    return () => {
-      window.removeEventListener('profile-changed', handleProfileChange);
-    };
+    const handler = () => setSelectedInitials(localStorage.getItem('selected_profile_initials') || 'RG');
+    window.addEventListener('profile-changed', handler);
+    return () => window.removeEventListener('profile-changed', handler);
   }, []);
 
   const profiles = [
     { initials: 'RG', label: 'Ryan Gosling', phone: '+91 9876543210' },
     { initials: 'RR', label: 'Ryan Reynolds', phone: '+91 9876543210' },
   ];
+  const activeProfile = profiles.find(p => p.initials === selectedInitials) || profiles[0];
 
-  const activeProfile = profiles.find((p) => p.initials === selectedInitials) || profiles[0];
+  const handleLogout = () => onNavigate('logout');
+  const handleDeleteAccount = () => onNavigate('deleteAccount');
 
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
-
-  const handleDeleteAccount = () => {
-    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-      localStorage.clear();
-      window.location.reload();
-    }
-  };
+  const listItem = (icon, alt, label, onClick, danger = false) => (
+    <div
+      className="profile-list-item"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => e.key === 'Enter' && onClick()}
+      style={{ cursor: 'pointer' }}
+    >
+      <div className="profile-list-item-left">
+        <div className="profile-list-icon-wrapper">
+          <img src={icon} alt={alt} className="profile-list-icon" style={danger ? { filter: 'brightness(0) saturate(100%) invert(21%) sepia(97%) saturate(1500%) hue-rotate(340deg)' } : {}} />
+        </div>
+        <span className="profile-list-label" style={danger ? { color: '#E53935' } : {}}>{label}</span>
+      </div>
+      <ChevronRight />
+    </div>
+  );
 
   return (
     <div className="profile-page">
+
       {/* Header Image */}
       <div className="profile-header-image-wrap">
-        <img
-          src={profileHeaderImg}
-          alt="Profile Header"
-          className="profile-header-image"
-        />
+        <img src={profileHeaderImg} alt="Profile Header" className="profile-header-image" />
       </div>
 
       {/* User Info Card */}
@@ -68,14 +76,11 @@ export default function ProfilePage() {
           </div>
 
           {isOpen && (
-            <div
-              className="dropdown-overlay"
-              onClick={() => setIsOpen(false)}
-            />
+            <div className="dropdown-overlay" onClick={() => setIsOpen(false)} />
           )}
 
           <div className={`profile-dropdown ${isOpen ? 'open' : ''}`} style={{ top: '100%', left: 0, right: 'auto', marginTop: '8px' }}>
-            {profiles.map((p) => (
+            {profiles.map(p => (
               <div
                 key={p.initials}
                 className={`profile-dropdown-item ${selectedInitials === p.initials ? 'active' : ''}`}
@@ -97,7 +102,8 @@ export default function ProfilePage() {
           <span className="profile-user-name">{activeProfile.label}</span>
           <span className="profile-user-phone">{activeProfile.phone}</span>
         </div>
-        <button className="profile-edit-btn" type="button">
+
+        <button className="profile-edit-btn" type="button" onClick={() => onNavigate('editProfile', activeProfile)}>
           <img src={editIcon} alt="Edit" className="profile-edit-icon" />
           Edit Profile
         </button>
@@ -128,53 +134,10 @@ export default function ProfilePage() {
       <div className="profile-section-card">
         <h3 className="profile-section-title">Preferences</h3>
         <div className="profile-list">
-          <div className="profile-list-item">
-            <div className="profile-list-item-left">
-              <div className="profile-list-icon-wrapper">
-                <img src={paymentIcon} alt="Payment Methods" className="profile-list-icon" />
-              </div>
-              <span className="profile-list-label">Payment Methods</span>
-            </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </div>
-
-          <div className="profile-list-item">
-            <div className="profile-list-item-left">
-              <div className="profile-list-icon-wrapper">
-                <img src={addressIcon} alt="Address" className="profile-list-icon" />
-              </div>
-              <span className="profile-list-label">Address</span>
-            </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </div>
-
-          <div className="profile-list-item">
-            <div className="profile-list-item-left">
-              <div className="profile-list-icon-wrapper">
-                <img src={languageIcon} alt="Language" className="profile-list-icon" />
-              </div>
-              <span className="profile-list-label">Language</span>
-            </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </div>
-
-          <div className="profile-list-item">
-            <div className="profile-list-item-left">
-              <div className="profile-list-icon-wrapper">
-                <img src={mobileIcon} alt="Mobile Number" className="profile-list-icon" />
-              </div>
-              <span className="profile-list-label">Mobile Number</span>
-            </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </div>
+          {listItem(paymentIcon, 'Payment Methods', 'Payment Methods', () => onNavigate('payment'))}
+          {listItem(addressIcon, 'Address', 'Address', () => onNavigate('address'))}
+          {listItem(languageIcon, 'Language', 'Language', () => onNavigate('language'))}
+          {listItem(mobileIcon, 'Mobile Number', 'Mobile Number', () => onNavigate('mobile'))}
         </div>
       </div>
 
@@ -182,29 +145,8 @@ export default function ProfilePage() {
       <div className="profile-section-card">
         <h3 className="profile-section-title">Account Settings</h3>
         <div className="profile-list">
-          <div className="profile-list-item" onClick={handleLogout} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleLogout()}>
-            <div className="profile-list-item-left">
-              <div className="profile-list-icon-wrapper">
-                <img src={logoutItemIcon} alt="Log Out" className="profile-list-icon" />
-              </div>
-              <span className="profile-list-label">Log Out</span>
-            </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </div>
-
-          <div className="profile-list-item" onClick={handleDeleteAccount} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleDeleteAccount()}>
-            <div className="profile-list-item-left">
-              <div className="profile-list-icon-wrapper">
-                <img src={deleteIcon} alt="Delete Account" className="profile-list-icon" />
-              </div>
-              <span className="profile-list-label">Delete Account</span>
-            </div>
-            <svg className="profile-chevron-right" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </div>
+          {listItem(logoutItemIcon, 'Log Out', 'Log Out', handleLogout)}
+          {listItem(deleteIcon, 'Delete Account', 'Delete Account', handleDeleteAccount, true)}
         </div>
       </div>
     </div>

@@ -70,10 +70,10 @@ export default function TransactionBillModal({ transaction, onClose }) {
           <h2 style={{ margin: 0, fontSize: '18px', fontWeight: '500',color: '#000000', letterSpacing: '-0.3px' }}>
             ST. MARY'S MEDICAL CENTER
           </h2>
-          <p style={{ margin: '2px 0 0 0', fontSize: '11px', fontWeight: '500', color: '#555555' }}>
+          <p style={{ margin: '2px 0 0 0', fontSize: '13px', fontWeight: '500', color: '#555555' }}>
             NABH &amp; ISO 9001:2015 Accredited Multi-Specialty Hospital
           </p>
-          <p style={{ margin: '2px 0 0 0', fontSize: '11px', color: '#555555' }}>
+          <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: '#555555' }}>
             124 Healthcare Blvd · GSTIN: 33AAAAA0000A1Z5 · Ph: +91 44 2839 0000
           </p>
         </div>
@@ -91,15 +91,15 @@ export default function TransactionBillModal({ transaction, onClose }) {
           borderRadius: '6px'
         }}>
           <div>
-            <span style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none' }}>
               TAX INVOICE &amp; RECEIPT
             </span>
-            <span style={{ fontSize: '10px', color: '#555555', display: 'block' }}>
+            <span style={{ fontSize: '13px', color: '#555555', display: 'block' }}>
               Original Patient Receipt
             </span>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <span style={{ fontSize: '10px', color: '#555555', display: 'block' }}>Invoice No</span>
+            <span style={{ fontSize: '13px', color: '#555555', display: 'block' }}>Invoice No</span>
             <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555' }}>{transaction.txnId}</span>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function TransactionBillModal({ transaction, onClose }) {
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '12px',
-          fontSize: '11px',
+          fontSize: '13px',
           marginBottom: '16px',
           backgroundColor: '#FFFFFF',
           padding: '12px',
@@ -118,19 +118,19 @@ export default function TransactionBillModal({ transaction, onClose }) {
         }}>
           <div>
             <span style={{ color: '#000000', fontWeight: '500', display: 'block' }}>PATIENT</span>
-            <strong style={{ fontSize: '12px', color: '#555555', display: 'block' }}>Jordan Walker</strong>
+            <strong style={{ fontSize: '13px', color: '#555555', display: 'block' }}>Jordan Walker</strong>
             <span style={{ color: '#000000', display: 'block', marginTop: '2px' }}>#IP-99824 · ICU B5</span>
           </div>
 
           <div>
             <span style={{ color: '#000000', fontWeight: '500', display: 'block' }}>DATE &amp; TIME</span>
-            <strong style={{ fontSize: '12px', color: '#555555', display: 'block' }}>{transaction.date}</strong>
+            <strong style={{ fontSize: '13px', color: '#555555', display: 'block' }}>{transaction.date}</strong>
             <span style={{ color: '#000000', display: 'block', marginTop: '2px' }}>{transaction.time}</span>
           </div>
         </div>
 
         {/* Particulars Table */}
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', marginBottom: '16px' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', marginBottom: '16px' }}>
           <thead>
             <tr style={{ backgroundColor: '#F2F4F7', borderTop: '1px solid #F2F4F7', borderBottom: '1.5px solid #F2F4F7' }}>
               <th style={{ padding: '8px 6px', textAlign: 'left', fontWeight: '500', color: '#000000' }}>Particulars</th>
@@ -160,11 +160,11 @@ export default function TransactionBillModal({ transaction, onClose }) {
           paddingTop: '10px',
           marginBottom: '16px'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#555555' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#555555' }}>
             <span>Subtotal Amount:</span>
             <span style={{ fontWeight: '500', color: '#000000' }}>{transaction.amount}</span>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#555555' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#555555' }}>
             <span>CGST (0%) + SGST (0%):</span>
             <span style={{ fontWeight: '500', color: '#000000' }}>₹0.00</span>
           </div>
@@ -194,15 +194,15 @@ export default function TransactionBillModal({ transaction, onClose }) {
           borderTop: '1px dashed #F2F4F7'
         }}>
           <div>
-            <span style={{ fontSize: '10px', fontWeight: '500', color: '#555555', display: 'block' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', display: 'block' }}>
               ST. MARY'S HOSPITALS
             </span>
-            <span style={{ fontSize: '9px', color: '#000000', display: 'block' }}>
+            <span style={{ fontSize: '13px', color: '#000000', display: 'block' }}>
               Computer Generated Invoice
             </span>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <span style={{ fontSize: '10px',color: '#555555', fontWeight: '500' }}>
+            <span style={{ fontSize: '13px',color: '#555555', fontWeight: '500' }}>
               ✓ Digitally Verified
             </span>
           </div>

@@ -52,8 +52,8 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
             <div className="ip-patient-info">
               <h1 className="ip-patient-name" style={{ color: '#CCA266' }}>{hospital.name}</h1>
               <p className="ip-patient-meta" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
-                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px', filter: 'brightness(0)' }} />
-                <span style={{ color: '#000000' }}>{hospital.openStatus}</span>
+                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px', filter: 'brightness(0)', opacity: 0.6 }} />
+                <span style={{ color: '#555555' }}>{hospital.openStatus}</span>
               </p>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
                   <span key={index} className="hospital-address-text" style={{ 
                     display: 'inline-block', 
                     background: '#CCA266', 
-                    color: '#555555',
+                    color: '#FFFFFF',
                     borderRadius: 'var(--radius-sm)', 
                     padding: '6px 12px', 
                     fontSize: '13px',
@@ -266,7 +266,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
                       <span className="doctor-hospital-name">{doctor.hospitalName}</span>
                     </div>
                     {doctor.isPreferred && (
-                      <span className="badge-preferred-inline">Prefered</span>
+                      <span className="badge-preferred-inline">Preferred</span>
                     )}
                   </div>
                 )}

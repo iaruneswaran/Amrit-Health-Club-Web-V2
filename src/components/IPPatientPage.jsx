@@ -20,6 +20,7 @@ import TransactionBillModal from './TransactionBillModal';
 
 export default function IPPatientPage({ onBack }) {
   const [activeSection, setActiveSection] = useState('overview');
+  const [ipStatus, setIpStatus] = useState('Admitted'); // 'Admitted' or 'Discharged'
   const [selectedReport, setSelectedReport] = useState(null);
   const [actionMenuDoc, setActionMenuDoc] = useState(null);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
@@ -106,7 +107,18 @@ export default function IPPatientPage({ onBack }) {
               <p className="ip-patient-meta">Male, 36 • AHC-9824</p>
             </div>
           </div>
-          <span className="ip-status-badge">Admitted</span>
+          <span 
+            className="ip-status-badge" 
+            onClick={() => setIpStatus(ipStatus === 'Admitted' ? 'Discharged' : 'Admitted')}
+            style={{ 
+              cursor: 'pointer',
+              background: ipStatus === 'Discharged' ? '#000000' : '#FFFFFF',
+              color: ipStatus === 'Discharged' ? '#FFFFFF' : '#000000'
+            }}
+            title="Click to toggle status for testing (Admitted / Discharged)"
+          >
+            {ipStatus}
+          </span>
         </div>
       </div>
 
@@ -119,17 +131,17 @@ export default function IPPatientPage({ onBack }) {
         <div className="ip-stat-divider" />
         <div className="ip-stat-item">
           <span className="ip-stat-label">Duration</span>
-          <span className="ip-stat-value">2 Days</span>
+          <span className="ip-stat-value">{ipStatus === 'Discharged' ? '3 Days' : '2 Days'}</span>
         </div>
         <div className="ip-stat-divider" />
         <div className="ip-stat-item">
           <span className="ip-stat-label">Ward</span>
-          <span className="ip-stat-value">ICU</span>
+          <span className="ip-stat-value">{ipStatus === 'Discharged' ? 'Discharged' : 'ICU'}</span>
         </div>
         <div className="ip-stat-divider" />
         <div className="ip-stat-item">
           <span className="ip-stat-label">Bed</span>
-          <span className="ip-stat-value ip-stat-green">B5</span>
+          <span className="ip-stat-value ip-stat-green">{ipStatus === 'Discharged' ? '-' : 'B5'}</span>
         </div>
       </div>
 
@@ -163,6 +175,78 @@ export default function IPPatientPage({ onBack }) {
               </p>
             </div>
 
+            {/* Discharge Summary Card (Always rendered, placeholder when Admitted, complete when Discharged) */}
+            <div className="ip-card discharge-summary-card" style={{ border: ipStatus === 'Discharged' ? '1.5px solid #CCA266' : '1px solid #E5E7EB', background: '#FFFFFF' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <img src={documentIcon} alt="" className="ip-section-icon" />
+                  <div>
+                    <h2 className="ip-card-title" style={{ margin: 0 }}>Discharge Summary</h2>
+                    {ipStatus === 'Discharged' && (
+                      <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>
+                        Discharged on Jul 11, 2026 • 11:30 AM
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {ipStatus === 'Discharged' ? (
+                  <button 
+                    type="button" 
+                    style={{ background: '#CCA266', color: '#FFFFFF', border: 'none', padding: '6px 14px', borderRadius: '100px', fontSize: '13px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
+                    onClick={() => alert("Downloading Discharge Summary PDF...")}
+                  >
+                    <span>Download PDF</span>
+                  </button>
+                ) : (
+                  <span style={{ background: '#F2F4F7', color: '#555555', padding: '6px 12px', borderRadius: '100px', fontSize: '13px', fontWeight: '500' }}>
+                    Pending
+                  </span>
+                )}
+              </div>
+
+              {ipStatus === 'Discharged' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div style={{ background: '#F2F4F7', padding: '12px 14px', borderRadius: '14px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '600', color: '#555555', textTransform: 'none' }}>Final Diagnosis</span>
+                    <p style={{ margin: '4px 0 0 0', fontSize: '14px', fontWeight: '500', color: '#000000', lineHeight: '1.4' }}>
+                      Acute Viral Infection with Mild Bronchial Hyper-responsiveness (Resolved)
+                    </p>
+                  </div>
+
+                  <div style={{ background: '#F2F4F7', padding: '12px 14px', borderRadius: '14px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '600', color: '#555555', textTransform: 'none' }}>Treatment Administered</span>
+                    <p style={{ margin: '4px 0 0 0', fontSize: '13px', fontWeight: '500', color: '#000000', lineHeight: '1.4' }}>
+                      IV Antibiotics (Azithromycin), IV Fluids, Antipyretic Therapy &amp; Nebulization
+                    </p>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                    <div style={{ background: '#F2F4F7', padding: '12px 14px', borderRadius: '14px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '600', color: '#555555' }}>Condition at Discharge</span>
+                      <p style={{ margin: '4px 0 0 0', fontSize: '13px', fontWeight: '500', color: '#000000' }}>Stable, Afebrile for 24+ hrs</p>
+                    </div>
+                    <div style={{ background: '#F2F4F7', padding: '12px 14px', borderRadius: '14px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '600', color: '#555555' }}>Attending Physician</span>
+                      <p style={{ margin: '4px 0 0 0', fontSize: '13px', fontWeight: '500', color: '#000000' }}>Dr. Amelia Carter</p>
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(204, 162, 102, 0.1)', border: '1px solid #CCA266', padding: '12px 14px', borderRadius: '14px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '600', color: '#000000' }}>Follow-Up &amp; Advice</span>
+                    <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#000000', lineHeight: '1.4' }}>
+                      Follow up in OPD with Dr. Amelia Carter on <strong>Jul 18, 2026</strong>. Continue prescribed oral medications for 5 days.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ background: '#F9FAFB', border: '1px dashed #D1D5DB', borderRadius: '14px', padding: '16px', textAlign: 'center' }}>
+                  <p style={{ margin: 0, fontSize: '13px', color: '#555555', lineHeight: '1.5', fontWeight: '500' }}>
+                    Patient is currently admitted under active care. The complete Discharge Summary report, final diagnosis, and follow-up plan will be generated by <strong>Dr. Amelia Carter</strong> upon discharge.
+                  </p>
+                </div>
+              )}
+            </div>
+
             {/* Ward Movement Timeline */}
             <div className="ip-card">
               <h2 className="ip-card-title" style={{ marginBottom: '8px' }}>Ward Movement</h2>
@@ -188,13 +272,14 @@ export default function IPPatientPage({ onBack }) {
                     <div className="assigned-doctor-info-left">
                       <div className="assigned-doctor-text">
                         <p className="assigned-doctor-name" style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>{member.name}</p>
-                        <p className="assigned-doctor-specialty" style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#555555' }}>{member.role}</p>
+                        <p className="assigned-doctor-specialty" style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#555555' }}>{member.role}</p>
                       </div>
                     </div>
                     {member.badge === 'Primary' && (
                       <span className="assigned-doctor-badge" style={{
-                        border: '0.5px solid #CCA266',color: '#000000',
-                        background: 'transparent'
+                        background: '#CCA266',
+                        color: '#FFFFFF',
+                        border: 'none'
                       }}>
                         {member.badge}
                       </span>
@@ -268,7 +353,7 @@ export default function IPPatientPage({ onBack }) {
             <div className="ip-vitals-timestamp">
               <div className="ip-live-indicator" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span className="ip-live-dot"></span>
-                <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Live</span>
+                <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>Live</span>
               </div>
               <span className="ip-vitals-time">Last updated: Today, 2:15 PM</span>
             </div>
@@ -330,11 +415,11 @@ export default function IPPatientPage({ onBack }) {
             {/* Key Metrics Overview */}
             <div style={{ display: 'flex', gap: '12px' }}>
               <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: 'none' }}>
-                <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Amount Paid</span>
+                <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Amount Paid</span>
                 <span style={{ fontSize: '18px', fontWeight: '500', color: '#000000' }}>₹1,000.00</span>
               </div>
               <div style={{ flex: 1, background: '#FFFFFF', borderRadius: '18px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: 'none' }}>
-                <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Balance To Pay</span>
+                <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Balance To Pay</span>
                 <span style={{ fontSize: '18px', fontWeight: '500',color: '#000000' }}>₹2,600.00</span>
               </div>
             </div>

@@ -53,13 +53,13 @@ export default function ConsultationDetailModal({ data, onClose }) {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '14px' }}>
           <div>
-            <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', backgroundColor: '#FFFFFF', padding: '3px 10px', borderRadius: '100px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555', backgroundColor: '#FFFFFF', padding: '3px 10px', borderRadius: '100px', textTransform: 'none', letterSpacing: '0.5px' }}>
               Completed Consultation
             </span>
             <h3 style={{ fontSize: '18px', fontWeight: '500', color: '#000000', margin: '6px 0 2px 0' }}>
               {data.doctorName || 'Dr. Amelia Carter'}
             </h3>
-            <p style={{ fontSize: '12px', color: '#555555', margin: 0 }}>
+            <p style={{ fontSize: '13px', color: '#555555', margin: 0 }}>
               {data.specialty || 'Cardiology Specialist'} • {data.date || '15 Jul 2026, 10:30 AM'}
             </p>
           </div>
@@ -102,7 +102,7 @@ export default function ConsultationDetailModal({ data, onClose }) {
                 border: 'none',
                 backgroundColor: activeTab === tab.id ? '#CCA266' : '#F2F4F7',
                 color: activeTab === tab.id ? '#FFFFFF' : '#000000',
-                fontSize: '12px',
+                fontSize: '13px',
                 fontWeight: '500',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap'
@@ -117,7 +117,7 @@ export default function ConsultationDetailModal({ data, onClose }) {
         {activeTab === 'details' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', padding: '14px', border: '1px solid #F2F4F7' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                 Consultation Reason
               </span>
               <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#555555', fontWeight: '500' }}>
@@ -126,36 +126,36 @@ export default function ConsultationDetailModal({ data, onClose }) {
             </div>
 
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', padding: '14px', border: '1px solid #F2F4F7' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                 Facility / Clinic
               </span>
               <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#555555', fontWeight: '500' }}>
                 St. Mary's Medical Center • Suite 302
               </p>
-              <p style={{ margin: '2px 0 0 0', fontSize: '12px', color: '#555555' }}>
+              <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: '#555555' }}>
                 3rd Floor, Outpatient Clinic Block, Bangalore
               </p>
             </div>
 
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', padding: '14px', border: '1px solid #F2F4F7' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                 Recorded Vitals During Visit
               </span>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginTop: '8px' }}>
                 <div>
-                  <span style={{ fontSize: '11px', color: '#555555' }}>Blood Pressure</span>
+                  <span style={{ fontSize: '13px', color: '#555555' }}>Blood Pressure</span>
                   <p style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>128/84 mmHg</p>
                 </div>
                 <div>
-                  <span style={{ fontSize: '11px', color: '#555555' }}>Pulse Rate</span>
+                  <span style={{ fontSize: '13px', color: '#555555' }}>Pulse Rate</span>
                   <p style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>76 bpm</p>
                 </div>
                 <div>
-                  <span style={{ fontSize: '11px', color: '#555555' }}>Temperature</span>
+                  <span style={{ fontSize: '13px', color: '#555555' }}>Temperature</span>
                   <p style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>98.6 °F</p>
                 </div>
                 <div>
-                  <span style={{ fontSize: '11px', color: '#555555' }}>SpO₂</span>
+                  <span style={{ fontSize: '13px', color: '#555555' }}>SpO₂</span>
                   <p style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>99%</p>
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default function ConsultationDetailModal({ data, onClose }) {
         {/* TAB 2: PRESCRIPTION & MEDICATIONS */}
         {activeTab === 'meds' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <span style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
               Prescribed Medications (Rx)
             </span>
             
@@ -177,8 +177,8 @@ export default function ConsultationDetailModal({ data, onClose }) {
             ].map((med, idx) => (
               <div key={idx} style={{ backgroundColor: '#FFFFFF', border: '1px solid #F2F4F7', borderRadius: '14px', padding: '12px 14px' }}>
                 <p style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>{med.name}</p>
-                <p style={{ margin: '3px 0 0 0', fontSize: '12px', color: '#444444' }}>{med.dose}</p>
-                <p style={{ margin: '4px 0 0 0', fontSize: '11px', color: '#444444', fontWeight: '500' }}>Note: {med.note}</p>
+                <p style={{ margin: '3px 0 0 0', fontSize: '13px', color: '#444444' }}>{med.dose}</p>
+                <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#444444', fontWeight: '500' }}>Note: {med.note}</p>
               </div>
             ))}
           </div>
@@ -210,7 +210,7 @@ export default function ConsultationDetailModal({ data, onClose }) {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12"/>
               </svg>
-              <span style={{ fontSize: '12px',color: '#555555', fontWeight: '500' }}>Payment Received via UPI (Ref: TXN-984210)</span>
+              <span style={{ fontSize: '13px',color: '#555555', fontWeight: '500' }}>Payment Received via UPI (Ref: TXN-984210)</span>
             </div>
           </div>
         )}
@@ -218,7 +218,7 @@ export default function ConsultationDetailModal({ data, onClose }) {
         {/* TAB 4: DOCTOR NOTES */}
         {activeTab === 'notes' && (
           <div style={{ backgroundColor: '#FFFFFF', borderLeft: '4px solid #CCA266', borderRadius: '14px', padding: '14px' }}>
-            <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>
               Attending Physician Clinical Notes
             </span>
             <p style={{ margin: '8px 0 0 0', fontSize: '13px', color: '#555555', lineHeight: '1.5' }}>
@@ -230,7 +230,7 @@ export default function ConsultationDetailModal({ data, onClose }) {
         {/* TAB 5: RELATED DOCUMENTS */}
         {activeTab === 'docs' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <span style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>
               Attached Records &amp; Reports
             </span>
 
@@ -254,9 +254,9 @@ export default function ConsultationDetailModal({ data, onClose }) {
               >
                 <div>
                   <p style={{ margin: 0, fontSize: '13px', fontWeight: '500', color: '#555555' }}>{doc.name}</p>
-                  <p style={{ margin: '2px 0 0 0', fontSize: '12px', color: '#555555' }}>{doc.time} • {doc.size}</p>
+                  <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: '#555555' }}>{doc.time} • {doc.size}</p>
                 </div>
-                <span className={`report-badge ${doc.status}`} style={{ margin: 0, fontSize: '11px' }}>
+                <span className={`report-badge ${doc.status}`} style={{ margin: 0, fontSize: '13px' }}>
                   {doc.badge}
                 </span>
               </div>

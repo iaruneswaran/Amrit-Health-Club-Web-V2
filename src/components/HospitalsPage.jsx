@@ -42,6 +42,19 @@ export default function HospitalsPage({ onBack, onBookNow }) {
   const [isDetecting, setIsDetecting] = useState(false);
   const [selectedHospital, setSelectedHospital] = useState(null);
 
+  // Filter States
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState('All');
+  const [selectedMaxDistance, setSelectedMaxDistance] = useState('All'); // 'All', '2', '3', '5'
+  const [preferredOnly, setPreferredOnly] = useState(false);
+  const [sortBy, setSortBy] = useState('default'); // 'default', 'distance', 'doctors'
+
+  // Draft States for Modal
+  const [draftStatus, setDraftStatus] = useState('All');
+  const [draftMaxDistance, setDraftMaxDistance] = useState('All');
+  const [draftPreferredOnly, setDraftPreferredOnly] = useState(false);
+  const [draftSortBy, setDraftSortBy] = useState('default');
+
   const handleLocationChange = () => {
     setIsDetecting(true);
     setTimeout(() => {
@@ -50,10 +63,65 @@ export default function HospitalsPage({ onBack, onBookNow }) {
     }, 2000);
   };
 
-  const filteredHospitals = hospitalsList.filter(hospital => 
-    hospital.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    hospital.address.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const openFilterModal = () => {
+    setDraftStatus(selectedStatus);
+    setDraftMaxDistance(selectedMaxDistance);
+    setDraftPreferredOnly(preferredOnly);
+    setDraftSortBy(sortBy);
+    setShowFilterModal(true);
+  };
+
+  const handleApplyFilters = () => {
+    setSelectedStatus(draftStatus);
+    setSelectedMaxDistance(draftMaxDistance);
+    setPreferredOnly(draftPreferredOnly);
+    setSortBy(draftSortBy);
+    setShowFilterModal(false);
+  };
+
+  const handleResetFilters = () => {
+    setDraftStatus('All');
+    setDraftMaxDistance('All');
+    setDraftPreferredOnly(false);
+    setDraftSortBy('default');
+  };
+
+  const activeFilterCount = 
+    (selectedStatus !== 'All' ? 1 : 0) +
+    (selectedMaxDistance !== 'All' ? 1 : 0) +
+    (preferredOnly ? 1 : 0) +
+    (sortBy !== 'default' ? 1 : 0);
+
+  const filteredHospitals = hospitalsList.filter(hospital => {
+    const matchesSearch = 
+      hospital.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      hospital.address.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesStatus = 
+      selectedStatus === 'All' || 
+      (selectedStatus === '24/7' && hospital.openStatus.toLowerCase().includes('24/7'));
+
+    const matchesPreferred = !preferredOnly || hospital.isPreferred;
+
+    let matchesDistance = true;
+    if (selectedMaxDistance !== 'All') {
+      const distNum = parseFloat(hospital.distance) || 0;
+      const maxDistNum = parseFloat(selectedMaxDistance) || 999;
+      matchesDistance = distNum <= maxDistNum;
+    }
+
+    return matchesSearch && matchesStatus && matchesPreferred && matchesDistance;
+  }).sort((a, b) => {
+    if (sortBy === 'distance') {
+      const distA = parseFloat(a.distance) || 0;
+      const distB = parseFloat(b.distance) || 0;
+      return distA - distB;
+    }
+    if (sortBy === 'doctors') {
+      return b.doctorsCount - a.doctorsCount;
+    }
+    return 0;
+  });
 
   if (selectedHospital) {
     return (
@@ -124,8 +192,14 @@ export default function HospitalsPage({ onBack, onBookNow }) {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <button className="hospitals-filter-btn" type="button" aria-label="Filter hospitals">
+          <button 
+            className={`hospitals-filter-btn ${activeFilterCount > 0 ? 'active' : ''}`} 
+            type="button" 
+            aria-label="Filter hospitals"
+            onClick={openFilterModal}
+          >
             <img src={filterIcon} alt="" aria-hidden="true" className="filter-icon" />
+            {activeFilterCount > 0 && <span className="filter-badge">{activeFilterCount}</span>}
           </button>
         </div>
       </header>
@@ -198,12 +272,140 @@ export default function HospitalsPage({ onBack, onBookNow }) {
 
             {filteredHospitals.length === 0 && (
               <div style={{ textAlign: 'center', padding: '30px 10px', color: '#000000', fontSize: '15px' }}>
-                No hospitals match your search.
+                No hospitals match your filters or search.
               </div>
             )}
           </div>
         </div>
       </main>
+
+      {/* FILTER MODAL */}
+      {showFilterModal && (
+        <div className="filter-modal-overlay" onClick={() => setShowFilterModal(false)}>
+          <div className="filter-modal-sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="filter-modal-header">
+              <div className="filter-modal-title-wrap">
+                <h3 className="filter-modal-title">Filter Hospitals</h3>
+              </div>
+              <div className="filter-header-actions">
+                <button type="button" className="filter-reset-btn" onClick={handleResetFilters}>
+                  Reset
+                </button>
+                <button 
+                  className="clinic-modal-close" 
+                  onClick={() => setShowFilterModal(false)} 
+                  type="button" 
+                  aria-label="Close filter"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <div className="filter-modal-body">
+              {/* Distance KM Filter Section */}
+              <div className="filter-section">
+                <h4 className="filter-section-title">Distance (Radius)</h4>
+                <div className="filter-chips-wrap">
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftMaxDistance === 'All' ? 'active' : ''}`}
+                    onClick={() => setDraftMaxDistance('All')}
+                  >
+                    Any Distance
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftMaxDistance === '2' ? 'active' : ''}`}
+                    onClick={() => setDraftMaxDistance('2')}
+                  >
+                    Within 2 km
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftMaxDistance === '3' ? 'active' : ''}`}
+                    onClick={() => setDraftMaxDistance('3')}
+                  >
+                    Within 3 km
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftMaxDistance === '5' ? 'active' : ''}`}
+                    onClick={() => setDraftMaxDistance('5')}
+                  >
+                    Within 5 km
+                  </button>
+                </div>
+              </div>
+
+              {/* Availability Status Section */}
+              <div className="filter-section">
+                <h4 className="filter-section-title">Open Status</h4>
+                <div className="filter-chips-wrap">
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftStatus === 'All' ? 'active' : ''}`}
+                    onClick={() => setDraftStatus('All')}
+                  >
+                    All Hours
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftStatus === '24/7' ? 'active' : ''}`}
+                    onClick={() => setDraftStatus('24/7')}
+                  >
+                    Open 24/7 Only
+                  </button>
+                </div>
+              </div>
+
+              {/* Preferred Hospitals Toggle */}
+              <div className="filter-section">
+                <div className="filter-toggle-row" onClick={() => setDraftPreferredOnly(!draftPreferredOnly)}>
+                  <span className="filter-toggle-label">Preferred Hospitals Only</span>
+                  <div className={`filter-toggle-switch ${draftPreferredOnly ? 'active' : ''}`}>
+                    <div className="filter-toggle-dot"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sort By Section */}
+              <div className="filter-section">
+                <h4 className="filter-section-title">Sort By</h4>
+                <div className="filter-chips-wrap">
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftSortBy === 'default' ? 'active' : ''}`}
+                    onClick={() => setDraftSortBy('default')}
+                  >
+                    Default
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftSortBy === 'distance' ? 'active' : ''}`}
+                    onClick={() => setDraftSortBy('distance')}
+                  >
+                    Distance: Nearest First
+                  </button>
+                  <button
+                    type="button"
+                    className={`filter-chip ${draftSortBy === 'doctors' ? 'active' : ''}`}
+                    onClick={() => setDraftSortBy('doctors')}
+                  >
+                    Doctors: Most Available
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="filter-modal-footer">
+              <button type="button" className="filter-apply-btn" onClick={handleApplyFilters}>
+                Apply Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

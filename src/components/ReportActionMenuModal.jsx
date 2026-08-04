@@ -102,7 +102,7 @@ export default function ReportActionMenuModal({ doc, onClose, onViewSummary }) {
           <p style={{ margin: 0, fontSize: '15px', fontWeight: '500', color: '#000000', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {doc.name}
           </p>
-          <p style={{ margin: '3px 0 0 0', fontSize: '12px', color: '#555555' }}>
+          <p style={{ margin: '3px 0 0 0', fontSize: '13px', color: '#555555' }}>
             {doc.time} • {doc.size}
           </p>
         </div>

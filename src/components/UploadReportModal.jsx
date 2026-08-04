@@ -95,7 +95,7 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
             <h3 style={{ fontSize: '18px', fontWeight: '500', color: '#000000', margin: 0 }}>
               Upload Lab Report
             </h3>
-            <p style={{ fontSize: '12px', color: '#555555', margin: '2px 0 0 0' }}>
+            <p style={{ fontSize: '13px', color: '#555555', margin: '2px 0 0 0' }}>
               Upload PDF or image files (CBC, Lipid, Thyroid, Pathology)
             </p>
           </div>
@@ -149,7 +149,7 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
                 </svg>
               </div>
               <span style={{ fontSize: '14px', fontWeight: '500', color: '#000000' }}>Click to browse file</span>
-              <span style={{ fontSize: '12px', color: '#555555', marginTop: '4px' }}>Supports PDF, PNG, JPG (Max 25MB)</span>
+              <span style={{ fontSize: '13px', color: '#555555', marginTop: '4px' }}>Supports PDF, PNG, JPG (Max 25MB)</span>
             </label>
 
             {/* Quick Demo Upload Button */}
@@ -193,7 +193,7 @@ export default function UploadReportModal({ isOpen, onClose, onUploadSuccess }) 
             <div style={{ width: '100%', height: '8px', borderRadius: '4px', backgroundColor: '#F2F4F7', overflow: 'hidden', margin: '14px 0 8px 0' }}>
               <div style={{ width: `${uploadProgress}%`, height: '100%', backgroundColor: '#CCA266', borderRadius: '4px', transition: 'width 0.4s ease' }} />
             </div>
-            <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>{uploadProgress}% completed</span>
+            <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>{uploadProgress}% completed</span>
           </div>
         )}
       </div>

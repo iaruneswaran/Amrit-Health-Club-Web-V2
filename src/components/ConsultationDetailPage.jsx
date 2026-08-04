@@ -33,7 +33,6 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
   const tabs = isUpcoming
     ? [
         { id: 'overview', label: 'Overview' },
-        { id: 'pass', label: 'Token & Pass' },
         { id: 'prep', label: 'Preparation' },
         { id: 'prescription', label: 'Prescription' },
         { id: 'bill', label: 'Booking Fee' }
@@ -72,18 +71,18 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
         <div style={{ backgroundColor: '#FFFFFF', borderRadius: '20px', padding: '18px', border: '1px solid #F2F4F7', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
             <span style={{ 
-              fontSize: '11px', 
+              fontSize: '13px', 
               fontWeight: '500', 
               color: isUpcoming ? '#CCA266' : '#CCA266', 
               backgroundColor: isUpcoming ? '#FFFFFF' : '#FFFFFF', 
               padding: '4px 12px', 
               borderRadius: '100px', 
-              textTransform: 'uppercase', 
+              textTransform: 'none', 
               letterSpacing: '0.5px' 
             }}>
               {isUpcoming ? 'Confirmed • Scheduled' : 'Completed Consultation'}
             </span>
-            <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Ref: {isUpcoming ? 'APT-84291' : 'CON-98412'}</span>
+            <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Ref: {isUpcoming ? 'APT-84291' : 'CON-98412'}</span>
           </div>
 
           <h2 style={{ fontSize: '20px', fontWeight: '500', color: '#000000', margin: '4px 0 2px 0' }}>
@@ -157,7 +156,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
         {activeTab === 'overview' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '16px', border: '1px solid #F2F4F7' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                 Consultation Reason
               </span>
               <p style={{ margin: '6px 0 0 0', fontSize: '14px', color: '#000000', fontWeight: '500', lineHeight: '1.4' }}>
@@ -166,7 +165,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
             </div>
 
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '16px', border: '1px solid #F2F4F7' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                 Hospital &amp; Clinic Facility
               </span>
               <p style={{ margin: '6px 0 0 0', fontSize: '15px', color: '#000000', fontWeight: '500' }}>
@@ -179,7 +178,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
 
             {isUpcoming ? (
               <div style={{ backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '16px', border: '1px solid #CCA266' }}>
-                <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                   Pre-Consultation Notice
                 </span>
                 <p style={{ margin: '6px 0 0 0', fontSize: '13px',color: '#555555', lineHeight: '1.5' }}>
@@ -188,24 +187,24 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
               </div>
             ) : (
               <div style={{ backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '16px', border: '1px solid #F2F4F7' }}>
-                <span style={{ fontSize: '11px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                   Vitals Recorded During Consultation
                 </span>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '12px' }}>
                   <div style={{ backgroundColor: '#FFFFFF', padding: '12px', borderRadius: '14px', border: '1px solid #F2F4F7' }}>
-                    <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Blood Pressure</span>
+                    <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Blood Pressure</span>
                     <p style={{ margin: '4px 0 0 0', fontSize: '16px', fontWeight: '500', color: '#000000' }}>128/84 mmHg</p>
                   </div>
                   <div style={{ backgroundColor: '#FFFFFF', padding: '12px', borderRadius: '14px', border: '1px solid #F2F4F7' }}>
-                    <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Pulse Rate</span>
+                    <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Pulse Rate</span>
                     <p style={{ margin: '4px 0 0 0', fontSize: '16px', fontWeight: '500', color: '#000000' }}>76 bpm</p>
                   </div>
                   <div style={{ backgroundColor: '#FFFFFF', padding: '12px', borderRadius: '14px', border: '1px solid #F2F4F7' }}>
-                    <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Temperature</span>
+                    <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Temperature</span>
                     <p style={{ margin: '4px 0 0 0', fontSize: '16px', fontWeight: '500', color: '#000000' }}>98.6 °F</p>
                   </div>
                   <div style={{ backgroundColor: '#FFFFFF', padding: '12px', borderRadius: '14px', border: '1px solid #F2F4F7' }}>
-                    <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Oxygen SpO₂</span>
+                    <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Oxygen SpO₂</span>
                     <p style={{ margin: '4px 0 0 0', fontSize: '16px', fontWeight: '500', color: '#000000' }}>99%</p>
                   </div>
                 </div>
@@ -214,26 +213,6 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
           </div>
         )}
 
-        {/* ── TAB: TOKEN & PASS (UPCOMING ONLY) ── */}
-        {isUpcoming && activeTab === 'pass' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #F2F4F7', borderRadius: '20px', padding: '20px', textAlign: 'center' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Digital Queue Token
-              </span>
-              <h3 style={{ fontSize: '36px', fontWeight: '500', color: '#000000', margin: '8px 0 4px 0' }}>
-                # 24
-              </h3>
-              <span style={{ fontSize: '13px',color: '#555555', fontWeight: '500', backgroundColor: '#FFFFFF', padding: '4px 12px', borderRadius: '100px' }}>
-                Estimated Queue Status: 3 Patients Ahead
-              </span>
-
-              <div style={{ marginTop: '20px', padding: '16px', backgroundColor: '#FFFFFF', borderRadius: '14px', border: '1px dashed #F2F4F7' }}>
-                <p style={{ margin: 0, fontSize: '12px', color: '#555555' }}>Show this token pass at Reception Counter 4 upon arrival.</p>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* ── TAB: PREPARATION (UPCOMING ONLY) ── */}
         {isUpcoming && activeTab === 'prep' && (
@@ -274,10 +253,10 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
             ) : (
               <>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>
                     Rx Prescribed Medications
                   </span>
-                  <span style={{ fontSize: '12px',color: '#555555', fontWeight: '500' }}>3 Items Prescribed</span>
+                  <span style={{ fontSize: '13px',color: '#555555', fontWeight: '500' }}>3 Items Prescribed</span>
                 </div>
 
                 {[
@@ -289,8 +268,8 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
                     <p style={{ margin: '0', fontSize: '15px', fontWeight: '500', color: '#000000' }}>{med.name}</p>
                     <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#444444', lineHeight: '1.4' }}>{med.dose}</p>
                     <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px dashed #F2F4F7' }}>
-                      <span style={{ fontSize: '11px', color: '#444444', fontWeight: '500' }}>INSTRUCTION: </span>
-                      <span style={{ fontSize: '12px', color: '#444444' }}>{med.note}</span>
+                      <span style={{ fontSize: '13px', color: '#444444', fontWeight: '500' }}>Instruction: </span>
+                      <span style={{ fontSize: '13px', color: '#444444' }}>{med.note}</span>
                     </div>
                   </div>
                 ))}
@@ -335,7 +314,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
               </svg>
               <div>
                 <span style={{ display: 'block', fontSize: '13px',color: '#555555', fontWeight: '500' }}>Confirmed &amp; Paid via UPI</span>
-                <span style={{ fontSize: '11px',color: '#555555' }}>Txn Ref: TXN-98421098</span>
+                <span style={{ fontSize: '13px',color: '#555555' }}>Txn Ref: TXN-98421098</span>
               </div>
             </div>
           </div>
@@ -344,7 +323,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
         {/* ── TAB 4: DOCTOR NOTES ── */}
         {!isUpcoming && activeTab === 'notes' && (
           <div style={{ backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '18px', border: '1px solid #F2F4F7' }}>
-            <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>
               Physician Clinical Summary &amp; Notes
             </span>
             <p style={{ margin: '10px 0 0 0', fontSize: '14px', color: '#000000', lineHeight: '1.6' }}>
@@ -356,7 +335,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
         {/* ── TAB 5: REPORTS & DOCUMENTS ── */}
         {!isUpcoming && activeTab === 'reports' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <span style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>
               Consultation Diagnostic Reports
             </span>
 
@@ -384,10 +363,10 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
                   </div>
                   <div>
                     <p style={{ margin: 0, fontSize: '14px', fontWeight: '500', color: '#000000' }}>{doc.name}</p>
-                    <p style={{ margin: '2px 0 0 0', fontSize: '12px', color: '#555555' }}>{doc.time} • {doc.size}</p>
+                    <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: '#555555' }}>{doc.time} • {doc.size}</p>
                   </div>
                 </div>
-                <span className={`report-badge ${doc.status}`} style={{ margin: 0, fontSize: '11px', fontWeight: '500' }}>
+                <span className={`report-badge ${doc.status}`} style={{ margin: 0, fontSize: '13px', fontWeight: '500' }}>
                   {doc.badge}
                 </span>
               </div>

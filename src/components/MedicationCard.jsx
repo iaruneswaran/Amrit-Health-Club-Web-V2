@@ -61,7 +61,7 @@ export default function MedicationCard({ showImage = true }) {
 
                       <div className={`medication-expanded-wrapper ${isExpanded ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
                         <div className="medication-expanded-inner">
-                          <span style={{ fontSize: '11px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                          <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
                             Instruction
                           </span>
                           <p style={{ margin: 0, fontSize: '13px', color: '#555555', lineHeight: '1.4' }}>

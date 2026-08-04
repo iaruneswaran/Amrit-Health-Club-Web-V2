@@ -317,7 +317,7 @@ export default function AIPage({ onBack }) {
                     </div>
                     <div style={{ textAlign: 'center', marginBottom: '8px' }}>
                       <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '500',color: '#000000' }}>Appointment Booked!</h4>
-                      <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#555555', fontWeight: '500' }}>Your appointment has been successfully confirmed.</p>
+                      <p style={{ margin: '4px 0 0', fontSize: '13px', color: '#555555', fontWeight: '500' }}>Your appointment has been successfully confirmed.</p>
                     </div>
                     
                     <div className="ai-booking-card-row">
@@ -342,7 +342,7 @@ export default function AIPage({ onBack }) {
                     </div>
 
                     <div style={{ borderTop: '1px solid #F2F4F7', paddingTop: '8px', marginTop: '4px', textAlign: 'center' }}>
-                      <p style={{ margin: 0, fontSize: '12px', color: '#555555', lineHeight: '1.4', fontWeight: '500' }}>
+                      <p style={{ margin: 0, fontSize: '13px', color: '#555555', lineHeight: '1.4', fontWeight: '500' }}>
                         {m.cardDetails.note}
                       </p>
                     </div>

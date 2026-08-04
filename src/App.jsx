@@ -22,6 +22,13 @@ import HistoryPage from './components/HistoryPage'
 import ReportsPage from './components/ReportsPage'
 import IPPatientPage from './components/IPPatientPage'
 import ProfilePage from './components/ProfilePage'
+import PaymentMethodsPage from './components/PaymentMethodsPage'
+import AddressPage from './components/AddressPage'
+import LanguagePage from './components/LanguagePage'
+import MobileNumberPage from './components/MobileNumberPage'
+import EditProfilePage from './components/EditProfilePage'
+import LogoutPage from './components/LogoutPage'
+import DeleteAccountPage from './components/DeleteAccountPage'
 import continueArrow from './assets/Continue Arrow.svg'
 import labIcon from './assets/Lab.svg'
 import consultationIcon from './assets/Consultation.svg'
@@ -120,6 +127,7 @@ export default function App() {
   const [selectedTimeframe, setSelectedTimeframe] = useState('W')
 
   const [showPreOpPage, setShowPreOpPage] = useState(false)
+  const [profileSubPage, setProfileSubPage] = useState(null) // null | { page: string, data?: any }
   const [preOpCompleted, setPreOpCompleted] = useState(() => {
     return localStorage.getItem('preop_completed') === 'true'
   })
@@ -303,6 +311,18 @@ export default function App() {
           <IPPatientPage onBack={() => setShowIPPage(false)} />
         </>
       )
+    }
+
+    if (profileSubPage) {
+      const { page, data } = profileSubPage
+      const goBack = () => setProfileSubPage(null)
+      if (page === 'payment')        return <PaymentMethodsPage onBack={goBack} />
+      if (page === 'address')        return <AddressPage onBack={goBack} />
+      if (page === 'language')       return <LanguagePage onBack={goBack} />
+      if (page === 'mobile')         return <MobileNumberPage onBack={goBack} />
+      if (page === 'editProfile')    return <EditProfilePage profile={data} onBack={goBack} />
+      if (page === 'logout')         return <LogoutPage onBack={goBack} />
+      if (page === 'deleteAccount')  return <DeleteAccountPage onBack={goBack} />
     }
 
     if (activeTab === 0) {
@@ -557,7 +577,7 @@ export default function App() {
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
           <main className="main-content profile-main">
-            <ProfilePage />
+            <ProfilePage onNavigate={(page, data) => setProfileSubPage({ page, data })} />
           </main>
           <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>

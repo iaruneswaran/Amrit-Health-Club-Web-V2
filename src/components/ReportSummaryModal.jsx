@@ -55,12 +55,12 @@ export default function ReportSummaryModal({ doc, onClose }) {
               <span className={`report-badge ${isIssue ? 'issues' : 'normal'}`} style={{ margin: 0, fontWeight: '500' }}>
                 {isIssue ? '2 Issues Detected' : 'Normal Report'}
               </span>
-              <span style={{ fontSize: '12px', color: '#555555', fontWeight: '500' }}>Lab Ref: SAP-98241</span>
+              <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>Lab Ref: SAP-98241</span>
             </div>
             <h3 style={{ fontSize: '18px', fontWeight: '500', color: '#000000', margin: 0, lineHeight: '1.3' }}>
               {doc.name}
             </h3>
-            <p style={{ fontSize: '12px', color: '#555555', margin: '4px 0 0 0' }}>
+            <p style={{ fontSize: '13px', color: '#555555', margin: '4px 0 0 0' }}>
               Sterling Accuris Pathology Lab • Today, 9:30 AM • {doc.size}
             </p>
           </div>
@@ -101,13 +101,13 @@ export default function ReportSummaryModal({ doc, onClose }) {
                 </svg>
                 <span>Attention Required (2 Abnormal Values)</span>
               </div>
-              <p style={{ fontSize: '12px',color: '#555555', margin: 0, lineHeight: '1.4' }}>
+              <p style={{ fontSize: '13px',color: '#555555', margin: 0, lineHeight: '1.4' }}>
                 Inflammatory markers elevated above reference limits. Clinical correlation recommended.
               </p>
             </div>
 
             {/* Abnormal Values list */}
-            <h4 style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '10px' }}>
+            <h4 style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.5px', marginBottom: '10px' }}>
               Abnormal Test Results
             </h4>
             
@@ -115,28 +115,28 @@ export default function ReportSummaryModal({ doc, onClose }) {
               <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #F2F4F7', borderRadius: '14px', padding: '12px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <p style={{ margin: 0, fontWeight: '500', fontSize: '14px', color: '#000000' }}>WBC Count (Total Leucocytes)</p>
-                  <p style={{ margin: '2px 0 0 0', fontSize: '12px', color: '#555555' }}>Ref Range: 4,000 - 11,000 /µL</p>
+                  <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: '#555555' }}>Ref Range: 4,000 - 11,000 /µL</p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <span style={{ fontSize: '15px', fontWeight: '500',color: '#000000' }}>14,200 /µL</span>
-                  <span style={{ display: 'block', fontSize: '11px',color: '#555555', fontWeight: '500' }}>HIGH ↑</span>
+                  <span style={{ display: 'block', fontSize: '13px',color: '#555555', fontWeight: '500' }}>HIGH ↑</span>
                 </div>
               </div>
 
               <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #F2F4F7', borderRadius: '14px', padding: '12px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <p style={{ margin: 0, fontWeight: '500', fontSize: '14px', color: '#000000' }}>C-Reactive Protein (CRP)</p>
-                  <p style={{ margin: '2px 0 0 0', fontSize: '12px', color: '#555555' }}>Ref Range: &lt; 5.0 mg/L</p>
+                  <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: '#555555' }}>Ref Range: &lt; 5.0 mg/L</p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <span style={{ fontSize: '15px', fontWeight: '500',color: '#000000' }}>28.5 mg/L</span>
-                  <span style={{ display: 'block', fontSize: '11px',color: '#555555', fontWeight: '500' }}>HIGH ↑</span>
+                  <span style={{ display: 'block', fontSize: '13px',color: '#555555', fontWeight: '500' }}>HIGH ↑</span>
                 </div>
               </div>
             </div>
 
             {/* Normal Findings */}
-            <h4 style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
+            <h4 style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.5px', marginBottom: '8px' }}>
               Normal Parameters
             </h4>
             <ul style={{ margin: '0 0 16px 0', paddingLeft: '18px', fontSize: '13px', color: '#555555', lineHeight: '1.6' }}>
@@ -147,7 +147,7 @@ export default function ReportSummaryModal({ doc, onClose }) {
 
             {/* Doctor Impression */}
             <div style={{ backgroundColor: '#F2F4F7', borderRadius: '14px', padding: '14px', borderLeft: '4px solid #CCA266' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>
                 Doctor Summary &amp; Impression
               </span>
               <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#555555', lineHeight: '1.4' }}>
@@ -166,13 +166,13 @@ export default function ReportSummaryModal({ doc, onClose }) {
                 </svg>
                 <span>All Results Normal</span>
               </div>
-              <p style={{ fontSize: '12px',color: '#555555', margin: 0, lineHeight: '1.4' }}>
+              <p style={{ fontSize: '13px',color: '#555555', margin: 0, lineHeight: '1.4' }}>
                 All tested biomarkers are within standard healthy physiological reference ranges.
               </p>
             </div>
 
             {/* Tested Parameters Grid */}
-            <h4 style={{ fontSize: '12px', fontWeight: '500', color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '10px' }}>
+            <h4 style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.5px', marginBottom: '10px' }}>
               Tested Biomarkers Overview
             </h4>
 
@@ -193,7 +193,7 @@ export default function ReportSummaryModal({ doc, onClose }) {
 
             {/* Doctor Impression */}
             <div style={{ backgroundColor: '#F2F4F7', borderRadius: '14px', padding: '14px', borderLeft: '4px solid #CCA266' }}>
-              <span style={{ fontSize: '11px', fontWeight: '500',color: '#555555', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '500',color: '#555555', textTransform: 'none', letterSpacing: '0.5px' }}>
                 Clinical Impression
               </span>
               <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#555555', lineHeight: '1.4' }}>
