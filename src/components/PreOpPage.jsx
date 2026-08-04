@@ -46,24 +46,24 @@ export default function PreOpPage({ onBack, onComplete, initialData }) {
   return (
     <div className="preop-page-container">
       {/* Header */}
-      <header className="doctors-header" style={{ padding: '16px 20px', backgroundColor: '#FFFFFF', borderBottom: '1px solid #F2F4F7', position: 'sticky', top: 0, zIndex: 50 }}>
-        <div className="doctors-title-row" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <header className="doctors-header" style={{ padding: '16px 20px', backgroundColor: 'transparent', borderBottom: 'none', position: 'sticky', top: 0, zIndex: 50 }}>
+        <div className="doctors-title-row" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <button 
-            className="doctors-back-btn" 
+            className="preop-back-btn" 
             onClick={onBack} 
             aria-label="Go back"
-            style={{ border: 'none', background: 'transparent', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#FFFFFF', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0, boxShadow: '0 2px 6px rgba(0,0,0,0.04)', transition: 'transform 0.2s ease' }}
           >
-            <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '18px', height: '16px' }} />
+            <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '16px', height: '14px' }} />
           </button>
-          <h1 className="doctors-page-title" style={{ fontSize: '18px', fontWeight: '500', color: '#000000', margin: 0 }}>
+          <h1 className="doctors-page-title" style={{ fontSize: '20px', fontWeight: '500', color: '#000000', margin: 0 }}>
             Pre-OP Health Form
           </h1>
         </div>
       </header>
 
       {/* Main Form Content */}
-      <main className="preop-body">
+      <main className="preop-body" style={{ paddingTop: 0 }}>
         {/* Doctor Card */}
         <div className="preop-doctor-card">
           <div className="preop-doctor-avatar">AC</div>

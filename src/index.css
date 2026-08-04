@@ -5119,8 +5119,8 @@ body,
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #FFFFFF;
-  border-bottom: 1px solid #FFFFFF;
+  background: transparent;
+  border-bottom: none;
   padding: 16px 20px;
 }.preop-header-content {
   display: flex;
@@ -5153,7 +5153,7 @@ body,
   color: #000000;
   margin: 2px 0 0 0;
 }.preop-body {
-  padding: 16px 16px 100px;
+  padding: 0 16px 100px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -5469,11 +5469,11 @@ body,
   transform: translateX(-50%);
   width: 100%;
   max-width: 430px;
-  background: #FFFFFF;
-  border-top: 1px solid #FFFFFF;
-  padding: 14px 20px;
+  background: transparent;
+  border-top: none;
+  padding: 14px 20px 20px;
   z-index: 100;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+  box-shadow: none;
 }.preop-submit-btn {
   width: 100%;
   background: #CCA266;
