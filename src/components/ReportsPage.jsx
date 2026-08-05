@@ -126,7 +126,7 @@ export default function ReportsPage() {
         </div>
       )}
 
-      <h2 style={{ fontSize: '20px', fontWeight: '500', color: '#000000', marginTop: '10px' }}>My Reports</h2>
+      <h2 className="reports-page-title">My Reports</h2>
       
       {/* Top Grid */}
       <div className="reports-grid">

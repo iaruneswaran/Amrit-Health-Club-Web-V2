@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import continueArrow from '../assets/Continue Arrow.svg';
 import deleteIcon from '../assets/Delete Account.svg';
 
-export default function DeleteAccountPage({ onBack }) {
+export default function DeleteAccountPage({ onBack, onConfirm }) {
   const [step, setStep] = useState('confirm'); // 'confirm' | 'verify' | 'final'
   const [reason, setReason] = useState('');
   const [otp, setOtp] = useState('');
@@ -35,9 +35,13 @@ export default function DeleteAccountPage({ onBack }) {
     if (otp.length < 4) return;
     setLoading(true);
     setTimeout(() => {
-      localStorage.clear();
-      window.location.reload();
-    }, 1500);
+      localStorage.removeItem('user_logged_in');
+      if (onConfirm) {
+        onConfirm();
+      } else {
+        window.location.reload();
+      }
+    }, 1200);
   };
 
   return (

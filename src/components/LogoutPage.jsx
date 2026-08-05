@@ -8,9 +8,13 @@ export default function LogoutPage({ onBack, onConfirm }) {
   const handleLogout = () => {
     setLoading(true);
     setTimeout(() => {
-      localStorage.clear();
-      window.location.reload();
-    }, 1000);
+      localStorage.removeItem('user_logged_in');
+      if (onConfirm) {
+        onConfirm();
+      } else {
+        window.location.reload();
+      }
+    }, 600);
   };
 
   return (

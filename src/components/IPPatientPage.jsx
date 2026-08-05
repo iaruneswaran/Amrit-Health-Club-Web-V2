@@ -18,12 +18,13 @@ import ReportSummaryModal from './ReportSummaryModal';
 import ReportActionMenuModal from './ReportActionMenuModal';
 import TransactionBillModal from './TransactionBillModal';
 
-export default function IPPatientPage({ onBack }) {
+export default function IPPatientPage({ onBack, onOrderMedications }) {
   const [activeSection, setActiveSection] = useState('overview');
   const [ipStatus, setIpStatus] = useState('Admitted'); // 'Admitted' or 'Discharged'
   const [selectedReport, setSelectedReport] = useState(null);
   const [actionMenuDoc, setActionMenuDoc] = useState(null);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [selectedVitalKey, setSelectedVitalKey] = useState('temp');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,13 +46,21 @@ export default function IPPatientPage({ onBack }) {
   ];
 
   const vitals = [
-    { label: 'Temperature', value: '101.2', unit: '°F', icon: tempIcon, trend: 'down', status: 'normal' },
-    { label: 'Blood Pressure', value: '118/76', unit: 'mmHg', icon: bpIcon, trend: 'stable', status: 'normal' },
-    { label: 'SpO₂', value: '97', unit: '%', icon: spo2Icon, trend: 'stable', status: 'normal' },
-    { label: 'Heart Rate', value: '88', unit: 'bpm', icon: hrIcon, trend: 'stable', status: 'normal' },
-    { label: 'Respiratory Rate', value: '18', unit: '/min', icon: rrIcon, trend: 'stable', status: 'normal' },
-    { label: 'Blood Glucose', value: '104', unit: 'mg/dL', icon: bgIcon, trend: 'stable', status: 'normal' },
+    { key: 'temp', label: 'Temperature', value: '101.2', unit: '°F', icon: tempIcon, status: 'normal' },
+    { key: 'bp', label: 'Blood Pressure', value: '118/76', unit: 'mmHg', icon: bpIcon, status: 'normal' },
+    { key: 'spo2', label: 'SpO₂', value: '97', unit: '%', icon: spo2Icon, status: 'normal' },
+    { key: 'hr', label: 'Heart Rate', value: '88', unit: 'bpm', icon: hrIcon, status: 'normal' },
+    { key: 'rr', label: 'Respiratory Rate', value: '18', unit: '/min', icon: rrIcon, status: 'normal' },
+    { key: 'bg', label: 'Blood Glucose', value: '104', unit: 'mg/dL', icon: bgIcon, status: 'normal' },
   ];
+
+  const vitalsLogData = [
+    { time: '6 AM', temp: '102.4°F', bp: '122/80 mmHg', spo2: '96%', hr: '94 bpm', rr: '20 /min', bg: '110 mg/dL' },
+    { time: '10 AM', temp: '101.8°F', bp: '120/78 mmHg', spo2: '97%', hr: '90 bpm', rr: '19 /min', bg: '106 mg/dL' },
+    { time: '2 PM', temp: '101.2°F', bp: '118/76 mmHg', spo2: '97%', hr: '88 bpm', rr: '18 /min', bg: '104 mg/dL' },
+  ];
+
+  const currentVitalObj = vitals.find(v => v.key === selectedVitalKey);
 
   const wardMovements = [
     { time: 'Today, 9:30 PM', event: 'Admitted to ICU B5', ward: 'ICU', bed: 'B5', type: 'admit' },
@@ -101,21 +110,17 @@ export default function IPPatientPage({ onBack }) {
             <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '14px', height: '14px',  }} />
           </button>
           <div className="ip-header-content">
-            <div className="ip-avatar">RG</div>
             <div className="ip-patient-info">
-              <h1 className="ip-patient-name">Ryan Gosling</h1>
-              <p className="ip-patient-meta">Male, 36 • AHC-9824</p>
+              <h1 className="ip-patient-name" style={{ color: '#000000', fontWeight: '600' }}>Ryan Gosling</h1>
+              <p className="ip-patient-meta" style={{ color: '#000000', fontWeight: '500', margin: '4px 0 0 0' }}>Male, 36 • AHC-9824</p>
             </div>
           </div>
           <span 
             className="ip-status-badge" 
-            onClick={() => setIpStatus(ipStatus === 'Admitted' ? 'Discharged' : 'Admitted')}
             style={{ 
-              cursor: 'pointer',
-              background: ipStatus === 'Discharged' ? '#000000' : '#FFFFFF',
-              color: ipStatus === 'Discharged' ? '#FFFFFF' : '#000000'
+              background: '#CCA266',
+              color: '#FFFFFF'
             }}
-            title="Click to toggle status for testing (Admitted / Discharged)"
           >
             {ipStatus}
           </span>
@@ -343,7 +348,7 @@ export default function IPPatientPage({ onBack }) {
             <div className="ip-med-header-info">
               <span className="ip-med-updated">Updated: Today 2:00 PM</span>
             </div>
-            <MedicationCard showImage={false} />
+            <MedicationCard showImage={false} onOrderMedications={onOrderMedications} />
           </>
         )}
 
@@ -358,43 +363,99 @@ export default function IPPatientPage({ onBack }) {
               <span className="ip-vitals-time">Last updated: Today, 2:15 PM</span>
             </div>
             <div className="ip-vitals-grid">
-              {vitals.map((v, i) => (
-                <div key={i} className={`ip-vital-card ${v.status}`}>
-                  <div className="ip-vital-icon">
-                    <img src={v.icon} alt="" style={{ width: '24px', height: '24px', display: 'block' }} />
+              {vitals.map((v) => {
+                const isSelected = selectedVitalKey === v.key;
+                return (
+                  <div 
+                    key={v.key} 
+                    className={`ip-vital-card ${v.status} ${isSelected ? 'selected' : ''}`}
+                    onClick={() => setSelectedVitalKey(v.key)}
+                    style={{
+                      cursor: 'pointer',
+                      border: isSelected ? '2px solid #CCA266' : '1px solid #F2F4F7',
+                      backgroundColor: '#FFFFFF',
+                      transition: 'all 0.2s ease',
+                      position: 'relative'
+                    }}
+                  >
+                    <div className="ip-vital-icon">
+                      <img src={v.icon} alt="" style={{ width: '24px', height: '24px', display: 'block' }} />
+                    </div>
+                    <div className="ip-vital-value-row">
+                      <span className="ip-vital-value">{v.value}</span>
+                      <span className="ip-vital-unit">{v.unit}</span>
+                    </div>
+                    <p className="ip-vital-label">{v.label}</p>
                   </div>
-                  <div className="ip-vital-value-row">
-                    <span className="ip-vital-value">{v.value}</span>
-                    <span className="ip-vital-unit">{v.unit}</span>
-                  </div>
-                  <p className="ip-vital-label">{v.label}</p>
-                  <div className={`ip-vital-trend ${v.trend}`}>
-                    {v.trend === 'down' ? 'Improving' : v.trend === 'up' ? 'Rising' : 'Stable'}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Vitals Log */}
             <div className="ip-card" style={{ marginTop: '4px' }}>
-              <h2 className="ip-card-title" style={{ marginBottom: '16px' }}>Today's Log</h2>
-              <div className="ip-vitals-log-table">
-                <div className="ip-log-row header">
-                  <span>Time</span><span>Temp</span><span>BP</span><span>SpO₂</span><span>HR</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <div>
+                  <h2 className="ip-card-title" style={{ margin: 0 }}>Today's Log</h2>
+                  <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: '#555555' }}>
+                    Showing logs for <strong>{currentVitalObj ? currentVitalObj.label : 'All Vitals'}</strong>
+                  </p>
                 </div>
-                {[
-                  { time: '6 AM', temp: '102.4', bp: '122/80', spo2: '96%', hr: '94' },
-                  { time: '10 AM', temp: '101.8', bp: '120/78', spo2: '97%', hr: '90' },
-                  { time: '2 PM', temp: '101.2', bp: '118/76', spo2: '97%', hr: '88' },
-                ].map((log, i) => (
-                  <div key={i} className="ip-log-row">
-                    <span>{log.time}</span>
-                    <span className={parseFloat(log.temp) > 101 ? 'log-caution' : 'log-normal'}>{log.temp}°</span>
-                    <span>{log.bp}</span>
-                    <span>{log.spo2}</span>
-                    <span>{log.hr}</span>
-                  </div>
-                ))}
+                {selectedVitalKey !== 'all' && (
+                  <button 
+                    type="button" 
+                    onClick={() => setSelectedVitalKey('all')}
+                    style={{
+                      background: '#F2F4F7',
+                      border: 'none',
+                      color: '#555555',
+                      fontSize: '12px',
+                      fontWeight: '500',
+                      padding: '6px 12px',
+                      borderRadius: '100px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Show All
+                  </button>
+                )}
+              </div>
+
+              <div className="ip-vitals-log-table">
+                {selectedVitalKey === 'all' ? (
+                  <>
+                    <div className="ip-log-row header">
+                      <span>Time</span><span>Temp</span><span>BP</span><span>SpO₂</span><span>HR</span>
+                    </div>
+                    {vitalsLogData.map((log, i) => (
+                      <div key={i} className="ip-log-row">
+                        <span>{log.time}</span>
+                        <span className={parseFloat(log.temp) > 101 ? 'log-caution' : 'log-normal'}>{log.temp}</span>
+                        <span>{log.bp}</span>
+                        <span>{log.spo2}</span>
+                        <span>{log.hr}</span>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <div className="ip-log-row header" style={{ gridTemplateColumns: '1.2fr 1fr' }}>
+                      <span>Time</span>
+                      <span style={{ textAlign: 'right' }}>{currentVitalObj?.label}</span>
+                    </div>
+                    {vitalsLogData.map((log, i) => (
+                      <div key={i} className="ip-log-row" style={{ gridTemplateColumns: '1.2fr 1fr' }}>
+                        <span style={{ fontWeight: '500' }}>{log.time}</span>
+                        <span style={{ 
+                          textAlign: 'right', 
+                          fontWeight: '600', 
+                          color: (selectedVitalKey === 'temp' && parseFloat(log.temp) > 101) ? '#D97706' : '#000000' 
+                        }}>
+                          {log[selectedVitalKey]}
+                        </span>
+                      </div>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </>

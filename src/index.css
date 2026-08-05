@@ -149,8 +149,8 @@ body,
   z-index: 100;
 }.avatar-badge {
   position: relative;
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
   margin-bottom: 10px;
   cursor: pointer;
@@ -160,10 +160,10 @@ body,
   position: absolute;
   top: -8px;
   left: -8px;
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   background: rgba(204, 162, 102, 0.45);
-  border-radius: var(--radius-sm);
+  border-radius: 50% !important;
   border: none;
   transform: rotate(-8deg);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), top 0.3s ease, left 0.3s ease;
@@ -176,14 +176,24 @@ body,
   left: -12px;
 }
 
+/* Hero Header avatar badge - single round profile without back card */
+.hero-header .avatar-badge::before {
+  display: none !important;
+}
+
+.hero-header .avatar-badge,
+.hero-header .avatar-badge-inner {
+  border-radius: 50% !important;
+}
+
 /* front card */
 .avatar-badge-inner {
   position: relative;
   z-index: 1;
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   background: #CCA266 !important;
-  border-radius: var(--radius-sm);
+  border-radius: 50% !important;
   border: none;
   display: flex;
   align-items: center;
@@ -242,7 +252,7 @@ body,
 }.dropdown-item-badge {
   width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: 50% !important;
   background: #FFFFFF;
   display: flex;
   align-items: center;
@@ -280,6 +290,21 @@ body,
   gap: 24px;
 }.main-content.no-navbar {
   padding-bottom: 24px;
+}
+
+.profile-page,
+.main-content.profile-main {
+  padding-bottom: 24px !important;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.history-page-title,
+.reports-page-title {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: #CCA266 !important;
+  margin: 0 0 18px 0 !important;
 }
 
 /* =========================================
@@ -1091,7 +1116,9 @@ body,
   gap: 12px;
 }
 
-.btn-primary {
+.btn-primary,
+#pre-op-btn,
+#followup-btn {
   background: #CCA266;
   color: #FFFFFF;
   border: none;
@@ -1101,13 +1128,18 @@ body,
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.15s ease;
 }
 
-.btn-primary:hover {
-  transform: translateY(-1px);
-}.btn-secondary,
+.btn-primary:hover,
+#pre-op-btn:hover,
+#followup-btn:hover {
+  transform: none;
+  background: #CCA266;
+}
+
+.btn-secondary,
 #reschedule-appt-btn,
+#prescription-btn,
 .btn-reschedule,
 .reschedule-btn {
   background: #FFFFFF;
@@ -1119,13 +1151,16 @@ body,
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-secondary:hover,
-#reschedule-appt-btn:hover {
-  background: #F2F4F7;
+#reschedule-appt-btn:hover,
+#prescription-btn:hover,
+.btn-reschedule:hover,
+.reschedule-btn:hover {
+  background: #FFFFFF;
   border-color: #CCA266 !important;
+  transform: none;
 }
 
 /* =========================================
@@ -2151,7 +2186,7 @@ body,
 }.pref-doctor-specialty {
   font-size: 13px;
   font-weight: 400;
-  color: #000000;
+  color: #555555;
   margin-bottom: 16px;
   line-height: 1.2;
 }.pref-doctor-divider {
@@ -2170,13 +2205,13 @@ body,
   gap: 2px;
 }.pref-doctor-fee-label {
   font-size: 14px;
-  color: #000000;
+  color: #555555;
   font-weight: 400;
   line-height: 1.2;
 }.pref-doctor-fee-value {
   font-size: 15px;
   font-weight: 500;
-  color: #000000;
+  color: #CCA266;
   line-height: 1.2;
 }.pref-doctor-book-btn {
   background: #CCA266;
@@ -2247,8 +2282,8 @@ body,
 }
 
 .nav-icon {
-  width: 29.4px;
-  height: 29.4px;
+  width: 29px;
+  height: 29px;
   object-fit: contain;
   opacity: 1;
 }
@@ -3360,7 +3395,7 @@ body,
 }.doctor-specialty {
   font-size: 14px;
   font-weight: 500;
-  color: #000000;
+  color: #555555;
   margin: 0;
 }.doctor-hospital-container {
   background-color: #FFFFFF;
@@ -3386,7 +3421,6 @@ body,
   height: auto;
   flex-shrink: 0;
   display: block;
-  filter: invert(71%) sepia(30%) saturate(632%) hue-rotate(1deg) brightness(91%) contrast(87%) !important;
 }.doctor-hospital-name {
   font-size: 14px;
   font-weight: 500;
@@ -3441,7 +3475,7 @@ body,
 }.doctor-fee-amount {
   font-size: 18px;
   font-weight: 500;
-  color: #000000;
+  color: #CCA266;
   line-height: 1;
 }.doctor-fee-label {
   font-size: 14px;
@@ -3655,12 +3689,13 @@ body,
   flex: 1;
 }.ip-patient-name {
   font-size: 20px;
-  font-weight: 500;
-  color: #FFFFFF;
+  font-weight: 600;
+  color: #000000 !important;
   margin: 0 0 3px;
 }.ip-patient-meta {
   font-size: 13px;
-  color: #FFFFFF;
+  font-weight: 500;
+  color: #000000 !important;
   margin: 0 0 6px;
 }.ip-location-badge {
   display: flex;
@@ -5967,7 +6002,6 @@ body, h1, h2, h3, h4, h5, h6,
 .appt-header-doctor-specialty,
 .medication-details,
 .medication-time,
-.ip-patient-meta,
 .ip-meta,
 .hospital-card-address,
 .hospital-card-distance,
@@ -6146,8 +6180,10 @@ svg[fill]:not([fill="none"]) path {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 40px !important;
-  height: 40px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
 }
 
 .ai-back-btn svg {
@@ -6281,7 +6317,7 @@ svg[fill]:not([fill="none"]) path {
   cursor: pointer !important;
   transition: all 0.2s ease !important;
   outline: none !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: none !important;
   user-select: none !important;
 }
 
@@ -6289,6 +6325,7 @@ svg[fill]:not([fill="none"]) path {
   background: #F2F4F7 !important;
   border-color: #CCA266 !important;
   transform: translateY(-1px) !important;
+  box-shadow: none !important;
 }
 
 .ai-chat-chip.selected,
@@ -6296,7 +6333,34 @@ svg[fill]:not([fill="none"]) path {
   background: #CCA266 !important;
   color: #FFFFFF !important;
   border-color: #CCA266 !important;
-  box-shadow: 0 4px 12px rgba(204, 162, 102, 0.3) !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   GLOBAL ENFORCED 44px DIMENSIONS & NO SHADOW FOR ALL BACK NAVIGATION BUTTONS
+   ========================================= */
+button[aria-label*="back" i],
+button[aria-label*="Back" i],
+button[aria-label*="Go back" i],
+.doctors-back-btn,
+.pulse-back-btn,
+.ai-back-btn,
+.booking-back-btn,
+.hospitals-back-btn,
+.ip-back-btn,
+.preop-back-btn,
+.hospital-detail-back-btn,
+.consultation-back-btn,
+.back-btn {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  max-width: 44px !important;
+  max-height: 44px !important;
+  flex-shrink: 0 !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
 }
 
 /* =========================================
@@ -6616,4 +6680,9 @@ button.doctor-book-btn {
   align-items: center;
   justify-content: center;
   border: 2px solid #FFFFFF;
+}
+
+.video-consult-banner {
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
 }

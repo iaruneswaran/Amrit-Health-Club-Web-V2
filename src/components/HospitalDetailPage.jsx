@@ -13,6 +13,7 @@ import babyMemorialImg from '../assets/Admitted.jpg';
 
 // Import department icon
 import stethoscopeIcon from '../assets/Doctor Icon.svg';
+import hospitalIcon from '../assets/Hospital icon.svg';
 
 const imageMap = {
   'st-marys': stMarysImg,
@@ -46,14 +47,11 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
           </button>
           
           <div className="ip-header-content">
-            <div className="ip-avatar" style={{ color: '#000000', background: '#F2F4F7', fontWeight: '500' }}>
-              {hospital.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
-            </div>
             <div className="ip-patient-info">
-              <h1 className="ip-patient-name" style={{ color: '#CCA266' }}>{hospital.name}</h1>
-              <p className="ip-patient-meta" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: 0 }}>
-                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px', filter: 'brightness(0)', opacity: 0.6 }} />
-                <span style={{ color: '#555555' }}>{hospital.openStatus}</span>
+              <h1 className="ip-patient-name" style={{ color: '#000000', fontWeight: '600' }}>{hospital.name}</h1>
+              <p className="ip-patient-meta" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: '4px 0 0 0' }}>
+                <img src="/clock-icon.svg" alt="" style={{ width: '14px', height: '14px', filter: 'brightness(0)', opacity: 1 }} />
+                <span style={{ color: '#000000', fontWeight: '500' }}>{hospital.openStatus}</span>
               </p>
             </div>
           </div>
@@ -86,7 +84,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
       {/* Map Location pin & address block below stats (no card container) */}
       <div style={{ padding: '16px 12px', background: '#FFFFFF', display: 'flex', gap: '12px', borderBottom: '1px solid #F2F4F7' }}>
         <img src={googleLocationIcon} alt="Map Location Pin" style={{ width: '20px', height: '20px', flexShrink: 0, marginTop: '2px' }} />
-        <p style={{ fontFamily: 'var(--font)', fontSize: '14px', fontWeight: '500', color: '#000000', margin: 0, lineHeight: '1.4' }}>
+        <p style={{ fontFamily: 'var(--font)', fontSize: '14px', fontWeight: '400', color: '#555555', margin: 0, lineHeight: '1.4' }}>
           {hospital.address}
         </p>
       </div>
@@ -110,7 +108,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
         {activeTab === 'overview' && (
           <div className="hospital-address-container" style={{ flexDirection: 'column', gap: '12px', alignItems: 'stretch' }}>
             <h4 className="hospital-card-name">About the Hospital</h4>
-            <p className="hospital-address-text" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: '1.5' }}>
+            <p className="hospital-address-text" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: '1.5', color: '#555555' }}>
               {hospital.name} is a premier healthcare facility offering comprehensive medical care. Equipped with advanced technology and staffed by top-tier medical professionals, we are committed to delivering the highest quality patient care and clinical excellence.
             </p>
             <div style={{ borderTop: '1px solid #F2F4F7', paddingTop: '12px', marginTop: '4px' }}>
@@ -227,16 +225,11 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
               }).length;
 
               return (
-                <div className="dept-card" key={index}>
-                  <div className="dept-icon-wrapper">
-                    <img src={stethoscopeIcon} alt="" style={{ width: '22px', height: '22px', display: 'block' }} />
-                  </div>
-                  <div className="dept-info">
-                    <h4 className="dept-title">{dept}</h4>
-                    <p className="dept-subtitle">
-                      {count === 1 ? '1 Doctor' : `${count} Doctors`}
-                    </p>
-                  </div>
+                <div className="dept-card" key={index} style={{ background: '#FFFFFF', border: '1px solid #F2F4F7', borderRadius: '16px', padding: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', gap: '4px' }}>
+                  <h4 className="dept-title" style={{ margin: 0, fontSize: '15px', fontWeight: '600', color: '#000000', textAlign: 'left' }}>{dept}</h4>
+                  <p className="dept-subtitle" style={{ margin: 0, fontSize: '13px', fontWeight: '500', color: '#555555', textAlign: 'left' }}>
+                    {count === 1 ? '1 Doctor' : `${count} Doctors`}
+                  </p>
                 </div>
               );
             })}
@@ -262,7 +255,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
                 {doctor.hospitalName && (
                   <div className={`doctor-hospital-container ${doctor.isPreferred ? 'has-preferred' : ''}`}>
                     <div className="doctor-hospital-left">
-                      <img src="/hospital-icon.svg" alt="Hospital" className="doctor-hospital-icon" style={{ filter: 'invert(71%) sepia(30%) saturate(632%) hue-rotate(1deg) brightness(91%) contrast(87%)' }} />
+                      <img src={hospitalIcon} alt="Hospital" className="doctor-hospital-icon" />
                       <span className="doctor-hospital-name">{doctor.hospitalName}</span>
                     </div>
                     {doctor.isPreferred && (

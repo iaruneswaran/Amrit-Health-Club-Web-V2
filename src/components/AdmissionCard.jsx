@@ -24,8 +24,8 @@ export default function AdmissionCard({ onCardClick }) {
         <div className="admission-profile-row">
           <div className="admission-avatar-placeholder">RG</div>
           <div className="admission-header-doctor-info">
-            <h4 className="admission-header-doctor-name">Ryan Gosling</h4>
-            <p className="admission-header-doctor-specialty" style={{ color: "#555555" }}>Male, 36 • ID: AHC-9824</p>
+            <h4 className="admission-header-doctor-name" style={{ color: "#000000", fontWeight: "600" }}>Ryan Gosling</h4>
+            <p className="admission-header-doctor-specialty" style={{ color: "#000000", fontWeight: "500" }}>Male, 36 • ID: AHC-9824</p>
           </div>
         </div>
         {/* Admission Reason card */}

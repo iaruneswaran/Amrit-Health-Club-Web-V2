@@ -1,16 +1,17 @@
-﻿import React from 'react';
+import React from 'react';
+import uploadDocIcon from '../assets/Upload Document.svg';
 
 const navItems = [
   { id: 'hospitals-nav', icon: '/hospital-icon.svg', label: 'Hospitals' },
   { id: 'doctors-nav',   icon: '/doctor-icon.svg',   label: 'Doctors'   },
-  { id: 'history-nav',   icon: '/history-icon.svg',  label: 'History'   },
+  { id: 'upload-doc-nav', icon: uploadDocIcon,         label: 'Upload' },
 ]
 
-export default function QuickNav({ onHospitalsClick, onDoctorsClick, onHistoryClick }) {
+export default function QuickNav({ onHospitalsClick, onDoctorsClick, onUploadDocClick }) {
   const handleItemClick = (label) => {
     if (label === 'Hospitals' && onHospitalsClick) onHospitalsClick();
     if (label === 'Doctors' && onDoctorsClick) onDoctorsClick();
-    if (label === 'History' && onHistoryClick) onHistoryClick();
+    if ((label === 'Upload' || label === 'Upload Document') && onUploadDocClick) onUploadDocClick();
   };
 
   return (

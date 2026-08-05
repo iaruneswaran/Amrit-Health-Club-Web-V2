@@ -22,13 +22,7 @@ const medications = [
   }
 ];
 
-export default function MedicationCard({ showImage = true }) {
-  const [expandedId, setExpandedId] = useState(null);
-
-  const toggleExpand = (id) => {
-    setExpandedId(prev => prev === id ? null : id);
-  };
-
+export default function MedicationCard({ showImage = true, onOrderMedications }) {
   return (
     <div className="medication-card">
       {showImage && (
@@ -45,38 +39,47 @@ export default function MedicationCard({ showImage = true }) {
           <h3 className="medication-card-title">Active Medications</h3>
         </div>
         <div className="medication-list">
-          {medications.map((med, index) => {
-            const isExpanded = expandedId === med.id;
-            return (
-              <React.Fragment key={med.id}>
-                <div 
-                  className="medication-item" 
-                  onClick={() => toggleExpand(med.id)}
-                  style={{ cursor: 'pointer', transition: 'all 0.2s ease' }}
-                >
-                  <div className="medication-item-left" style={{ width: '100%' }}>
-                    <div className="medication-info" style={{ width: '100%' }}>
-                      <p className="medication-name">{med.name}</p>
-                      <p className="medication-details">{med.details}</p>
-
-                      <div className={`medication-expanded-wrapper ${isExpanded ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
-                        <div className="medication-expanded-inner">
-                          <span style={{ fontSize: '13px', fontWeight: '500', color: '#555555', textTransform: 'none', letterSpacing: '0.1px' }}>
-                            Instruction
-                          </span>
-                          <p style={{ margin: 0, fontSize: '13px', color: '#555555', lineHeight: '1.4' }}>
-                            {med.instruction}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+          {medications.map((med, index) => (
+            <React.Fragment key={med.id}>
+              <div className="medication-item">
+                <div className="medication-item-left" style={{ width: '100%' }}>
+                  <div className="medication-info" style={{ width: '100%' }}>
+                    <p className="medication-name">{med.name}</p>
+                    <p className="medication-details">{med.details}</p>
                   </div>
                 </div>
-                {index < medications.length - 1 && <hr className="medication-divider" />}
-              </React.Fragment>
-            );
-          })}
+              </div>
+              {index < medications.length - 1 && <hr className="medication-divider" />}
+            </React.Fragment>
+          ))}
         </div>
+
+        {onOrderMedications && (
+          <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #F2F4F7' }}>
+            <button
+              type="button"
+              onClick={onOrderMedications}
+              style={{
+                width: '100%',
+                height: '50px',
+                background: '#CCA266',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '16px',
+                fontSize: '15px',
+                fontWeight: '500',
+                letterSpacing: '0.1px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'opacity 0.2s ease'
+              }}
+            >
+              Order Prescribed Medications
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

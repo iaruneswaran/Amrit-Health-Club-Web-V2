@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import continueArrow from '../assets/Continue Arrow.svg';
 import profileHeaderImg from '../assets/Profile Header.jpg';
 import editIcon from '../assets/Profile edit.svg';
 import paymentIcon from '../assets/Payment Methods.svg';
@@ -14,7 +15,7 @@ const ChevronRight = () => (
   </svg>
 );
 
-export default function ProfilePage({ onNavigate }) {
+export default function ProfilePage({ onBack, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedInitials, setSelectedInitials] = useState(() =>
     localStorage.getItem('selected_profile_initials') || 'RG'
@@ -58,7 +59,31 @@ export default function ProfilePage({ onNavigate }) {
     <div className="profile-page">
 
       {/* Header Image */}
-      <div className="profile-header-image-wrap">
+      <div className="profile-header-image-wrap" style={{ position: 'relative' }}>
+        {onBack && (
+          <button 
+            onClick={onBack} 
+            aria-label="Go back"
+            style={{
+              position: 'absolute',
+              top: '16px',
+              left: '16px',
+              zIndex: 10,
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              backgroundColor: '#FFFFFF',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: 'none'
+            }}
+          >
+            <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '16px', height: '14px' }} />
+          </button>
+        )}
         <img src={profileHeaderImg} alt="Profile Header" className="profile-header-image" />
       </div>
 
@@ -113,17 +138,17 @@ export default function ProfilePage({ onNavigate }) {
       <div className="profile-section-card activity-card">
         <h3 className="profile-section-title">Patient Activity</h3>
         <div className="activity-grid">
-          <div className="activity-item">
+          <div className="activity-item" onClick={() => onNavigate('bookings')} style={{ cursor: 'pointer' }}>
             <span className="activity-count">2</span>
             <span className="activity-label">Bookings</span>
           </div>
           <div className="activity-divider" />
-          <div className="activity-item">
+          <div className="activity-item" onClick={() => onNavigate('files')} style={{ cursor: 'pointer' }}>
             <span className="activity-count">6</span>
             <span className="activity-label">Files</span>
           </div>
           <div className="activity-divider" />
-          <div className="activity-item">
+          <div className="activity-item" onClick={() => onNavigate('medicines')} style={{ cursor: 'pointer' }}>
             <span className="activity-count">4</span>
             <span className="activity-label">Medicines</span>
           </div>

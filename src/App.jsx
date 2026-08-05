@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import HeroHeader from './components/HeroHeader'
 import AIBanner from './components/AIBanner'
+import VideoConsultationBanner from './components/VideoConsultationBanner'
+import VideoConsultationModal from './components/VideoConsultationModal'
 import QuickNav from './components/QuickNav'
 import ClinicCard from './components/ClinicCard'
 import AppointmentCard from './components/AppointmentCard'
@@ -37,7 +39,9 @@ import statusArrow from './assets/Status Arrow.svg'
 import pulseImage from './assets/Pulse Page Header Image.jpg'
 import pulsePageLogo from './assets/Pulse Page Logo.png'
 import BookingFlow from './components/BookingFlow'
+import OrderMedicationFlow from './components/OrderMedicationFlow'
 import PreOpPage from './components/PreOpPage'
+import UploadReportModal from './components/UploadReportModal'
 
 const timeframeData = {
   D: {
@@ -118,6 +122,7 @@ export default function App() {
   const [showHospitalsPage, setShowHospitalsPage] = useState(false)
   const [showDoctorsPage, setShowDoctorsPage] = useState(false)
   const [showHistoryPage, setShowHistoryPage] = useState(false)
+  const [showProfilePage, setShowProfilePage] = useState(false)
   const [showIPPage, setShowIPPage] = useState(false)
   const [bookingDoctor, setBookingDoctor] = useState(null)
   const [selectedHospital, setSelectedHospital] = useState(null)
@@ -128,6 +133,11 @@ export default function App() {
 
   const [showPreOpPage, setShowPreOpPage] = useState(false)
   const [profileSubPage, setProfileSubPage] = useState(null) // null | { page: string, data?: any }
+  const [isHomeUploadOpen, setIsHomeUploadOpen] = useState(false)
+  const [homeToastMessage, setHomeToastMessage] = useState(null)
+  const [showVideoConsultModal, setShowVideoConsultModal] = useState(false)
+  const [showVideoDoctorsPage, setShowVideoDoctorsPage] = useState(false)
+  const [showOrderMedicationFlow, setShowOrderMedicationFlow] = useState(false)
   const [preOpCompleted, setPreOpCompleted] = useState(() => {
     return localStorage.getItem('preop_completed') === 'true'
   })
@@ -135,6 +145,13 @@ export default function App() {
     const saved = localStorage.getItem('preop_data')
     return saved ? JSON.parse(saved) : null
   })
+
+  const handleHomeUploadSuccess = (newDoc) => {
+    setHomeToastMessage('Lab Report uploaded & analyzed successfully!')
+    setTimeout(() => {
+      setHomeToastMessage(null)
+    }, 3000)
+  }
 
   const handleCompletePreOp = (data) => {
     setPreOpCompleted(true)
@@ -156,6 +173,14 @@ export default function App() {
 
   const handleBackToHome = () => {
     setPulsePageHasBack(false)
+    setActiveTab(0)
+  }
+
+  const handleLogoutConfirm = () => {
+    setIsLoggedIn(false)
+    localStorage.removeItem('user_logged_in')
+    setProfileSubPage(null)
+    setShowProfilePage(false)
     setActiveTab(0)
   }
 
@@ -188,7 +213,7 @@ export default function App() {
     if (pageShell) {
       pageShell.scrollTop = 0
     }
-  }, [activeTab, showPreOpPage])
+  }, [activeTab, showPreOpPage, showOrderMedicationFlow, bookingDoctor])
 
   const handleOnboardingComplete = () => {
     setShowOnboarding(false)
@@ -241,6 +266,15 @@ export default function App() {
       )
     }
 
+    if (showOrderMedicationFlow) {
+      return (
+        <OrderMedicationFlow
+          onBack={() => setShowOrderMedicationFlow(false)}
+          onComplete={() => setShowOrderMedicationFlow(false)}
+        />
+      )
+    }
+
     if (bookingDoctor) {
       return (
         <BookingFlow
@@ -285,6 +319,23 @@ export default function App() {
       )
     }
 
+    if (showVideoDoctorsPage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <DoctorsPage 
+            title="Doctors for Online Consultation" 
+            isVideoConsult={true} 
+            onBack={() => setShowVideoDoctorsPage(false)} 
+            onBookNow={(doc) => {
+              setShowVideoDoctorsPage(false);
+              setBookingDoctor(doc);
+            }} 
+          />
+        </>
+      )
+    }
+
     if (showHistoryPage) {
       return (
         <>
@@ -308,7 +359,7 @@ export default function App() {
       return (
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
-          <IPPatientPage onBack={() => setShowIPPage(false)} />
+          <IPPatientPage onBack={() => setShowIPPage(false)} onOrderMedications={() => setShowOrderMedicationFlow(true)} />
         </>
       )
     }
@@ -321,8 +372,40 @@ export default function App() {
       if (page === 'language')       return <LanguagePage onBack={goBack} />
       if (page === 'mobile')         return <MobileNumberPage onBack={goBack} />
       if (page === 'editProfile')    return <EditProfilePage profile={data} onBack={goBack} />
-      if (page === 'logout')         return <LogoutPage onBack={goBack} />
-      if (page === 'deleteAccount')  return <DeleteAccountPage onBack={goBack} />
+      if (page === 'logout')         return <LogoutPage onBack={goBack} onConfirm={handleLogoutConfirm} />
+      if (page === 'deleteAccount')  return <DeleteAccountPage onBack={goBack} onConfirm={handleLogoutConfirm} />
+      if (page === 'bookings') {
+        setShowProfilePage(false)
+        setProfileSubPage(null)
+        setShowHistoryPage(true)
+        return null
+      }
+      if (page === 'files') {
+        setShowProfilePage(false)
+        setProfileSubPage(null)
+        setActiveTab(2)
+        return null
+      }
+      if (page === 'medicines') {
+        setShowProfilePage(false)
+        setProfileSubPage(null)
+        setActiveTab(0)
+        return null
+      }
+    }
+
+    if (showProfilePage) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <main className="main-content profile-main">
+            <ProfilePage 
+              onBack={() => setShowProfilePage(false)} 
+              onNavigate={(page, data) => setProfileSubPage({ page, data })} 
+            />
+          </main>
+        </>
+      )
     }
 
     if (activeTab === 0) {
@@ -330,13 +413,32 @@ export default function App() {
       return (
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
-          <HeroHeader />
+          {homeToastMessage && (
+            <div style={{
+              position: 'fixed',
+              top: '24px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              backgroundColor: '#CCA266',
+              color: '#FFFFFF',
+              padding: '12px 20px',
+              borderRadius: '24px',
+              fontSize: '14px',
+              fontWeight: '500',
+              boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+              zIndex: 1200,
+              animation: 'fadeIn 0.2s ease'
+            }}>
+              {homeToastMessage}
+            </div>
+          )}
+          <HeroHeader onProfileClick={() => setShowProfilePage(true)} />
           <main className="main-content">
-            <AIBanner onClick={() => setShowAIPage(true)} />
+            <VideoConsultationBanner onClick={() => setShowVideoDoctorsPage(true)} />
             <QuickNav 
               onHospitalsClick={() => setShowHospitalsPage(true)} 
               onDoctorsClick={() => setShowDoctorsPage(true)} 
-              onHistoryClick={() => setShowHistoryPage(true)}
+              onUploadDocClick={() => setIsHomeUploadOpen(true)}
             />
             <ClinicCard
               onBookNow={(doc) => setBookingDoctor(doc)}
@@ -359,11 +461,11 @@ export default function App() {
               <PulseScore onImprovementPlansClick={handleImprovementPlansClick} />
             </div>
             <div className="section-group">
-              <p className="section-title">Medication</p>
-              <MedicationCard />
+              <p className="section-title">Prescribed Medications</p>
+              <MedicationCard onOrderMedications={() => setShowOrderMedicationFlow(true)} />
             </div>
             <div className="section-group">
-              <p className="section-title">Admission Overview</p>
+              <p className="section-title">Admitted</p>
               <AdmissionCard onCardClick={() => setShowIPPage(true)} />
             </div>
             <div className="section-group">
@@ -374,6 +476,15 @@ export default function App() {
               <img src={homePageEndImage} alt="Amrit Health Club Home End" className="homepage-end-image" />
             </div>
           </main>
+          <UploadReportModal 
+            isOpen={isHomeUploadOpen}
+            onClose={() => setIsHomeUploadOpen(false)}
+            onUploadSuccess={handleHomeUploadSuccess}
+          />
+          <VideoConsultationModal
+            isOpen={showVideoConsultModal}
+            onClose={() => setShowVideoConsultModal(false)}
+          />
           <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>
       )
@@ -572,12 +683,15 @@ export default function App() {
     }
 
     if (activeTab === 3) {
-      // User/Profile tab
+      // History tab
       return (
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
-          <main className="main-content profile-main">
-            <ProfilePage onNavigate={(page, data) => setProfileSubPage({ page, data })} />
+          <main className="main-content">
+            <HistoryPage 
+              onSelectIP={() => setShowIPPage(true)} 
+              onBookAppointment={(doc) => setBookingDoctor(doc)}
+            />
           </main>
           <NavBar activeTab={activeTab} setActiveTab={handleTabChange} />
         </>

@@ -3,6 +3,7 @@ import searchIcon from '../assets/Search.svg';
 import filterIcon from '../assets/Filter.svg';
 import googleLocationIcon from '../assets/Google Location.svg';
 import continueArrow from '../assets/Continue Arrow.svg';
+import hospitalIcon from '../assets/Hospital icon.svg';
 
 export const doctorsList = [
   {
@@ -70,7 +71,7 @@ export const doctorsList = [
   }
 ];
 
-export default function DoctorsPage({ onBack, onBookNow }) {
+export default function DoctorsPage({ onBack, onBookNow, title = "Doctors near you", isVideoConsult = false }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentLocation, setCurrentLocation] = useState('UL Cyber Park, Kozhikode');
   const [isDetecting, setIsDetecting] = useState(false);
@@ -183,7 +184,7 @@ export default function DoctorsPage({ onBack, onBookNow }) {
             <button className="doctors-back-btn" onClick={onBack} aria-label="Go back to dashboard">
               <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '16px', height: '14px' }} />
             </button>
-            <h1 className="doctors-page-title">Doctors near you</h1>
+            <h1 className="doctors-page-title">{title}</h1>
           </div>
         </header>
 
@@ -209,7 +210,7 @@ export default function DoctorsPage({ onBack, onBookNow }) {
           <button className="doctors-back-btn" onClick={onBack} aria-label="Go back to dashboard">
             <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '16px', height: '14px' }} />
           </button>
-          <h1 className="doctors-page-title">Doctors near you</h1>
+          <h1 className="doctors-page-title">{title}</h1>
         </div>
 
         {/* Location Selector Card */}
@@ -265,7 +266,7 @@ export default function DoctorsPage({ onBack, onBookNow }) {
               {doctor.hospitalName && (
                 <div className={`doctor-hospital-container ${doctor.isPreferred ? 'has-preferred' : ''}`}>
                   <div className="doctor-hospital-left">
-                    <img src="/hospital-icon.svg" alt="Hospital" className="doctor-hospital-icon" style={{ filter: 'invert(71%) sepia(30%) saturate(632%) hue-rotate(1deg) brightness(91%) contrast(87%)' }} />
+                    <img src={hospitalIcon} alt="Hospital" className="doctor-hospital-icon" />
                     <span className="doctor-hospital-name">{doctor.hospitalName}</span>
                   </div>
                   {doctor.isPreferred && (

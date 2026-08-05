@@ -1,14 +1,14 @@
-﻿import homeIcon from '../assets/Home.svg'
+import homeIcon from '../assets/Home.svg'
 import pulseIcon from '../assets/Pulse.svg'
 import reportsIcon from '../assets/Reports.svg'
-import userIcon from '../assets/User.svg'
+import historyIcon from '../assets/History Icon.svg'
 
 export default function NavBar({ activeTab, setActiveTab }) {
   const tabs = [
     { label: 'Home', icon: homeIcon },
     { label: 'Pulse', icon: pulseIcon },
     { label: 'Reports', icon: reportsIcon },
-    { label: 'User', icon: userIcon }
+    { label: 'History', icon: historyIcon }
   ]
 
   return (
