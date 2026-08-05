@@ -200,7 +200,7 @@ body,
   justify-content: center;
   font-size: 15px;
   font-weight: 500;
-  color: #FFFFFF !important;
+  color: #000000 !important;
 }/* dropdown overlay backdrop to close dropdown */
 .dropdown-overlay {
   position: fixed;
