@@ -1215,6 +1215,7 @@ body,
   align-items: center;
   width: 150px;
   flex-shrink: 0;
+  margin-left: -5px;
 }.pulse-gauge-container {
   width: 100%;
 }
@@ -1265,18 +1266,20 @@ body,
   font-size: 14px;
   font-weight: 500;
   margin-left: 6px;
+  white-space: nowrap;
 }
 
 .pulse-trend-icon {
   flex-shrink: 0;
-  width: 15px;
-  height: 9px;
+  width: auto;
+  height: 10px;
   display: block;
   filter: brightness(0) invert(1);
 }.pulse-status-text {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
 }.pulse-divider {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -3513,7 +3516,7 @@ body,
   padding: 16px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
   box-shadow: none;
 }
 
