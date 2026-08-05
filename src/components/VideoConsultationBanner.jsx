@@ -26,7 +26,7 @@ export default function VideoConsultationBanner({ onClick }) {
     >
       {/* Left Image Thumbnail */}
       <div style={{
-        width: '90px',
+        width: '140px',
         height: '90px',
         borderRadius: '16px',
         overflow: 'hidden',
@@ -50,11 +50,11 @@ export default function VideoConsultationBanner({ onClick }) {
         <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '600', color: '#000000', letterSpacing: '-0.2px', lineHeight: '1.2' }}>
           Online Consultation
         </h3>
-        <p style={{ margin: 0, fontSize: '13px', fontWeight: '400', color: '#555555', lineHeight: '1.35' }}>
-          Connect with Specialist Doctors
+        <p style={{ margin: 0, fontSize: '15px', fontWeight: '400', color: '#555555', lineHeight: '1.35' }}>
+          12 Doctors Available
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
-          <span style={{ fontSize: '14px', fontWeight: '600', color: '#CCA266' }}>Book Now</span>
+          <span style={{ fontSize: '14px', fontWeight: '600', color: '#CCA266' }}>Book an Appointment Now</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>

@@ -372,7 +372,7 @@ export default function IPPatientPage({ onBack, onOrderMedications }) {
                     onClick={() => setSelectedVitalKey(v.key)}
                     style={{
                       cursor: 'pointer',
-                      border: isSelected ? '2px solid #CCA266' : '1px solid #F2F4F7',
+                      border: isSelected ? '1px solid #CCA266' : '1px solid #F2F4F7',
                       backgroundColor: '#FFFFFF',
                       transition: 'all 0.2s ease',
                       position: 'relative'
