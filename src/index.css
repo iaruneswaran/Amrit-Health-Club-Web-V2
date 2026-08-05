@@ -184,6 +184,7 @@ body,
 .hero-header .avatar-badge,
 .hero-header .avatar-badge-inner {
   border-radius: 50% !important;
+  color: #FFFFFF !important;
 }
 
 /* front card */
