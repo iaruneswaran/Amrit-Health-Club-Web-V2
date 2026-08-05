@@ -32,7 +32,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
   return (
     <div className="doctors-page-container" style={{ minHeight: '100vh', backgroundColor: '#F2F4F7' }}>
       {/* Top Header Section */}
-      <header className="doctors-header" style={{ padding: '16px 14px', backgroundColor: 'transparent', position: 'sticky', top: 0, zIndex: 20 }}>
+      <header className="doctors-header" style={{ padding: '0 0 16px 0', backgroundColor: 'transparent', position: 'sticky', top: 0, zIndex: 20 }}>
         <div className="doctors-title-row" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button 
             className="doctors-back-btn" 
@@ -49,7 +49,7 @@ export default function ConsultationDetailPage({ consultation, onBack, onBookApp
       </header>
 
       {/* Main Content Area */}
-      <main style={{ padding: '0 14px 32px 14px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <main style={{ padding: '0', display: 'flex', flexDirection: 'column', gap: '14px' }}>
         
         {/* Doctor & Status Hero Card */}
         <div style={{ backgroundColor: '#FFFFFF', borderRadius: '20px', padding: '18px', border: '1px solid #F2F4F7', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>

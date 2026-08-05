@@ -1143,8 +1143,8 @@ body,
 .btn-reschedule,
 .reschedule-btn {
   background: #FFFFFF;
-  color: #000000;
-  border: 1.5px solid #CCA266 !important;
+  color: #CCA266;
+  border: 1px solid #CCA266 !important;
   border-radius: 16px;
   padding: 14px 8px;
   font-family: var(--font);
@@ -2289,13 +2289,18 @@ body,
 }
 
 .nav-tab-item.active .nav-icon {
-  transform: none;
   filter: brightness(0) invert(1);
 }
 
 .nav-tab-item:not(.active) .nav-icon {
-  transform: none;
   filter: none;
+}
+
+.nav-icon {
+  width: 29px;
+  height: 29px;
+  object-fit: contain;
+  opacity: 1;
 }.nav-active-bubble {
   position: absolute;
   top: 6px;
@@ -2305,7 +2310,6 @@ body,
   background: #CCA266;
   border-radius: 34px;
   z-index: 1;
-  box-shadow: 0 2px 10px rgba(204, 162, 102, 0.35);
   border: none;
   transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform: translateX(calc(var(--active-index) * 100%));

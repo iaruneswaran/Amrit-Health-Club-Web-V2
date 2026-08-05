@@ -23,11 +23,17 @@ const medications = [
 ];
 
 export default function MedicationCard({ showImage = true, onOrderMedications }) {
+  const [expandedId, setExpandedId] = useState(null);
+
+  const toggleExpand = (id) => {
+    setExpandedId(prev => prev === id ? null : id);
+  };
+
   return (
     <div className="medication-card">
       {showImage && (
-        <div 
-          className="medication-header-bg" 
+        <div
+          className="medication-header-bg"
           style={{ backgroundImage: `url(${medicationBg})` }}
         />
       )}
@@ -38,20 +44,48 @@ export default function MedicationCard({ showImage = true, onOrderMedications })
           </svg>
           <h3 className="medication-card-title">Active Medications</h3>
         </div>
+
         <div className="medication-list">
-          {medications.map((med, index) => (
-            <React.Fragment key={med.id}>
-              <div className="medication-item">
-                <div className="medication-item-left" style={{ width: '100%' }}>
-                  <div className="medication-info" style={{ width: '100%' }}>
-                    <p className="medication-name">{med.name}</p>
-                    <p className="medication-details">{med.details}</p>
+          {medications.map((med, index) => {
+            const isOpen = expandedId === med.id;
+            return (
+              <React.Fragment key={med.id}>
+                <div
+                  className="medication-item"
+                  onClick={() => toggleExpand(med.id)}
+                  style={{ cursor: 'pointer', userSelect: 'none' }}
+                >
+                  <div className="medication-item-left" style={{ width: '100%' }}>
+                    <div className="medication-info" style={{ width: '100%' }}>
+                      <div>
+                        <p className="medication-name" style={{ margin: 0 }}>{med.name}</p>
+                      </div>
+                      <p className="medication-details">{med.details}</p>
+                      <div style={{
+                        overflow: 'hidden',
+                        maxHeight: isOpen ? '120px' : '0px',
+                        transition: 'max-height 0.3s ease',
+                      }}>
+                        <div style={{
+                          marginTop: '8px',
+                          padding: '10px 12px',
+                          background: 'rgba(204,162,102,0.07)',
+                          borderRadius: '10px',
+                          fontSize: '13px',
+                          color: '#555555',
+                          fontWeight: '500',
+                          lineHeight: '1.5'
+                        }}>
+                          {med.instruction}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {index < medications.length - 1 && <hr className="medication-divider" />}
-            </React.Fragment>
-          ))}
+                {index < medications.length - 1 && <hr className="medication-divider" />}
+              </React.Fragment>
+            );
+          })}
         </div>
 
         {onOrderMedications && (
