@@ -54,7 +54,7 @@ export default function VideoConsultationBanner({ onClick }) {
           12 Doctors Available
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
-          <span style={{ fontSize: '14px', fontWeight: '600', color: '#CCA266' }}>Book an Appointment Now</span>
+          <span style={{ fontSize: '14px', fontWeight: '600', color: '#CCA266' }}>Book Appointment</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
