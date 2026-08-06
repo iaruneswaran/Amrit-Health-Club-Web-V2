@@ -96,8 +96,8 @@ export default function PulseScore({ showFooter = true, onImprovementPlansClick 
               {/* Left segment - Active Grade A Range */}
               <path
                 d="M 28 190 A 172 172 0 0 1 103.82 47.41 L 122.88 80.42 A 134 134 0 0 0 66 190 Z"
-                fill="#92E066"
-                stroke="#92E066"
+                fill="#80D351"
+                stroke="#80D351"
                 strokeWidth="16"
                 strokeLinejoin="round"
               />

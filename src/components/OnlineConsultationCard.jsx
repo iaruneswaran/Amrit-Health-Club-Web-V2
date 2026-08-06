@@ -17,7 +17,7 @@ export default function OnlineConsultationCard({ onJoinCall, onReschedule }) {
       {/* Top Header Badge & Type */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
         <span style={{ fontSize: '14px', fontWeight: '700', color: '#CCA266' }}>Online Video Consultation</span>
-        <span style={{ fontSize: '14px', fontWeight: '600', color: '#FFFFFF', background: '#92E066', padding: '6px 16px', borderRadius: '100px 0 0 100px', marginRight: '-16px' }}>
+        <span style={{ fontSize: '14px', fontWeight: '600', color: '#FFFFFF', background: '#80D351', padding: '6px 16px', borderRadius: '100px 0 0 100px', marginRight: '-16px' }}>
           Confirmed
         </span>
       </div>

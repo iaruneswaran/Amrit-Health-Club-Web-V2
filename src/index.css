@@ -447,7 +447,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #92E066 !important;
+  background: #80D351 !important;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -1006,7 +1006,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #92E066;
+  background: #80D351;
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 500;
@@ -1034,7 +1034,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #92E066;
+  background: #80D351;
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 500;
@@ -1223,7 +1223,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #92E066;
+  background: #80D351;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -3214,7 +3214,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #92E066 !important;
+  background: #80D351 !important;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -3465,7 +3465,7 @@ body,
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: #92E066 !important;
+  background: #80D351 !important;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -3767,7 +3767,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #92E066 !important;
+  background: #80D351 !important;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -5980,7 +5980,7 @@ caption {
 .pulse-premium-badge,
 .premium-badge {
   color: #FFFFFF !important;
-  background: #92E066 !important;
+  background: #80D351 !important;
 }
 
 /* Report Status Badges: Red for Issues, Green for Normal */
@@ -6145,7 +6145,7 @@ svg[fill]:not([fill="none"]) path {
    PULSE GAUGE: EXACT SEGMENT + ARROW COLORS
    ========================================= */
 /* Arc segments — explicit colors, no white override */
-.pulse-card .pulse-gauge-svg path[fill="#92E066"] { fill: #92E066 !important; stroke: #92E066 !important; }
+.pulse-card .pulse-gauge-svg path[fill="#80D351"] { fill: #80D351 !important; stroke: #80D351 !important; }
 .pulse-card .pulse-gauge-svg path[fill="#D2F19E"] { fill: #D2F19E !important; stroke: #D2F19E !important; }
 .pulse-card .pulse-gauge-svg path[fill="#DCF6CF"] { fill: #DCF6CF !important; stroke: #DCF6CF !important; }
 /* Arrow pointer */

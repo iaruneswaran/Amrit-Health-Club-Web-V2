@@ -118,7 +118,7 @@ export default function IPPatientPage({ onBack, onOrderMedications }) {
           <span 
             className="ip-status-badge" 
             style={{ 
-              background: '#92E066',
+              background: '#80D351',
               color: '#FFFFFF'
             }}
           >

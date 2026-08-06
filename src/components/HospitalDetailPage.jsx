@@ -56,7 +56,7 @@ export default function HospitalDetailPage({ hospital, onBack, onBookNow, initia
             </div>
           </div>
           {hospital.isPreferred && (
-            <span className="ip-status-badge" style={{ background: '#92E066', color: '#FFFFFF' }}>
+            <span className="ip-status-badge" style={{ background: '#80D351', color: '#FFFFFF' }}>
               Preferred
             </span>
           )}
