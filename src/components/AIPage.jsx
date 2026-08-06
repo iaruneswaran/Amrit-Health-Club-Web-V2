@@ -314,10 +314,7 @@ export default function AIPage({ onBack }) {
                 {m.card && m.cardDetails && (
                   <div className="ai-booking-card" style={{ gap: '10px' }}>
                     <div className="booking-confirmed-check-wrap" style={{ display: 'flex', justifyContent: 'center', margin: '6px 0 12px' }}>
-                      <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-                        <circle cx="36" cy="36" r="36" fill="#FFFFFF" />
-                        <polyline points="18,36 30,49 54,23" stroke="#CCA266" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      <img src={markedIcon} alt="Confirmed" style={{ width: '80px', height: '80px', display: 'block' }} />
                     </div>
                     <div style={{ textAlign: 'center', marginBottom: '8px' }}>
                       <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '500',color: '#000000' }}>Appointment Booked!</h4>

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import documentIcon from '../assets/Document.svg';
 import addIcon from '../assets/Add Icon.svg';
 import menuIcon from '../assets/Menu.svg';
+import continueArrow from '../assets/Continue Arrow.svg';
 import ReportSummaryModal from './ReportSummaryModal';
 import ReportActionMenuModal from './ReportActionMenuModal';
 import UploadReportModal from './UploadReportModal';
 
-export default function ReportsPage() {
+export default function ReportsPage({ onBack }) {
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [actionMenuDoc, setActionMenuDoc] = useState(null);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
@@ -95,10 +96,6 @@ export default function ReportsPage() {
 
   const handleUploadSuccess = (newDoc) => {
     setDocuments(prev => [newDoc, ...prev]);
-    setToastMessage('Lab Report uploaded & analyzed successfully!');
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 3000);
   };
 
   const totalCount = documents.length + yesterdayDocuments.length + earlierDocuments.length;
@@ -126,7 +123,36 @@ export default function ReportsPage() {
         </div>
       )}
 
-      <h2 className="reports-page-title">My Reports</h2>
+      {onBack ? (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <button
+            onClick={onBack}
+            aria-label="Go back"
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              backgroundColor: '#FFFFFF',
+              border: 'none',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 0
+            }}
+          >
+            <img 
+              src={continueArrow} 
+              alt="Back" 
+              style={{ transform: 'rotate(180deg)', width: '16px', height: '14px' }} 
+            />
+          </button>
+          <h2 className="reports-page-title" style={{ margin: 0 }}>My Reports</h2>
+        </div>
+      ) : (
+        <h2 className="reports-page-title">My Reports</h2>
+      )}
       
       {/* Top Grid */}
       <div className="reports-grid">
@@ -145,7 +171,7 @@ export default function ReportsPage() {
         </div>
 
         <div className="report-summary-card">
-          <div className="report-icon-wrapper">
+          <div className="report-icon-wrapper total">
             <img src={documentIcon} alt="Total" className="report-summary-icon" />
           </div>
           <div className="report-summary-details">

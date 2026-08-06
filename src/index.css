@@ -305,7 +305,7 @@ body,
   font-size: 20px !important;
   font-weight: 500 !important;
   color: #CCA266 !important;
-  margin: 0 0 18px 0 !important;
+  margin: 0 !important;
 }
 
 /* =========================================
@@ -508,8 +508,10 @@ body,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  gap: 4px;
+  padding: 0 12px !important;
+  height: auto !important;
+  min-height: auto !important;
   transition: transform 0.2s ease;
 }.clinic-action-item:active {
   transform: scale(0.95);
@@ -1080,7 +1082,7 @@ body,
   align-items: center;
   gap: 6px;
   font-size: 14px;
-  color: #444444;
+  color: #555555;
   font-weight: 500;
 }.detail-label-row img {
   height: 16px;
@@ -1112,9 +1114,18 @@ body,
 }/* Action Buttons */
 .appt-actions {
   padding: 0 20px 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 12px;
+}
+.appt-actions .btn-primary,
+.appt-actions #pre-op-btn,
+.appt-actions #followup-btn {
+  flex: 1;
+}
+.appt-actions .btn-secondary,
+.appt-actions #reschedule-appt-btn,
+.appt-actions #prescription-btn {
+  padding: 0 18px;
 }
 
 .btn-primary,
@@ -1123,12 +1134,18 @@ body,
   background: #CCA266;
   color: #FFFFFF;
   border: none;
-  border-radius: 16px;
-  padding: 14px 8px;
+  border-radius: 16px !important;
+  padding: 12px 16px;
+  height: 48px !important;
+  min-height: 48px !important;
+  box-sizing: border-box;
   font-family: var(--font);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary:hover,
@@ -1146,12 +1163,18 @@ body,
   background: #FFFFFF;
   color: #CCA266;
   border: 1px solid #CCA266 !important;
-  border-radius: 16px;
-  padding: 14px 8px;
+  border-radius: 16px !important;
+  padding: 12px 16px;
+  height: 48px !important;
+  min-height: 48px !important;
+  box-sizing: border-box;
   font-family: var(--font);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-secondary:hover,
@@ -1793,7 +1816,7 @@ body,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 17px 0;
+  padding: 14px 0;
 }.medication-item:first-child {
   padding-top: 0;
 }.medication-item:last-child {
@@ -1805,7 +1828,7 @@ body,
 }.medication-info {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 8px;
 }.medication-name {
   font-size: 15px;
   font-weight: 500;
@@ -3531,8 +3554,14 @@ body,
   background-color: rgba(204, 162, 102, 0.12);
 }
 
-.report-icon-wrapper.upload {
-  background-color: #FFFFFF;
+.report-icon-wrapper.upload,
+.report-icon-wrapper.total {
+  background-color: #CCA266;
+}
+
+.report-icon-wrapper.upload .report-summary-icon,
+.report-icon-wrapper.total .report-summary-icon {
+  filter: brightness(0) invert(1);
 }
 
 .report-summary-icon {
@@ -4472,7 +4501,7 @@ body,
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 8px 0;
+  padding: 0;
 }.activity-item {
   display: flex;
   flex-direction: column;
@@ -4482,7 +4511,7 @@ body,
 }.activity-count {
   font-size: 20px;
   font-weight: 500;
-  color: #000000;
+  color: #CCA266 !important;
 }.activity-label {
   font-size: 14px;
   font-weight: 500;
@@ -5936,7 +5965,8 @@ caption {
   stroke-linejoin: round !important;
 }
 
-/* Doctor cards and hospital cards profile avatar background #F2F4F7 */
+/* Doctor cards and hospital cards profile avatar background #F2F4F7 and size 50px x 50px */
+.doctor-logo-placeholder,
 .clinic-doctor-avatar,
 .appt-avatar-placeholder,
 .admission-avatar-placeholder,
@@ -5948,6 +5978,10 @@ caption {
 .doctor-avatar,
 .hospital-avatar,
 .hospital-card-avatar {
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
   background: #F2F4F7 !important;
   background-color: #F2F4F7 !important;
   color: #000000 !important;
@@ -6170,17 +6204,27 @@ svg[fill]:not([fill="none"]) path {
 }
 
 /* Reports Document Icon Wrappers & Brand Gold Icons */
-.report-icon-wrapper,
-.report-icon-wrapper.upload {
+.report-icon-wrapper:not(.upload):not(.total) {
   background: #F2F4F7 !important;
   background-color: #F2F4F7 !important;
+}
+
+.report-icon-wrapper.upload,
+.report-icon-wrapper.total {
+  background: #CCA266 !important;
+  background-color: #CCA266 !important;
+}
+
+.report-icon-wrapper.upload .report-summary-icon,
+.report-icon-wrapper.total .report-summary-icon {
+  filter: brightness(0) invert(1) !important;
 }
 
 .report-summary-icon,
 .report-menu-icon,
 .report-card-icon,
 .report-doc-icon {
-  filter: none !important;
+  filter: none;
 }
 
 /* AI Page Header Icons & Back Arrow: Pure White (#FFFFFF) */

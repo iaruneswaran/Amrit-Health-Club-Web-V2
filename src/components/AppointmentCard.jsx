@@ -65,7 +65,21 @@ export default function AppointmentCard({
         className={`appt-header-bg ${showImage ? '' : 'no-image'}`}
         style={showImage ? { backgroundImage: `url(${appointmentBg})` } : {}}
       >
-        <span className={`${isPast ? "status-completed" : "status-confirmed"} ${showImage ? '' : 'no-image'}`} aria-label={isPast ? "Appointment status: Completed" : "Appointment status: Confirmed"}>
+        <span 
+          style={{
+            position: 'absolute',
+            top: '16px',
+            right: 0,
+            background: '#CCA266',
+            color: '#FFFFFF',
+            fontSize: '14px',
+            fontWeight: '600',
+            padding: '6px 16px',
+            borderRadius: '100px 0 0 100px',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.08)'
+          }}
+          aria-label={isPast ? "Appointment status: Completed" : "Appointment status: Confirmed"}
+        >
           {isPast ? "Completed" : "Confirmed"}
         </span>
       </div>
@@ -111,12 +125,11 @@ export default function AppointmentCard({
           </div>
         ) : (
           <div className="reason-block reason-completed">
-            <div className="detail-label-row" style={{ justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div className="detail-label-row" style={{ color: '#555555' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#555555' }}>
                 <img src="/reason-green.svg" alt="" aria-hidden="true" style={{ height: '16px', width: 'auto' }} />
                 Reason for Visit
               </div>
-              {preOpCompleted && <span className="preop-card-badge completed">Pre-OP Completed</span>}
             </div>
             <p className="reason-text">
               {preOpData?.reason || "High fever (101.5°F) with severe body aches & chills since yesterday"}

@@ -57,15 +57,9 @@ export default function MedicationCard({ showImage = true, onOrderMedications })
                 >
                   <div className="medication-item-left" style={{ width: '100%' }}>
                     <div className="medication-info" style={{ width: '100%' }}>
-                      <div>
-                        <p className="medication-name" style={{ margin: 0 }}>{med.name}</p>
-                      </div>
+                      <p className="medication-name">{med.name}</p>
                       <p className="medication-details">{med.details}</p>
-                      <div style={{
-                        overflow: 'hidden',
-                        maxHeight: isOpen ? '120px' : '0px',
-                        transition: 'max-height 0.3s ease',
-                      }}>
+                      {isOpen && (
                         <div style={{
                           marginTop: '8px',
                           padding: '10px 12px',
@@ -78,7 +72,7 @@ export default function MedicationCard({ showImage = true, onOrderMedications })
                         }}>
                           {med.instruction}
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>

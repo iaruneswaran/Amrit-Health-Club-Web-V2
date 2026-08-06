@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import continueArrow from '../assets/Continue Arrow.svg';
 import bookingIcon from '../assets/Booking.svg';
+import markedIcon from '../assets/Marked.svg';
 
 export default function PreOpPage({ onBack, onComplete, initialData }) {
   useEffect(() => {
@@ -80,7 +81,9 @@ export default function PreOpPage({ onBack, onComplete, initialData }) {
 
         {submittedSuccess ? (
           <div className="preop-success-card">
-            <div className="preop-success-icon">✓</div>
+            <div className="booking-confirmed-check-wrap" style={{ display: 'flex', justifyContent: 'center', margin: '0 auto 16px' }}>
+              <img src={markedIcon} alt="Confirmed" style={{ width: '80px', height: '80px', display: 'block' }} />
+            </div>
             <h2>Pre-OP Form Completed!</h2>
             <p>Your health concern has been attached to your appointment record for Dr. Amelia Carter.</p>
             <div className="preop-success-badge">Redirecting to Dashboard...</div>

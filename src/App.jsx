@@ -7,6 +7,9 @@ import VideoConsultationModal from './components/VideoConsultationModal'
 import QuickNav from './components/QuickNav'
 import ClinicCard from './components/ClinicCard'
 import AppointmentCard from './components/AppointmentCard'
+import OnlineConsultationCard from './components/OnlineConsultationCard'
+import RescheduleModal from './components/RescheduleModal'
+import UploadIntroPage from './components/UploadIntroPage'
 import PulseScore from './components/PulseScore'
 import MedicationCard from './components/MedicationCard'
 import AdmissionCard from './components/AdmissionCard'
@@ -134,7 +137,11 @@ export default function App() {
   const [showPreOpPage, setShowPreOpPage] = useState(false)
   const [profileSubPage, setProfileSubPage] = useState(null) // null | { page: string, data?: any }
   const [isHomeUploadOpen, setIsHomeUploadOpen] = useState(false)
+  const [showUploadIntroPage, setShowUploadIntroPage] = useState(false)
+  const [showReportsPageWithBack, setShowReportsPageWithBack] = useState(false)
   const [homeToastMessage, setHomeToastMessage] = useState(null)
+  const [showRescheduleModal, setShowRescheduleModal] = useState(false)
+  const [rescheduleDoctor, setRescheduleDoctor] = useState({ name: 'Dr. Amelia Carter', time: 'Today, 9:30 PM' })
   const [showVideoConsultModal, setShowVideoConsultModal] = useState(false)
   const [showVideoDoctorsPage, setShowVideoDoctorsPage] = useState(false)
   const [showOrderMedicationFlow, setShowOrderMedicationFlow] = useState(false)
@@ -147,10 +154,8 @@ export default function App() {
   })
 
   const handleHomeUploadSuccess = (newDoc) => {
-    setHomeToastMessage('Lab Report uploaded & analyzed successfully!')
-    setTimeout(() => {
-      setHomeToastMessage(null)
-    }, 3000)
+    setShowUploadIntroPage(false)
+    setShowReportsPageWithBack(true)
   }
 
   const handleCompletePreOp = (data) => {
@@ -262,6 +267,26 @@ export default function App() {
         <>
           {showSplash && <SplashScreen fadeOut={fadeOut} />}
           <AIPage onBack={() => setShowAIPage(false)} />
+        </>
+      )
+    }
+
+    if (showUploadIntroPage) {
+      return (
+        <UploadIntroPage
+          onBack={() => setShowUploadIntroPage(false)}
+          onUploadSuccess={handleHomeUploadSuccess}
+        />
+      )
+    }
+
+    if (showReportsPageWithBack) {
+      return (
+        <>
+          {showSplash && <SplashScreen fadeOut={fadeOut} />}
+          <main className="main-content" style={{ paddingBottom: '24px' }}>
+            <ReportsPage onBack={() => setShowReportsPageWithBack(false)} />
+          </main>
         </>
       )
     }
@@ -434,11 +459,11 @@ export default function App() {
           )}
           <HeroHeader onProfileClick={() => setShowProfilePage(true)} />
           <main className="main-content">
-            <VideoConsultationBanner onClick={() => setShowVideoDoctorsPage(true)} />
+            <VideoConsultationBanner onClick={() => window.open('https://meet.google.com', '_blank')} />
             <QuickNav 
               onHospitalsClick={() => setShowHospitalsPage(true)} 
               onDoctorsClick={() => setShowDoctorsPage(true)} 
-              onUploadDocClick={() => setIsHomeUploadOpen(true)}
+              onUploadDocClick={() => setShowUploadIntroPage(true)}
             />
             <ClinicCard
               onBookNow={(doc) => setBookingDoctor(doc)}
@@ -454,6 +479,15 @@ export default function App() {
                 preOpData={preOpData}
                 onPreOpClick={() => setShowPreOpPage(true)}
                 onActionClick={() => setShowPreOpPage(true)}
+                onSecondaryClick={() => {
+                  setBookingDoctor({ name: "Dr. Amelia Carter", specialty: "Cardiology Specialist", time: "Today, 9:30 PM", isReschedule: true });
+                }}
+              />
+              <OnlineConsultationCard 
+                onJoinCall={() => window.open('https://meet.google.com', '_blank')}
+                onReschedule={() => {
+                  setBookingDoctor({ name: "Dr. Sarah Jenkins", specialty: "General Physician & Telehealth", time: "Today, 5:30 PM", isReschedule: true });
+                }}
               />
             </div>
             <div className="section-group">
@@ -585,11 +619,11 @@ export default function App() {
                     <line x1="8" y1="200" x2="305" y2="200" stroke="#F2F4F7" strokeWidth="1" />
 
                     {/* Y-Axis Labels on the Right */}
-                    <text x="312" y="24" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">100</text>
-                    <text x="312" y="69" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">80</text>
-                    <text x="312" y="114" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">60</text>
-                    <text x="312" y="159" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">40</text>
-                    <text x="312" y="204" fill="#CCA266" fontSize="12" fontWeight="500" textAnchor="start">20</text>
+                    <text x="312" y="24" fill="#000000" fontSize="12" fontWeight="500" textAnchor="start">100</text>
+                    <text x="312" y="69" fill="#000000" fontSize="12" fontWeight="500" textAnchor="start">80</text>
+                    <text x="312" y="114" fill="#000000" fontSize="12" fontWeight="500" textAnchor="start">60</text>
+                    <text x="312" y="159" fill="#000000" fontSize="12" fontWeight="500" textAnchor="start">40</text>
+                    <text x="312" y="204" fill="#000000" fontSize="12" fontWeight="500" textAnchor="start">20</text>
 
                     {/* Vertical Dashed Grid Lines and Bars */}
                     {timeframeData[selectedTimeframe].points.map((pt, index) => {
@@ -627,7 +661,7 @@ export default function App() {
                           <text
                             x={xCenter}
                             y="222"
-                            fill="#CCA266"
+                            fill="#000000"
                             fontSize="12"
                             fontWeight="500"
                             textAnchor="middle"

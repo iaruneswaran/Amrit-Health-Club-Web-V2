@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import continueArrow from '../assets/Continue Arrow.svg';
 import clockIcon from '../assets/Clock Icon.svg';
 import markedIcon from '../assets/Marked.svg';
@@ -31,8 +31,8 @@ const timeSlots = {
 
 const sessionIcons = { Morning: '', Afternoon: '', Evening: '' };
 
-export default function BookingFlow({ doctor, onBack }) {
-  const [step, setStep] = useState(1);
+export default function BookingFlow({ doctor, onBack, isReschedule = false }) {
+  const [step, setStep] = useState(isReschedule || doctor?.isReschedule ? 0 : 1);
   const [selectedDate, setSelectedDate] = useState(dates[0]);
   const [selectedTime, setSelectedTime] = useState(null);
 
@@ -53,6 +53,56 @@ export default function BookingFlow({ doctor, onBack }) {
       ))}
     </div>
   );
+
+  /* STEP 0: RESCHEDULE CONFIRMATION QUESTION */
+  if (step === 0) {
+    return (
+      <div className="booking-flow-container">
+        <StepHeader title="Reschedule Appointment" onBackPress={onBack} />
+        <div className="booking-flow-body" style={{ padding: '24px 20px', textAlign: 'center' }}>
+          <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#FFFDF9', border: '2px solid #CCA266', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '20px auto 20px' }}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CCA266" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 2v4M16 2v4M3 10h18" />
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+            </svg>
+          </div>
+
+          <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#000000', margin: '0 0 8px 0' }}>
+            Reschedule Appointment?
+          </h2>
+          <p style={{ fontSize: '14px', color: '#555555', margin: '0 0 24px 0', lineHeight: '1.5' }}>
+            Are you sure you want to change your scheduled appointment time with <strong>{doctor?.name || "Dr. Amelia Carter"}</strong>?
+          </p>
+
+          <div style={{ background: '#F9FAFB', borderRadius: '16px', padding: '16px', marginBottom: '28px', border: '1px solid #F2F4F7', textAlign: 'left' }}>
+            <div style={{ fontSize: '13px', color: '#555555', fontWeight: '500', marginBottom: '4px' }}>Current Scheduled Time</div>
+            <div style={{ fontSize: '15px', color: '#000000', fontWeight: '700' }}>{doctor?.time || "Today, 9:30 PM"}</div>
+            <div style={{ fontSize: '13px', color: '#555555', marginTop: '4px' }}>{doctor?.specialty || "Cardiology Specialist"}</div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => setStep(1)}
+              style={{ width: '100%', height: '48px', borderRadius: '16px', fontSize: '14px', fontWeight: '600' }}
+            >
+              Yes, Change Appointment Time
+            </button>
+
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={onBack}
+              style={{ width: '100%', height: '48px', borderRadius: '16px', fontSize: '14px', fontWeight: '600', color: '#555555', borderColor: '#E5E7EB' }}
+            >
+              Keep Current Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   /* STEP 1: SELECT DATE */
   if (step === 1) {
@@ -213,11 +263,8 @@ export default function BookingFlow({ doctor, onBack }) {
     return (
       <div className="booking-flow-container booking-confirmed-page">
         <div className="booking-confirmed-body">
-          <div className="booking-confirmed-check-wrap">
-            <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-              <circle cx="36" cy="36" r="36" fill="#FFFFFF" />
-              <polyline points="18,36 30,49 54,23" stroke="#CCA266" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+          <div className="booking-confirmed-check-wrap" style={{ display: 'flex', justifyContent: 'center', margin: '0 auto 20px' }}>
+            <img src={markedIcon} alt="Confirmed" style={{ width: '80px', height: '80px', display: 'block' }} />
           </div>
           <h1 className="booking-confirmed-title">Appointment Booked!</h1>
           <p className="booking-confirmed-subtitle">Your appointment has been successfully confirmed.</p>
