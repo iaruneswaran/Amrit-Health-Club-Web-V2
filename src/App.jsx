@@ -459,7 +459,7 @@ export default function App() {
           )}
           <HeroHeader onProfileClick={() => setShowProfilePage(true)} />
           <main className="main-content">
-            <VideoConsultationBanner onClick={() => window.open('https://meet.google.com', '_blank')} />
+            <VideoConsultationBanner onClick={() => setShowVideoDoctorsPage(true)} />
             <QuickNav 
               onHospitalsClick={() => setShowHospitalsPage(true)} 
               onDoctorsClick={() => setShowDoctorsPage(true)} 

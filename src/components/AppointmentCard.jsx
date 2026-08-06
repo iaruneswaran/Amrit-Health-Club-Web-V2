@@ -70,7 +70,7 @@ export default function AppointmentCard({
             position: 'absolute',
             top: '16px',
             right: 0,
-            background: '#CCA266',
+            background: '#92E066',
             color: '#FFFFFF',
             fontSize: '14px',
             fontWeight: '600',

@@ -308,6 +308,10 @@ body,
   margin: 0 !important;
 }
 
+.history-page-title {
+  margin: 0 0 18px 0 !important;
+}
+
 /* =========================================
    AI ASSISTANT BANNER
    ========================================= */
@@ -443,7 +447,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #CCA266 !important;
+  background: #92E066 !important;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -1002,7 +1006,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #CCA266;
+  background: #92E066;
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 500;
@@ -1030,15 +1034,14 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #FFFFFF;
-  color: #000000;
+  background: #92E066;
+  color: #FFFFFF;
   font-size: 14px;
   font-weight: 500;
   padding: 7px 12px;
   border-radius: 50px 0 0 50px;
   white-space: nowrap;
-  border: 1px solid #F2F4F7;
-  border-right: none;
+  border: none;
   box-shadow: none;
 }.status-completed.no-image {
   position: absolute;
@@ -1220,8 +1223,8 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #FFFFFF;
-  color: #CCA266 !important;
+  background: #92E066;
+  color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
   padding: 6px 16px;
@@ -3211,7 +3214,7 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #CCA266 !important;
+  background: #92E066 !important;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -3462,7 +3465,7 @@ body,
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: #CCA266 !important;
+  background: #92E066 !important;
   color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
@@ -3764,8 +3767,8 @@ body,
   position: absolute;
   top: 20px;
   right: 0;
-  background: #FFFFFF;
-  color: #000000;
+  background: #92E066 !important;
+  color: #FFFFFF !important;
   font-size: 14px;
   font-weight: 500;
   padding: 7px 12px;
@@ -5771,18 +5774,6 @@ body, h1, h2, h3, h4, h5, h6, p, span, li, a, label, div, input, textarea, selec
 .pref-doctor-book-btn *,
 .enquiry-quick-call-card,
 .enquiry-quick-call-card *,
-.badge-preferred,
-.badge-preferred *,
-.hospital-preferred-badge,
-.hospital-preferred-badge *,
-.badge-preferred-inline,
-.badge-preferred-inline *,
-.status-confirmed,
-.status-confirmed *,
-.status-admitted,
-.status-admitted *,
-.status-completed,
-.status-completed *,
 .booking-step-dot.active,
 .booking-step-dot.active *,
 .booking-date-pill.selected,
@@ -5814,6 +5805,24 @@ body, h1, h2, h3, h4, h5, h6, p, span, li, a, label, div, input, textarea, selec
 .pulse-card,
 .pulse-card * {
   color: #000000 !important;
+}
+
+/* Badge text: #FFFFFF for Preferred, Confirmed, Admitted, Premium */
+.badge-preferred,
+.badge-preferred *,
+.hospital-preferred-badge,
+.hospital-preferred-badge *,
+.badge-preferred-inline,
+.badge-preferred-inline *,
+.status-confirmed,
+.status-confirmed *,
+.status-admitted,
+.status-admitted *,
+.status-completed,
+.status-completed *,
+.pulse-premium-badge,
+.pulse-premium-badge * {
+  color: #FFFFFF !important;
 }
 
 .enquiry-quick-call-card .call-action-btn {
@@ -5885,26 +5894,6 @@ caption {
 .pref-doctor-book-btn *,
 .enquiry-quick-call-card,
 .enquiry-quick-call-card *,
-.badge-preferred,
-.badge-preferred *,
-.hospital-preferred-badge,
-.hospital-preferred-badge *,
-.badge-preferred-inline,
-.badge-preferred-inline *,
-.status-confirmed,
-.status-confirmed *,
-.status-admitted,
-.status-admitted *,
-.status-completed,
-.status-completed *,
-.booking-step-dot.active,
-.booking-step-dot.active *,
-.booking-date-pill.selected,
-.booking-date-pill.selected *,
-.booking-time-slot.selected,
-.booking-time-slot.selected *,
-.booking-time-chip.selected,
-.booking-time-chip.selected *,
 .booking-cta-btn,
 .booking-cta-btn *,
 .ai-booking-done-btn,
@@ -5987,11 +5976,11 @@ caption {
   color: #000000 !important;
 }
 
-/* Premium Badge Text Color: Brand Gold (#CCA266) */
+/* Premium Badge: Green with White text */
 .pulse-premium-badge,
 .premium-badge {
-  color: #CCA266 !important;
-  background: #FFFFFF !important;
+  color: #FFFFFF !important;
+  background: #92E066 !important;
 }
 
 /* Report Status Badges: Red for Issues, Green for Normal */
@@ -6078,11 +6067,6 @@ caption {
 .doctor-book-btn,
 .pref-doctor-book-btn,
 .enquiry-quick-call-card,
-.badge-preferred,
-.hospital-preferred-badge,
-.status-confirmed,
-.status-admitted,
-.status-completed,
 .booking-step-dot.active,
 .booking-date-pill.selected,
 .booking-time-slot.selected,
