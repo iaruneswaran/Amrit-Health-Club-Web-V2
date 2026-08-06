@@ -46,14 +46,6 @@ export default function BookingFlow({ doctor, onBack, isReschedule = false }) {
     </header>
   );
 
-  const StepDots = () => (
-    <div className="booking-step-dots">
-      {[1, 2, 3].map(s => (
-        <div key={s} className={'booking-step-dot' + (step >= s ? ' active' : '')} />
-      ))}
-    </div>
-  );
-
   /* STEP 0: RESCHEDULE CONFIRMATION QUESTION */
   if (step === 0) {
     return (
@@ -110,7 +102,6 @@ export default function BookingFlow({ doctor, onBack, isReschedule = false }) {
       <div className="booking-flow-container">
         <StepHeader title="Book Appointment" onBackPress={onBack} />
         <div className="booking-flow-body">
-          <StepDots />
           <div className="booking-section">
             <h2 className="booking-section-title">Select a Date</h2>
             <div className="booking-date-strip">
@@ -151,7 +142,6 @@ export default function BookingFlow({ doctor, onBack, isReschedule = false }) {
       <div className="booking-flow-container">
         <StepHeader title="Select Time" onBackPress={() => setStep(1)} />
         <div className="booking-flow-body">
-          <StepDots />
           <div className="booking-chosen-date-row">
             <img src={clockIcon} alt="" style={{ width: '18px', height: '18px' }} />
             <span className="booking-chosen-date-text">{selectedDate?.full}</span>
@@ -197,7 +187,6 @@ export default function BookingFlow({ doctor, onBack, isReschedule = false }) {
       <div className="booking-flow-container">
         <StepHeader title="Review & Confirm" onBackPress={() => setStep(2)} />
         <div className="booking-flow-body">
-          <StepDots />
           <div className="booking-summary-card">
             <h3 className="booking-summary-title">Appointment Summary</h3>
             <div className="booking-summary-row">

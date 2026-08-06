@@ -12,6 +12,8 @@ import RescheduleModal from './components/RescheduleModal'
 import UploadIntroPage from './components/UploadIntroPage'
 import PulseScore from './components/PulseScore'
 import MedicationCard from './components/MedicationCard'
+import LabOrdersCard from './components/LabOrdersCard'
+import LabOrderFlow from './components/LabOrderFlow'
 import AdmissionCard from './components/AdmissionCard'
 import PreferredDoctors from './components/PreferredDoctors'
 import homePageEndImage from './assets/Home Page End Image.png'
@@ -145,6 +147,7 @@ export default function App() {
   const [showVideoConsultModal, setShowVideoConsultModal] = useState(false)
   const [showVideoDoctorsPage, setShowVideoDoctorsPage] = useState(false)
   const [showOrderMedicationFlow, setShowOrderMedicationFlow] = useState(false)
+  const [showLabOrderFlow, setShowLabOrderFlow] = useState(false)
   const [preOpCompleted, setPreOpCompleted] = useState(() => {
     return localStorage.getItem('preop_completed') === 'true'
   })
@@ -296,6 +299,22 @@ export default function App() {
         <OrderMedicationFlow
           onBack={() => setShowOrderMedicationFlow(false)}
           onComplete={() => setShowOrderMedicationFlow(false)}
+        />
+      )
+    }
+
+    if (showLabOrderFlow) {
+      return (
+        <LabOrderFlow
+          onBack={() => setShowLabOrderFlow(false)}
+          onBookDoctorFollowup={() => {
+            setShowLabOrderFlow(false);
+            setBookingDoctor({ name: "Dr. Amelia Carter", specialty: "Cardiology Specialist", hospital: "St. Mary's Medical", fee: "₹500" });
+          }}
+          onViewReports={() => {
+            setShowLabOrderFlow(false);
+            setShowReportsPageWithBack(true);
+          }}
         />
       )
     }
@@ -497,6 +516,10 @@ export default function App() {
             <div className="section-group">
               <p className="section-title">Prescribed Medications</p>
               <MedicationCard onOrderMedications={() => setShowOrderMedicationFlow(true)} />
+            </div>
+            <div className="section-group">
+              <p className="section-title">Laboratory Orders</p>
+              <LabOrdersCard onBookLabTest={() => setShowLabOrderFlow(true)} />
             </div>
             <div className="section-group">
               <p className="section-title">Admitted</p>

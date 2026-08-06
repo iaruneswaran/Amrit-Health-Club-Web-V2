@@ -4859,7 +4859,7 @@ body,
 
 .booking-cta-btn {
   width: 100%;
-  height: 50px;
+  height: 48px !important;
   border-radius: 16px;
   border: none;
   background: #CCA266;
