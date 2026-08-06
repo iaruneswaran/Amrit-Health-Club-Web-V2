@@ -1,43 +1,94 @@
 import React from 'react';
-import labIcon from '../assets/Lab.svg';
+import laboratoryIcon from '../assets/Laboratory.svg';
+import documentIcon from '../assets/Document.svg';
 
 export default function LabOrdersCard({ onBookLabTest }) {
   return (
     <div className="medication-card" style={{ backgroundColor: '#FFFFFF', borderRadius: '20px', border: '1px solid #F2F4F7', padding: '20px', marginTop: '0', boxSizing: 'border-box' }}>
       <div className="medication-card-body" style={{ padding: 0 }}>
         {/* Title Header Row */}
-        <div className="medication-header-title-row" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1.5px dashed #F2F4F7' }}>
-          <img src={labIcon} alt="Lab Orders" style={{ width: '20px', height: '20px' }} />
+        <div className="medication-header-title-row" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+          <img 
+            src={laboratoryIcon} 
+            alt="Laboratory Orders" 
+            style={{ 
+              width: '20px', 
+              height: '20px',
+              filter: 'brightness(0) saturate(100%) invert(73%) sepia(29%) saturate(836%) hue-rotate(356deg) brightness(92%) contrast(85%)'
+            }} 
+          />
           <h3 className="medication-card-title" style={{ fontSize: '18px', fontWeight: '500', color: '#000000', margin: 0 }}>
             Laboratory Orders
           </h3>
         </div>
 
-        {/* List of Recommended Tests matching MedicationCard style */}
-        <div className="medication-list">
-          {/* Test 1 */}
-          <div className="medication-item" style={{ padding: '0 12px' }}>
-            <div className="medication-info" style={{ width: '100%', gap: '4px' }}>
-              <p className="medication-name" style={{ fontSize: '15px', fontWeight: '500', color: '#000000', margin: 0 }}>
-                Complete Blood Count (CBC)
-              </p>
-              <p className="medication-details" style={{ fontSize: '13px', fontWeight: '500', color: '#555555', margin: 0 }}>
-                14 Parameters • Fasting not required
-              </p>
+        {/* Consultation Details Stroke Card */}
+        <div style={{
+          backgroundColor: '#FFFFFF',
+          border: '1px solid #F2F4F7',
+          borderRadius: '14px',
+          padding: '12px 14px',
+          marginBottom: '14px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '6px'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '15px', fontWeight: '600', color: '#000000' }}>
+              Dr. Amelia Carter
+            </span>
+            <span style={{ fontSize: '14px', fontWeight: '500', color: '#555555' }}>
+              Aug 5, 2026
+            </span>
+          </div>
+          <div style={{ fontSize: '14px', color: '#555555' }}>
+            Cardiology • St. Mary's Hospital
+          </div>
+        </div>
+
+        {/* 2 PDF Prescription / Requisition Document Cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {/* File 1 */}
+          <div 
+            className="report-doc-card" 
+            onClick={onBookLabTest}
+            style={{ cursor: 'pointer', margin: 0, border: '1px solid #F2F4F7' }}
+          >
+            <div className="report-doc-left">
+              <div className="report-icon-wrapper">
+                <img src={documentIcon} alt="Document" className="report-summary-icon" />
+              </div>
+              <div className="report-doc-details">
+                <p className="report-doc-name" title="Lab-Requisition-Order-01.pdf">
+                  Lab-Requisition-Order-01.pdf
+                </p>
+                <p className="report-doc-meta" style={{ margin: '3px 0 0 0' }}>Aug 5, 2026 &bull; 1.85 MB &bull; PDF</p>
+                <p style={{ fontSize: '13px', color: '#CCA266', fontWeight: '600', margin: '4px 0 0 0' }}>
+                  Lab Test (14 Tests)
+                </p>
+              </div>
             </div>
           </div>
 
-          <hr className="medication-divider" style={{ border: 'none', borderTop: '1px solid #F2F4F7', margin: '12px 0' }} />
-
-          {/* Test 2 */}
-          <div className="medication-item" style={{ padding: '0 12px' }}>
-            <div className="medication-info" style={{ width: '100%', gap: '4px' }}>
-              <p className="medication-name" style={{ fontSize: '15px', fontWeight: '500', color: '#000000', margin: 0 }}>
-                Lipid Profile & Fasting Blood Sugar
-              </p>
-              <p className="medication-details" style={{ fontSize: '13px', fontWeight: '500', color: '#555555', margin: 0 }}>
-                Cholesterol, HDL, LDL, Fasting Sugar • 10-12 Hrs Fasting Req.
-              </p>
+          {/* File 2 */}
+          <div 
+            className="report-doc-card" 
+            onClick={onBookLabTest}
+            style={{ cursor: 'pointer', margin: 0, border: '1px solid #F2F4F7' }}
+          >
+            <div className="report-doc-left">
+              <div className="report-icon-wrapper">
+                <img src={documentIcon} alt="Document" className="report-summary-icon" />
+              </div>
+              <div className="report-doc-details">
+                <p className="report-doc-name" title="Lab-Requisition-Order-02.pdf">
+                  Lab-Requisition-Order-02.pdf
+                </p>
+                <p className="report-doc-meta" style={{ margin: '3px 0 0 0' }}>Aug 5, 2026 &bull; 2.10 MB &bull; PDF</p>
+                <p style={{ fontSize: '13px', color: '#CCA266', fontWeight: '600', margin: '4px 0 0 0' }}>
+                  Lab Test (3 Tests)
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -63,7 +114,7 @@ export default function LabOrdersCard({ onBookLabTest }) {
               justifyContent: 'center'
             }}
           >
-            Book Doctor Recommended Tests
+            Book Lab Appointment
           </button>
         </div>
       </div>

@@ -50,7 +50,7 @@ const activePrescriptionsData = [
     id: 'rx-2',
     doctor: {
       name: 'Dr. Rajesh Kumar',
-      specialty: 'Senior Consultant - Internal Medicine',
+      specialty: 'Internal Medicine',
       hospital: 'Apollo Health City',
       initials: 'RK'
     },
@@ -124,6 +124,7 @@ export default function OrderMedicationFlow({ onBack, onComplete }) {
   const [fulfillmentType, setFulfillmentType] = useState('delivery');
   const [deliveryOption, setDeliveryOption] = useState('express');
   const [paymentMethod, setPaymentMethod] = useState('upi');
+  const [upiId, setUpiId] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('161B, 1st Floor, 6th Main, 3RD Cross Road, 3RD PHASE J P Nagar, Bangalore, Karnataka, India');
   const [isEditingAddress, setIsEditingAddress] = useState(false);
   const [tempAddress, setTempAddress] = useState(deliveryAddress);
@@ -181,7 +182,7 @@ export default function OrderMedicationFlow({ onBack, onComplete }) {
   };
 
   const StepHeader = ({ title, onBackPress, subtitle }) => (
-    <header className="booking-step-header" style={{ position: 'relative', background: 'transparent', padding: '16px 12px 16px', borderBottom: 'none', maxWidth: '430px', margin: '0 auto' }}>
+    <header className="booking-step-header" style={{ position: 'relative', background: 'transparent', padding: '16px 12px 16px', borderBottom: 'none' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         <button className="booking-back-btn" onClick={onBackPress} aria-label="Go back" style={{ background: '#FFFFFF', border: 'none', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
           <img src={continueArrow} alt="Back" style={{ transform: 'rotate(180deg)', width: '16px', height: '14px' }} />
@@ -202,7 +203,7 @@ export default function OrderMedicationFlow({ onBack, onComplete }) {
         <>
           <StepHeader title="My Prescriptions" onBackPress={onBack} />
 
-          <div style={{ padding: '0 12px 20px', maxWidth: '430px', margin: '0 auto', boxSizing: 'border-box' }}>
+          <div style={{ padding: '0 12px 20px', boxSizing: 'border-box' }}>
 
             <h2 style={{ fontSize: '15px', fontWeight: '700', color: '#000000', margin: '0 0 12px 0' }}>
               Select Active Prescription ({activePrescriptionsData.length})
@@ -273,25 +274,6 @@ export default function OrderMedicationFlow({ onBack, onComplete }) {
 
           <div style={{ padding: '0 12px 20px', maxWidth: '430px', margin: '0 auto', boxSizing: 'border-box' }}>
             
-            {/* Prescribing Doctor Summary Card */}
-            <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid #F2F4F7', padding: '16px', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div className="doctor-logo-placeholder" style={{ width: '50px', height: '50px', borderRadius: '14px', background: '#F2F4F7', color: '#CCA266', fontWeight: '700', fontSize: '15px' }}>
-                  {selectedRx.doctor.initials}
-                </div>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#000000', margin: 0 }}>{selectedRx.doctor.name}</h3>
-                  <p style={{ fontSize: '13px', color: '#555555', margin: '2px 0 0 0', fontWeight: '500' }}>
-                    {selectedRx.doctor.specialty} • {selectedRx.doctor.hospital}
-                  </p>
-                </div>
-              </div>
-              <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px' }}>
-                <span style={{ color: '#555555', fontWeight: '500' }}>Prescription Date</span>
-                <span style={{ color: '#000000', fontWeight: '600' }}>{selectedRx.date}</span>
-              </div>
-            </div>
-
             {/* Prescribed Items Selection Title */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
               <h2 style={{ fontSize: '15px', fontWeight: '700', color: '#000000', margin: 0 }}>
@@ -411,95 +393,115 @@ export default function OrderMedicationFlow({ onBack, onComplete }) {
 
           <div style={{ padding: '0 12px 20px', maxWidth: '430px', margin: '0 auto', boxSizing: 'border-box' }}>
             
-            {/* Fulfillment Type Toggle (Delivery vs Pickup) */}
-            <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid #F2F4F7', padding: '16px', marginBottom: '16px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#000000', margin: '0 0 12px 0' }}>Order Fulfillment Mode</h3>
-              
-              <div style={{ display: 'flex', gap: '10px', marginBottom: '16px' }}>
+                      {/* Select Sample Collection / Fulfillment Method */}
+            <div style={{ marginBottom: '16px' }}>
+              <h3 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: '600', color: '#000000' }}>
+                Select Delivery / Pickup Method
+              </h3>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {/* Full-width Home Delivery Button */}
                 <button
                   type="button"
                   onClick={() => setFulfillmentType('delivery')}
                   style={{
-                    flex: 1,
-                    padding: '12px',
-                    borderRadius: '12px',
-                    border: fulfillmentType === 'delivery' ? '1.5px solid #CCA266' : '1px solid #E5E7EB',
-                    background: fulfillmentType === 'delivery' ? '#FFFDF9' : '#FFFFFF',
-                    color: fulfillmentType === 'delivery' ? '#CCA266' : '#555555',
-                    fontWeight: '700',
-                    fontSize: '13px',
-                    cursor: 'pointer'
+                    width: '100%',
+                    padding: '14px 16px',
+                    borderRadius: '16px',
+                    border: fulfillmentType === 'delivery' ? '1px solid #CCA266' : '1px solid #E5E7EB',
+                    backgroundColor: fulfillmentType === 'delivery' ? '#FFFDF9' : '#FFFFFF',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    boxSizing: 'border-box'
                   }}
                 >
-                  Home Delivery
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setFulfillmentType('pickup')}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    borderRadius: '12px',
-                    border: fulfillmentType === 'pickup' ? '1.5px solid #CCA266' : '1px solid #E5E7EB',
-                    background: fulfillmentType === 'pickup' ? '#FFFDF9' : '#FFFFFF',
-                    color: fulfillmentType === 'pickup' ? '#CCA266' : '#555555',
-                    fontWeight: '700',
-                    fontSize: '13px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  Store / Hospital Pickup
-                </button>
-              </div>
-
-              {fulfillmentType === 'delivery' ? (
-                /* Delivery Address Card */
-                <div style={{ border: '1px solid #E5E7EB', borderRadius: '12px', padding: '12px', background: '#F9FAFB' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <img src={googleLocationIcon} alt="Pin" style={{ width: '18px', height: '18px', flexShrink: 0, marginTop: '2px' }} />
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '13px', fontWeight: '700', color: '#000000' }}>Delivery Address</span>
-                        <span onClick={() => setIsEditingAddress(!isEditingAddress)} style={{ fontSize: '13px', fontWeight: '700', color: '#CCA266', cursor: 'pointer' }}>
-                          {isEditingAddress ? 'Cancel' : 'Change'}
-                        </span>
-                      </div>
-
-                      {isEditingAddress ? (
-                        <div style={{ marginTop: '8px' }}>
-                          <textarea
-                            value={tempAddress}
-                            onChange={(e) => setTempAddress(e.target.value)}
-                            style={{ width: '100%', height: '60px', borderRadius: '8px', border: '1px solid #D1D5DB', padding: '8px', fontSize: '13px', boxSizing: 'border-box' }}
-                          />
-                          <button
-                            type="button"
-                            onClick={handleSaveAddress}
-                            style={{ marginTop: '6px', background: '#CCA266', color: '#FFFFFF', border: 'none', borderRadius: '8px', padding: '6px 14px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}
-                          >
-                            Save Address
-                          </button>
-                        </div>
-                      ) : (
-                        <p style={{ fontSize: '13px', color: '#555555', margin: '4px 0 0 0', lineHeight: '1.4', fontWeight: '500' }}>
-                          {deliveryAddress}
-                        </p>
-                      )}
+                  <div>
+                    <span style={{ fontSize: '16px', fontWeight: '600', color: fulfillmentType === 'delivery' ? '#CCA266' : '#000000', display: 'block' }}>
+                      Home Delivery
+                    </span>
+                    <span style={{ fontSize: '13px', color: '#555555', marginTop: '6px', display: 'block' }}>
+                      Express delivery to your home address
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', paddingTop: '8px', borderTop: '1px dashed #E5E7EB' }}>
+                      <img src={googleLocationIcon} alt="Pin" style={{ width: '14px', height: '14px' }} />
+                      <span style={{ fontSize: '13px', color: '#000000', fontWeight: '500' }}>
+                        Flat 402, St. Marys Residency, Ernakulam, Kerala
+                      </span>
                     </div>
                   </div>
-                </div>
-              ) : (
-                <div style={{ border: '1px solid #CCA266', borderRadius: '12px', padding: '14px', background: '#FFFDF9' }}>
-                  <h4 style={{ fontSize: '14px', fontWeight: '700', color: '#000000', margin: 0 }}>St. Mary's Hospital Pharmacy</h4>
-                  <p style={{ fontSize: '13px', color: '#555555', margin: '4px 0 8px 0', fontWeight: '500' }}>
-                    Ground Floor, Pharmacy Counter 3 • 0.8 km away
-                  </p>
-                  <div style={{ fontSize: '13px', color: '#10B981', fontWeight: '700', background: '#ECFDF5', padding: '4px 10px', borderRadius: '100px', display: 'inline-block' }}>
-                    Ready for pickup in 15 mins after verification
+                  {/* Icon-only indicator for Home Delivery */}
+                  {fulfillmentType === 'delivery' ? (
+                    <img src={checkMarkIcon} alt="Selected" style={{ width: '24px', height: '24px', flexShrink: 0 }} />
+                  ) : (
+                    <span style={{ width: '22px', height: '22px', borderRadius: '50%', border: '1.5px solid #D0D5DD', display: 'inline-block', flexShrink: 0, boxSizing: 'border-box' }} />
+                  )}
+                </button>
+
+                {/* Hospital Card for Pharmacy Pickup */}
+                <div 
+                  className="hospital-card" 
+                  onClick={() => setFulfillmentType('pickup')}
+                  style={{
+                    cursor: 'pointer',
+                    margin: 0,
+                    border: fulfillmentType === 'pickup' ? '1.5px solid #CCA266' : '1px solid #E5E7EB',
+                    backgroundColor: fulfillmentType === 'pickup' ? '#FFFDF9' : '#FFFFFF',
+                    borderRadius: '16px',
+                    padding: '16px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px'
+                  }}
+                >
+                  <div className="hospital-card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1 }}>
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '14px',
+                        background: '#F2F4F7',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        fontSize: '15px',
+                        fontWeight: '600',
+                        color: '#CCA266',
+                        letterSpacing: '0.5px'
+                      }}>
+                        SM
+                      </div>
+                      <div className="hospital-header-details">
+                        <h3 className="hospital-card-name" style={{ fontSize: '16px', fontWeight: '600', color: fulfillmentType === 'pickup' ? '#CCA266' : '#000000', margin: 0 }}>
+                          St. Mary's Medical
+                        </h3>
+                        <div className="hospital-open-row" style={{ marginTop: '4px' }}>
+                          <img src="/clock-icon.svg" alt="" aria-hidden="true" className="hospital-clock-icon" />
+                          <span className="hospital-open-text">Open 24/7 • Visit Pharmacy</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Icon-only indicator for Pharmacy Pickup on top right */}
+                    {fulfillmentType === 'pickup' ? (
+                      <img src={checkMarkIcon} alt="Selected" style={{ width: '24px', height: '24px', flexShrink: 0, marginTop: '2px' }} />
+                    ) : (
+                      <span style={{ width: '22px', height: '22px', borderRadius: '50%', border: '1.5px solid #D0D5DD', display: 'inline-block', flexShrink: 0, marginTop: '2px', boxSizing: 'border-box' }} />
+                    )}
+                  </div>
+
+                  <div className="hospital-address-container" style={{ margin: 0 }}>
+                    <img src={googleLocationIcon} alt="Map Location Pin" className="hospital-google-pin" />
+                    <p className="hospital-address-text" style={{ fontSize: '13px' }}>
+                      161B, 1st Floor, 6th Main, 3RD Cross Road, JP Nagar, Bangalore
+                    </p>
                   </div>
                 </div>
-              )}
+
+              </div>
             </div>
 
             {/* Payment Method Options */}
@@ -528,20 +530,71 @@ export default function OrderMedicationFlow({ onBack, onComplete }) {
                   ) : (
                     <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #D1D5DB', boxSizing: 'border-box', flexShrink: 0 }} />
                   )}
-                  <div>
+                  <div style={{ flex: 1 }}>
                     <span style={{ fontSize: '13px', fontWeight: '700', color: '#000000', display: 'block' }}>{opt.title}</span>
                     <span style={{ fontSize: '13px', color: '#555555', fontWeight: '500' }}>{opt.sub}</span>
+                    
+                    {opt.id === 'upi' && paymentMethod === 'upi' && (
+                      <div 
+                        onClick={(e) => e.stopPropagation()} 
+                        style={{ marginTop: '10px', display: 'flex', gap: '8px', alignItems: 'center' }}
+                      >
+                        <input
+                          type="text"
+                          value={upiId}
+                          onChange={(e) => setUpiId(e.target.value)}
+                          placeholder="Enter or paste UPI ID (e.g. mobile@upi)"
+                          style={{
+                            flex: 1,
+                            height: '38px',
+                            borderRadius: '8px',
+                            border: '1px solid #D1D5DB',
+                            padding: '0 10px',
+                            fontSize: '13px',
+                            outline: 'none',
+                            backgroundColor: '#FFFFFF',
+                            boxSizing: 'border-box'
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            try {
+                              const text = await navigator.clipboard.readText();
+                              if (text) setUpiId(text);
+                            } catch (err) {
+                              // Clipboard fallback
+                            }
+                          }}
+                          style={{
+                            height: '38px',
+                            padding: '0 14px',
+                            borderRadius: '8px',
+                            border: '1px solid #CCA266',
+                            background: '#CCA266',
+                            color: '#FFFFFF',
+                            fontSize: '12px',
+                            fontWeight: '600',
+                            cursor: 'pointer',
+                            whiteSpace: 'nowrap'
+                          }}
+                        >
+                          Paste
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Bill Summary */}
+            {/* Payment Summary */}
             <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid #F2F4F7', padding: '16px' }}>
-              <h3 style={{ fontSize: '14px', fontWeight: '700', color: '#000000', margin: '0 0 10px 0' }}>Payment Summary</h3>
+              <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#000000', margin: '0 0 12px 0' }}>Payment Summary</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: '#555555' }}>
-                  <span>Items Total ({selectedItems.length})</span>
+                  <span>Selected Items Subtotal ({selectedItems.length})</span>
                   <span style={{ color: '#000000', fontWeight: '600' }}>₹{subtotal}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: '#555555' }}>

@@ -11,12 +11,12 @@ export default function OnlineConsultationCard({ onJoinCall, onReschedule }) {
         padding: '16px',
         boxSizing: 'border-box',
         boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-        marginTop: '12px'
+        margin: 0
       }}
     >
       {/* Top Header Badge & Type */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-        <span style={{ fontSize: '14px', fontWeight: '700', color: '#CCA266' }}>Online Video Consultation</span>
+        <span style={{ fontSize: '16px', fontWeight: '700', color: '#CCA266' }}>Online Video Consultation</span>
         <span style={{ fontSize: '14px', fontWeight: '600', color: '#FFFFFF', background: '#80D351', padding: '6px 16px', borderRadius: '100px 0 0 100px', marginRight: '-16px' }}>
           Confirmed
         </span>

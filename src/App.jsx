@@ -37,7 +37,7 @@ import EditProfilePage from './components/EditProfilePage'
 import LogoutPage from './components/LogoutPage'
 import DeleteAccountPage from './components/DeleteAccountPage'
 import continueArrow from './assets/Continue Arrow.svg'
-import labIcon from './assets/Lab.svg'
+import laboratoryIcon from './assets/Laboratory.svg'
 import consultationIcon from './assets/Consultation.svg'
 import vitalsIcon from './assets/Vitals.svg'
 import statusArrow from './assets/Status Arrow.svg'
@@ -493,6 +493,12 @@ export default function App() {
             />
             <div className="section-group">
               <p className="section-title">Booked Appointments</p>
+              <OnlineConsultationCard 
+                onJoinCall={() => window.open('https://meet.google.com', '_blank')}
+                onReschedule={() => {
+                  setBookingDoctor({ name: "Dr. Sarah Jenkins", specialty: "General Physician & Telehealth", time: "Today, 5:30 PM", isReschedule: true });
+                }}
+              />
               <AppointmentCard 
                 preOpCompleted={preOpCompleted}
                 preOpData={preOpData}
@@ -500,12 +506,6 @@ export default function App() {
                 onActionClick={() => setShowPreOpPage(true)}
                 onSecondaryClick={() => {
                   setBookingDoctor({ name: "Dr. Amelia Carter", specialty: "Cardiology Specialist", time: "Today, 9:30 PM", isReschedule: true });
-                }}
-              />
-              <OnlineConsultationCard 
-                onJoinCall={() => window.open('https://meet.google.com', '_blank')}
-                onReschedule={() => {
-                  setBookingDoctor({ name: "Dr. Sarah Jenkins", specialty: "General Physician & Telehealth", time: "Today, 5:30 PM", isReschedule: true });
                 }}
               />
             </div>
@@ -572,7 +572,12 @@ export default function App() {
                 <div className="drive-card">
                   <div className="drive-card-header">
                     <div className="drive-icon-wrap lab-icon-wrap">
-                      <img src={labIcon} alt="" className="drive-icon" />
+                      <img 
+                        src={laboratoryIcon} 
+                        alt="" 
+                        className="drive-icon" 
+                        style={{ width: '20px', height: '20px', filter: 'brightness(0) saturate(100%) invert(73%) sepia(29%) saturate(836%) hue-rotate(356deg) brightness(92%) contrast(85%)' }}
+                      />
                     </div>
                     <span className="drive-percentage">+8%</span>
                   </div>
